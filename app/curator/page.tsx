@@ -26,7 +26,7 @@ export default function CuratorPage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          Uma leitura editorial automática da fundação 001–019.
+          Uma leitura editorial automática da coleção.
         </p>
       </section>
 

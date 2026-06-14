@@ -20,7 +20,7 @@ export default function JourneyPage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          A coleção 001–020 contada em teses, do primeiro ao último disco.
+          Uma jornada em andamento — {collectionSeed.length} capítulos e contando.
         </p>
       </section>
 

@@ -17,25 +17,25 @@ const exploreItems = [
   {
     label: "Jamaica",
     icon: "🌴",
-    href: "/album/002",
+    href: "/genre/reggae",
     description: "Roots, rocksteady e dub.",
   },
   {
     label: "Hip-Hop",
     icon: "🎤",
-    href: "/album/008",
+    href: "/genre/hip-hop",
     description: "Golden age, jazz rap e rua.",
   },
   {
     label: "Jazz",
     icon: "🎷",
-    href: "/album/014",
+    href: "/genre/jazz",
     description: "Fonte, improviso e ponte.",
   },
   {
     label: "Brasil",
     icon: "🇧🇷",
-    href: "/album/001",
+    href: "/genre/brasil",
     description: "Origem, retorno e visão global.",
   },
 ];
@@ -45,16 +45,43 @@ const listeningPaths = [
     title: "Jamaica → NYC",
     description: "Da raiz jamaicana à arquitetura verbal do hip-hop.",
     catalogs: ["002", "007", "008", "010"],
+    cover: "007",
   },
   {
     title: "Jazz Bridge",
     description: "Quando a batida encontra a linguagem do jazz.",
     catalogs: ["011", "013", "014", "016"],
+    cover: "014",
   },
   {
     title: "Brasil Global",
     description: "O Brasil entrando e saindo da coleção por rotas internacionais.",
-    catalogs: ["001", "019", "013"],
+    catalogs: ["001", "019"],
+    cover: "019",
+  },
+  {
+    title: "De Kingston ao Bronx",
+    description: "Do reggae jamaicano ao hip-hop, via Shinehead.",
+    catalogs: ["002", "003", "004", "005", "006", "007", "008"],
+    cover: "007",
+  },
+  {
+    title: "A Era de Ouro",
+    description: "O auge do golden age do hip-hop.",
+    catalogs: ["008", "009", "010", "011", "012"],
+    cover: "010",
+  },
+  {
+    title: "Noite de Jazz",
+    description: "Um set completo, do hard bop ao blues.",
+    catalogs: ["013", "014", "015", "016", "017", "018"],
+    cover: "016",
+  },
+  {
+    title: "Raízes Brasileiras",
+    description: "O Brasil entrando e saindo da coleção.",
+    catalogs: ["001", "019", "020"],
+    cover: "020",
   },
 ];
 
@@ -239,43 +266,42 @@ export default function Home() {
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-1">
-          {listeningPaths.map((path, index) => (
-            <FadeIn
-              key={path.title}
-              delay={index * 80}
-              className="min-w-[260px]"
-            >
-              <Link
-                href="/narrative"
-                className="premium-card block rounded-3xl border border-[#2b241c] bg-[#11100e] p-4"
+          {listeningPaths.map((path, index) => {
+            const cover = collectionSeed.find(
+              (item) => item.catalog === path.cover
+            );
+
+            if (!cover) return null;
+
+            return (
+              <FadeIn
+                key={path.title}
+                delay={index * 80}
+                className="min-w-[240px]"
               >
-                <p className="text-xl font-black">{path.title}</p>
+                <Link
+                  href="/journey"
+                  className="premium-card flex gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition"
+                >
+                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
+                    <CoverImage album={cover} />
+                  </div>
 
-                <p className="text-sm text-[#b8aa91] mt-2">
-                  {path.description}
-                </p>
+                  <div>
+                    <p className="font-black leading-tight">{path.title}</p>
 
-                <div className="mt-4 flex gap-2">
-                  {path.catalogs.map((catalog) => {
-                    const album = collectionSeed.find(
-                      (item) => item.catalog === catalog
-                    );
+                    <p className="text-xs text-[#9d9079] mt-1">
+                      {path.description}
+                    </p>
 
-                    if (!album) return null;
-
-                    return (
-                      <div
-                        key={catalog}
-                        className="h-12 w-12 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black"
-                      >
-                        <CoverImage album={album} />
-                      </div>
-                    );
-                  })}
-                </div>
-              </Link>
-            </FadeIn>
-          ))}
+                    <p className="text-xs text-purple-400 mt-2">
+                      {path.catalogs.length} discos
+                    </p>
+                  </div>
+                </Link>
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 

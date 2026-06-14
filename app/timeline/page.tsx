@@ -21,7 +21,7 @@ export default function TimelinePage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          Uma leitura histórica dos discos da fundação 001–019.
+          Uma leitura histórica dos discos da coleção.
         </p>
       </section>
 

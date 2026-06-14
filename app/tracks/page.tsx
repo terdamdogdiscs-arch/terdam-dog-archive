@@ -34,7 +34,7 @@ export default function Home() {
         </h1>
 
         <p className="text-[#c7bda8] mt-4">
-          Coleção #000 — Fundação 001 a 019
+          Coleção #000 — Uma narrativa em expansão
         </p>
       </section>
 

@@ -70,7 +70,7 @@ export default function InsightsPage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          Uma leitura automática da fundação 001–019: gêneros, países, décadas,
+          Uma leitura automática da coleção: gêneros, países, décadas,
           valor estimado e narrativa.
         </p>
       </section>
@@ -133,7 +133,7 @@ export default function InsightsPage() {
           >
             <p className="font-black">Linha do Tempo</p>
             <p className="text-sm text-[#9d9079] mt-1">
-              A coleção pelo tempo, da fundação 001–019
+              A coleção pelo tempo, disco a disco
             </p>
           </Link>
 

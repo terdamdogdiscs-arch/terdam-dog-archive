@@ -21,7 +21,7 @@ export default function DiscoverPage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          Sugestões baseadas nos caminhos que a fundação 001–019 já abriu.
+          Sugestões baseadas nos caminhos que a coleção já abriu.
         </p>
       </section>
 
