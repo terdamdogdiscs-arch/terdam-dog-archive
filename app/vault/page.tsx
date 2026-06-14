@@ -44,6 +44,7 @@ export default function VaultPage() {
         <Card
           title="Valor Total"
           value={`R$ ${totalValue}`}
+          accent="text-4xl text-brand-green"
         />
 
         <Card
@@ -109,17 +110,19 @@ export default function VaultPage() {
 function Card({
   title,
   value,
+  accent,
 }: {
   title: string;
   value: string | number;
+  accent?: string;
 }) {
   return (
-    <div className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
+    <div className="premium-card rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
       <p className="text-sm text-[#9d9079]">
         {title}
       </p>
 
-      <p className="text-2xl font-black mt-2">
+      <p className={`font-black mt-2 ${accent ?? "text-2xl"}`}>
         {value}
       </p>
     </div>

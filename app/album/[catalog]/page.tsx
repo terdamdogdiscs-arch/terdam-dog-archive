@@ -8,6 +8,7 @@ import { albums } from "../../data/albums";
 import { tracks } from "../../data/tracks";
 import { dna } from "../../data/dna";
 import { connections } from "../../data/connections";
+import { notes } from "../../data/notes";
 import { acquisitions } from "../../data/acquisitions";
 import BottomNav from "../../components/BottomNav";
 import { genreColor, dnaAccents, GenreAccent } from "../../lib/genreColor";
@@ -58,6 +59,31 @@ export default function AlbumPage() {
     )
     .slice(0, Math.max(0, 3 - curatedConnections.length));
 
+  const currentNote = notes[catalog as keyof typeof notes];
+  const nextNote = nextAlbum
+    ? notes[nextAlbum.catalog as keyof typeof notes]
+    : undefined;
+
+  const incomingConnection = previousAlbum
+    ? connections.find(
+        (item) => item.source === previousAlbum.catalog && item.target === catalog
+      )
+    : undefined;
+
+  const outgoingConnection = nextAlbum
+    ? connections.find(
+        (item) => item.source === catalog && item.target === nextAlbum.catalog
+      )
+    : undefined;
+
+  const cameFromTitle =
+    incomingConnection?.reason ?? currentNote?.story ?? "Conexão narrativa";
+  const cameFromText = currentNote?.note ?? "";
+
+  const leadsToTitle =
+    outgoingConnection?.reason ?? nextNote?.story ?? "Conexão narrativa";
+  const leadsToText = nextNote?.note ?? "";
+
   const groupedTracks = albumTracks.reduce<Record<string, typeof albumTracks>>(
     (acc, track) => {
       acc[track.side] = acc[track.side] || [];
@@ -74,7 +100,7 @@ export default function AlbumPage() {
       </Link>
 
       <section className="mt-8 rounded-[2rem] border border-purple-800 bg-[#11100e] overflow-hidden">
-        <div className="aspect-square bg-brand-black">
+        <div className="aspect-square min-h-[280px] bg-brand-black">
           <CoverImage album={album} />
         </div>
 
@@ -96,7 +122,7 @@ export default function AlbumPage() {
               FICHA DO COLECIONADOR
             </p>
 
-            <h3 className="text-3xl font-black mt-3">
+            <h3 className="text-4xl font-black mt-3 text-brand-yellow">
               TD-{album.catalog}
             </h3>
 
@@ -108,6 +134,8 @@ export default function AlbumPage() {
                 label="Valor est."
                 value={`R$ ${album.estimatedValue || 0}`}
               />
+              <Info label="Selo" value={album.label} />
+              <Info label="Pressing" value={album.pressing} />
             </div>
 
             {albumDna && (
@@ -168,7 +196,7 @@ export default function AlbumPage() {
             </p>
 
             <div className="flex flex-wrap gap-2 mt-6">
-              <span className={`rounded-full border px-3 py-1 text-sm ${genreColor(album.genre).border}`}>
+              <span className={`rounded-full border-[1.5px] px-4 py-1.5 text-sm tracking-wider ${genreColor(album.genre).border}`}>
                 {album.genre}
               </span>
 
@@ -181,6 +209,72 @@ export default function AlbumPage() {
               </span>
             </div>
           </section>
+
+          {(previousAlbum || nextAlbum) && (
+            <section className="mt-8 space-y-4">
+              {previousAlbum && (
+                <div className="rounded-3xl border-[1.5px] border-brand-purple bg-purple-950/10 p-5">
+                  <p className="text-xs tracking-[0.3em] text-brand-purple">
+                    VEIO DE
+                  </p>
+
+                  <p className="text-xl font-bold mt-2">
+                    {cameFromTitle}
+                  </p>
+
+                  <p className="text-[#b8aa91] mt-2 text-sm leading-relaxed">
+                    {cameFromText}
+                  </p>
+
+                  <div className="flex items-center gap-3 mt-5">
+                    <Link
+                      href={`/album/${previousAlbum.catalog}`}
+                      className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-[#2b241c]"
+                    >
+                      <CoverImage album={previousAlbum} />
+                    </Link>
+
+                    <span className="text-2xl text-brand-purple">→</span>
+
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-brand-purple">
+                      <CoverImage album={album} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {nextAlbum && (
+                <div className="rounded-3xl border-[1.5px] border-brand-purple bg-purple-950/10 p-5">
+                  <p className="text-xs tracking-[0.3em] text-brand-purple">
+                    POR QUE ESTE DISCO LEVA AO PRÓXIMO
+                  </p>
+
+                  <p className="text-xl font-bold mt-2">
+                    {leadsToTitle}
+                  </p>
+
+                  <p className="text-[#b8aa91] mt-2 text-sm leading-relaxed">
+                    {leadsToText}
+                  </p>
+
+                  <div className="flex items-center gap-3 mt-5">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-brand-purple">
+                      <CoverImage album={album} />
+                    </div>
+
+                    <span className="text-2xl text-brand-purple">→</span>
+
+                    <Link
+                      href={`/album/${nextAlbum.catalog}`}
+                      className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-[#2b241c]"
+                    >
+                      <CoverImage album={nextAlbum} />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
 
           {(curatedConnections.length > 0 || relatedAlbums.length > 0) && (
             <section className="mt-8 rounded-3xl border border-[#2b241c] p-5">

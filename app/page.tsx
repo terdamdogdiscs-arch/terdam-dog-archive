@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import BottomNav from "./components/BottomNav";
+import FadeIn from "./components/FadeIn";
 import { genreColor } from "./lib/genreColor";
 import {
   collectionSeed,
@@ -93,12 +94,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
-      <section className="rounded-[2rem] border border-[#2b241c] bg-gradient-to-br from-[#17120d] to-[#080706] p-5 mb-5 overflow-hidden">
+      <section className="premium-card rounded-[2rem] border border-[#2b241c] bg-gradient-to-br from-[#17120d] to-[#080706] p-5 mb-5 overflow-hidden">
         <div className="flex items-center gap-4">
           <img
             src="/logo.png"
             alt="Terdam Dog"
-            className="h-16 w-16 rounded-full object-cover shadow-xl"
+            className="h-[120px] w-[120px] rounded-full object-contain shadow-xl"
           />
 
           <div>
@@ -122,13 +123,13 @@ export default function Home() {
           <MiniStat value={collectionStats.genres.length} label="Gêneros" />
         </div>
 
-        <section className="mt-5 rounded-3xl border border-purple-800 bg-purple-950/20 p-4">
+        <section className="premium-card mt-5 rounded-3xl border border-purple-800 bg-purple-950/20 p-4">
           <p className="text-xs tracking-[0.25em] text-purple-400">
             PONTUAÇÃO DA COLEÇÃO
           </p>
 
           <div className="flex items-end justify-between mt-2">
-            <p className="text-4xl font-black">
+            <p className="text-5xl font-black text-brand-purple">
               {collectionScore}
               <span className="text-lg text-[#9d9079]">/100</span>
             </p>
@@ -139,6 +140,8 @@ export default function Home() {
           </div>
         </section>
       </section>
+
+      <div className="h-px mb-4 bg-gradient-to-r from-brand-green to-brand-purple" />
 
       <input
         className="w-full mb-4 rounded-2xl border border-[#2b241c] bg-[#120f0b] p-4 text-[#f4ead8] outline-none focus:border-purple-500"
@@ -160,7 +163,7 @@ export default function Home() {
             <button
               key={item.label}
               onClick={() => applyExplore(item.query)}
-              className={`rounded-3xl border p-4 text-left transition ${
+              className={`premium-card rounded-3xl border p-4 text-left transition ${
                 activeFilter === item.query
                   ? "border-purple-500 bg-purple-950/30"
                   : "border-[#2b241c] bg-[#11100e]"
@@ -186,7 +189,7 @@ export default function Home() {
         )}
       </section>
 
-      <section className="rounded-[2rem] border border-yellow-700 bg-yellow-950/20 p-5 mb-6">
+      <section className="premium-card rounded-[2rem] border border-yellow-700 bg-yellow-950/20 p-5 mb-6">
         <p className="text-yellow-400 text-xs tracking-[0.25em]">
           SELEÇÃO DO CURADOR
         </p>
@@ -223,7 +226,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-green-800 bg-green-950/10 p-5 mb-7">
+      <div className="h-px my-6 bg-gradient-to-r from-brand-green to-brand-purple" />
+
+      <section className="premium-card rounded-[2rem] border border-green-800 bg-green-950/10 p-5 mb-7">
         <p className="text-green-400 text-xs tracking-[0.25em]">
           VALOR DA COLEÇÃO
         </p>
@@ -245,6 +250,8 @@ export default function Home() {
         </Link>
       </section>
 
+      <div className="h-px mb-6 bg-gradient-to-r from-brand-green to-brand-purple" />
+
       <section className="mb-7">
         <div className="flex items-end justify-between mb-3">
           <div>
@@ -261,40 +268,47 @@ export default function Home() {
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-1">
-          {listeningPaths.map((path) => (
-            <Link
+          {listeningPaths.map((path, index) => (
+            <FadeIn
               key={path.title}
-              href="/narrative"
-              className="min-w-[260px] rounded-3xl border border-[#2b241c] bg-[#11100e] p-4"
+              delay={index * 80}
+              className="min-w-[260px]"
             >
-              <p className="text-xl font-black">{path.title}</p>
+              <Link
+                href="/narrative"
+                className="premium-card block rounded-3xl border border-[#2b241c] bg-[#11100e] p-4"
+              >
+                <p className="text-xl font-black">{path.title}</p>
 
-              <p className="text-sm text-[#b8aa91] mt-2">
-                {path.description}
-              </p>
+                <p className="text-sm text-[#b8aa91] mt-2">
+                  {path.description}
+                </p>
 
-              <div className="mt-4 flex gap-2">
-                {path.catalogs.map((catalog) => {
-                  const album = collectionSeed.find(
-                    (item) => item.catalog === catalog
-                  );
+                <div className="mt-4 flex gap-2">
+                  {path.catalogs.map((catalog) => {
+                    const album = collectionSeed.find(
+                      (item) => item.catalog === catalog
+                    );
 
-                  if (!album) return null;
+                    if (!album) return null;
 
-                  return (
-                    <div
-                      key={catalog}
-                      className="h-12 w-12 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black"
-                    >
-                      <CoverImage album={album} />
-                    </div>
-                  );
-                })}
-              </div>
-            </Link>
+                    return (
+                      <div
+                        key={catalog}
+                        className="h-12 w-12 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black"
+                      >
+                        <CoverImage album={album} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </Link>
+            </FadeIn>
           ))}
         </div>
       </section>
+
+      <div className="h-px mb-6 bg-gradient-to-r from-brand-green to-brand-purple" />
 
       <section>
         <div className="flex items-end justify-between mb-4">
@@ -303,7 +317,7 @@ export default function Home() {
               COLEÇÃO
             </p>
 
-            <h2 className="text-3xl font-black">
+            <h2 className="text-4xl font-black text-brand-yellow">
               {filteredAlbums.length} discos
             </h2>
           </div>
@@ -314,34 +328,34 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {filteredAlbums.map((album) => (
-            <Link
-              key={album.catalog}
-              href={`/album/${album.catalog}`}
-              className="group block"
-            >
-              <div className="aspect-square rounded-3xl border border-[#2b241c] bg-[#11100e] overflow-hidden group-hover:border-purple-500 transition">
-                <CoverImage album={album} />
-              </div>
+          {filteredAlbums.map((album, index) => (
+            <FadeIn key={album.catalog} delay={Math.min(index * 40, 320)}>
+              <Link href={`/album/${album.catalog}`} className="group block">
+                <div className="premium-card aspect-square rounded-3xl border border-[#2b241c] bg-[#11100e] overflow-hidden group-hover:border-purple-500 transition">
+                  <CoverImage album={album} />
+                </div>
 
-              <div className="mt-2">
-                <p className="text-purple-400 text-xs">
-                  TD-{album.catalog}
-                </p>
+                <div className="mt-2">
+                  <p className="text-purple-400 text-xs">
+                    TD-{album.catalog}
+                  </p>
 
-                <h3 className="font-black leading-tight text-sm">
-                  {album.artist}
-                </h3>
+                  <h3 className="font-black leading-tight text-sm">
+                    {album.artist}
+                  </h3>
 
-                <p className="text-xs text-[#b8aa91] line-clamp-2">
-                  {album.album}
-                </p>
+                  <p className="text-xs text-[#b8aa91] line-clamp-2">
+                    {album.album}
+                  </p>
 
-                <p className={`text-[11px] mt-1 ${genreColor(album.genre).text}`}>
-                  {album.genre}
-                </p>
-              </div>
-            </Link>
+                  <span
+                    className={`inline-block mt-2 rounded-full border px-2.5 py-1 text-[10px] tracking-wider ${genreColor(album.genre).border} ${genreColor(album.genre).text}`}
+                  >
+                    {album.genre}
+                  </span>
+                </div>
+              </Link>
+            </FadeIn>
           ))}
         </div>
       </section>

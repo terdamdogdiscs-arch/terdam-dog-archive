@@ -24,7 +24,7 @@ A coleção Terdam Dog não é sobre raridade. É sobre conexões.
 
 ## Quatro pilares
 
-- 🌴 **Reggae** — raízes, rocksteady e diáspora.
+- 🌴 **Reggae** — raízes, rocksteady e dub.
 - 🎤 **Hip-Hop** — golden age, jazz rap e rua.
 - 🎷 **Jazz** — fonte, improviso e ponte.
 - 🇧🇷 **Brasil** — origem, retorno e visão global.

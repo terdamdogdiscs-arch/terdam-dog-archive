@@ -75,10 +75,10 @@ export default function InsightsPage() {
         </p>
       </section>
 
-      <section className="rounded-[2rem] border border-purple-800 bg-purple-950/20 p-6 mb-8">
+      <section className="premium-card rounded-[2rem] border border-purple-800 bg-purple-950/20 p-6 mb-8">
         <p className="text-sm text-purple-300">Pontuação da Coleção</p>
 
-        <p className="text-6xl font-black mt-2">
+        <p className="text-6xl font-black text-brand-purple mt-2">
           {collectionScore}
           <span className="text-2xl text-[#9d9079]">/100</span>
         </p>
@@ -174,7 +174,7 @@ function Card({
   detail?: string;
 }) {
   return (
-    <div className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
+    <div className="premium-card rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
       <p className="text-sm text-[#9d9079]">{title}</p>
       <p className="text-2xl font-black mt-2">{value}</p>
       {detail && <p className="text-sm text-[#b8aa91] mt-1">{detail}</p>}

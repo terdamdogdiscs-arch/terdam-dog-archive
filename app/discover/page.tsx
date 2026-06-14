@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { albums } from "../data/albums";
 import { discoveries } from "../data/discover";
+import { connections } from "../data/connections";
 import BottomNav from "../components/BottomNav";
 
 export default function DiscoverPage() {
@@ -33,7 +34,7 @@ export default function DiscoverPage() {
           return (
             <article
               key={block.id}
-              className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-5"
+              className="premium-card rounded-3xl border border-[#2b241c] bg-[#11100e] p-5"
             >
               <p className="text-xs tracking-[0.3em] text-purple-400">
                 CAMINHO DE DESCOBERTA
@@ -51,15 +52,31 @@ export default function DiscoverPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {baseAlbums.map((album: any) => (
-                    <Link
-                      key={album.catalog}
-                      href={`/album/${album.catalog}`}
-                      className="rounded-full border border-purple-700 px-3 py-1 text-sm text-purple-300"
-                    >
-                      TD-{album.catalog}
-                    </Link>
-                  ))}
+                  {baseAlbums.map((album: any) => {
+                    const link = connections.find(
+                      (item) =>
+                        item.source === album.catalog ||
+                        item.target === album.catalog
+                    );
+
+                    return (
+                      <Link
+                        key={album.catalog}
+                        href={`/album/${album.catalog}`}
+                        className="rounded-2xl border-[1.5px] border-purple-700 px-3 py-2 text-sm text-purple-300 hover:border-brand-yellow transition"
+                      >
+                        <span className="block tracking-wider">
+                          TD-{album.catalog}
+                        </span>
+
+                        {link && (
+                          <span className="block mt-1 text-[10px] tracking-[0.2em] text-brand-yellow">
+                            ↳ {link.reason}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 
