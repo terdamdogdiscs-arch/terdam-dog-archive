@@ -12,7 +12,7 @@ const nodes = [
 
 export default function UniversePage() {
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Collection
       </Link>
@@ -97,7 +97,7 @@ function UniverseNode({
   value: string;
 }) {
   return (
-    <div className="rounded-3xl border border-[#2b241c] bg-[#080706] p-4">
+    <div className="rounded-3xl border border-[#2b241c] bg-brand-black p-4">
       <p className="text-2xl font-black">{title}</p>
       <p className="text-sm text-[#b8aa91] mt-2">{value}</p>
     </div>

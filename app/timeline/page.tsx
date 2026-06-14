@@ -6,7 +6,7 @@ export default function TimelinePage() {
   const sortedAlbums = [...albums].sort((a, b) => a.year - b.year);
 
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Collection
       </Link>

@@ -5,7 +5,7 @@ import BottomNav from "../components/BottomNav";
 
 export default function DiscoverPage() {
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Collection
       </Link>
@@ -72,7 +72,7 @@ export default function DiscoverPage() {
                   {block.suggestions.map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl border border-[#2b241c] bg-[#080706] p-4"
+                      className="rounded-2xl border border-[#2b241c] bg-brand-black p-4"
                     >
                       <p className="font-black">{item}</p>
                     </div>

@@ -12,7 +12,7 @@ type NarrativeNote = {
 
 export default function NarrativePage() {
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <section className="mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
           NARRATIVE GRAPH
@@ -48,7 +48,7 @@ export default function NarrativePage() {
                 <p className="text-[#b8aa91]">{album.album}</p>
               </Link>
 
-              <div className="mt-5 rounded-2xl bg-[#080706] p-4">
+              <div className="mt-5 rounded-2xl bg-brand-black p-4">
                 <p className="text-xs tracking-[0.25em] text-purple-400">
                   STORY
                 </p>

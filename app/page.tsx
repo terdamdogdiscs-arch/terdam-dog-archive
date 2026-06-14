@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import BottomNav from "./components/BottomNav";
+import { genreColor } from "./lib/genreColor";
 import {
   collectionSeed,
   collectionStats,
@@ -91,7 +92,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#070707] text-[#f4ead8] p-4 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
       <section className="rounded-[2rem] border border-[#2b241c] bg-gradient-to-br from-[#17120d] to-[#080706] p-5 mb-5 overflow-hidden">
         <div className="flex items-center gap-4">
           <img
@@ -151,7 +152,7 @@ export default function Home() {
 
       <section className="mb-6">
         <p className="text-xs tracking-[0.25em] text-purple-400 mb-3">
-          EXPLORE
+          EXPLORAR
         </p>
 
         <div className="grid grid-cols-2 gap-3">
@@ -283,7 +284,7 @@ export default function Home() {
                   return (
                     <div
                       key={catalog}
-                      className="h-12 w-12 overflow-hidden rounded-xl border border-[#2b241c] bg-[#080706]"
+                      className="h-12 w-12 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black"
                     >
                       <CoverImage album={album} />
                     </div>
@@ -336,7 +337,7 @@ export default function Home() {
                   {album.album}
                 </p>
 
-                <p className="text-[11px] text-[#9d9079] mt-1">
+                <p className={`text-[11px] mt-1 ${genreColor(album.genre).text}`}>
                   {album.genre}
                 </p>
               </div>
@@ -344,6 +345,21 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <footer className="mt-10 mb-4 text-center">
+        <p className="text-[10px] tracking-[0.3em] text-[#9d9079]">
+          EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM
+        </p>
+
+        <a
+          href="https://instagram.com/terdamdogdiscs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-block text-sm text-purple-400"
+        >
+          @terdamdogdiscs
+        </a>
+      </footer>
 
       <BottomNav />
     </main>

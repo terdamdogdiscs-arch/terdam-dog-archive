@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SessionsPage() {
   return (
-    <main className="min-h-screen bg-black text-white p-6 pb-24">
+    <main className="min-h-screen bg-brand-black text-white p-6 pb-24">
       <Link href="/" className="text-purple-400">
         ← Voltar
       </Link>

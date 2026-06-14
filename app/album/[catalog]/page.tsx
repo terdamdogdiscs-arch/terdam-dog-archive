@@ -10,6 +10,7 @@ import { dna } from "../../data/dna";
 import { connections } from "../../data/connections";
 import { acquisitions } from "../../data/acquisitions";
 import BottomNav from "../../components/BottomNav";
+import { genreColor, dnaAccents, GenreAccent } from "../../lib/genreColor";
 
 export default function AlbumPage() {
   const params = useParams();
@@ -19,7 +20,7 @@ export default function AlbumPage() {
 
   if (!album) {
     return (
-      <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-6">
+      <main className="min-h-screen bg-brand-black text-[#f4ead8] p-6">
         <Link href="/" className="text-purple-400">
           ← Voltar
         </Link>
@@ -67,13 +68,13 @@ export default function AlbumPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Collection
       </Link>
 
       <section className="mt-8 rounded-[2rem] border border-purple-800 bg-[#11100e] overflow-hidden">
-        <div className="aspect-square bg-[#0b0b0b]">
+        <div className="aspect-square bg-brand-black">
           <CoverImage album={album} />
         </div>
 
@@ -111,10 +112,10 @@ export default function AlbumPage() {
 
             {albumDna && (
               <div className="mt-6 space-y-4">
-                <DnaBar label="Reggae" value={albumDna.reggae} />
-                <DnaBar label="Hip-Hop" value={albumDna.hiphop} />
-                <DnaBar label="Jazz" value={albumDna.jazz} />
-                <DnaBar label="Brasil" value={albumDna.brasil} />
+                <DnaBar label="Reggae" value={albumDna.reggae} accent={dnaAccents.reggae} />
+                <DnaBar label="Hip-Hop" value={albumDna.hiphop} accent={dnaAccents.hiphop} />
+                <DnaBar label="Jazz" value={albumDna.jazz} accent={dnaAccents.jazz} />
+                <DnaBar label="Brasil" value={albumDna.brasil} accent={dnaAccents.brasil} />
               </div>
             )}
 
@@ -167,7 +168,7 @@ export default function AlbumPage() {
             </p>
 
             <div className="flex flex-wrap gap-2 mt-6">
-              <span className="rounded-full border border-purple-600 px-3 py-1 text-sm">
+              <span className={`rounded-full border px-3 py-1 text-sm ${genreColor(album.genre).border}`}>
                 {album.genre}
               </span>
 
@@ -374,23 +375,25 @@ function Info({
 function DnaBar({
   label,
   value,
+  accent,
 }: {
   label: string;
   value: number;
+  accent: GenreAccent;
 }) {
   return (
     <div>
       <div className="flex justify-between mb-1">
         <span>{label}</span>
 
-        <span className="text-yellow-400 font-black">
+        <span className={`${accent.text} font-black`}>
           {value}%
         </span>
       </div>
 
-      <div className="h-3 bg-[#080706] rounded-full overflow-hidden">
+      <div className="h-3 bg-brand-black rounded-full overflow-hidden">
         <div
-          className="h-3 bg-yellow-500 rounded-full"
+          className={`h-3 ${accent.bg} rounded-full`}
           style={{ width: `${value}%` }}
         />
       </div>

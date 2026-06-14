@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { albums } from "../data/albums";
 import BottomNav from "../components/BottomNav";
+import { genreColor } from "../lib/genreColor";
 
 function countBy<T extends Record<string, any>>(items: T[], field: keyof T) {
   return items.reduce<Record<string, number>>((acc, item) => {
@@ -16,7 +17,7 @@ export default function HeatmapPage() {
   const byRole = countBy(albums, "role");
 
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Collection</Link>
 
       <section className="mt-8 mb-8">
@@ -33,7 +34,7 @@ export default function HeatmapPage() {
         </p>
       </section>
 
-      <HeatSection title="Gêneros" data={byGenre} />
+      <HeatSection title="Gêneros" data={byGenre} accentFor={genreColor} />
       <HeatSection title="Países" data={byCountry} />
       <HeatSection title="Papéis narrativos" data={byRole} />
 
@@ -45,9 +46,11 @@ export default function HeatmapPage() {
 function HeatSection({
   title,
   data,
+  accentFor,
 }: {
   title: string;
   data: Record<string, number>;
+  accentFor?: (key: string) => { bg: string; text: string };
 }) {
   const max = Math.max(...Object.values(data));
 
@@ -58,17 +61,21 @@ function HeatSection({
       <div className="space-y-5">
         {Object.entries(data).map(([key, value]) => {
           const width = `${(value / max) * 100}%`;
+          const accent = accentFor?.(key) ?? {
+            bg: "bg-purple-500",
+            text: "text-purple-400",
+          };
 
           return (
             <div key={key}>
               <div className="flex justify-between mb-2">
                 <span className="font-bold">{key}</span>
-                <span className="text-purple-400 font-black">{value}</span>
+                <span className={`${accent.text} font-black`}>{value}</span>
               </div>
 
-              <div className="h-4 rounded-full bg-[#080706] overflow-hidden">
+              <div className="h-4 rounded-full bg-brand-black overflow-hidden">
                 <div
-                  className="h-4 rounded-full bg-purple-500"
+                  className={`h-4 rounded-full ${accent.bg}`}
                   style={{ width }}
                 />
               </div>

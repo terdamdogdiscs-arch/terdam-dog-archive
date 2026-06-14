@@ -4,7 +4,7 @@ import BottomNav from "../components/BottomNav";
 
 export default function EssayPage() {
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
 
       <article className="mt-8">
@@ -76,7 +76,7 @@ function Card({ title, value }: { title: string; value: string | number }) {
 
 function Pillar({ icon, title }: { icon: string; title: string }) {
   return (
-    <div className="rounded-3xl border border-[#2b241c] bg-[#080706] p-4">
+    <div className="rounded-3xl border border-[#2b241c] bg-brand-black p-4">
       <p className="text-3xl">{icon}</p>
       <p className="font-black mt-3">{title}</p>
     </div>

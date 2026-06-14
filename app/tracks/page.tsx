@@ -25,7 +25,7 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-[#0b0b0b] text-[#f5ead2] p-6 pb-24">
+    <main className="min-h-screen bg-brand-black text-[#f5ead2] p-6 pb-24">
       <section className="mb-10">
         <p className="text-sm text-purple-400 mb-2">TERDAM DOG ARCHIVE</p>
 

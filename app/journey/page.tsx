@@ -14,7 +14,7 @@ const journey = [
 
 export default function JourneyPage() {
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
 
       <section className="mt-8 mb-10">
@@ -64,6 +64,15 @@ export default function JourneyPage() {
             </div>
           );
         })}
+      </section>
+
+      <section className="mt-10 mb-4 text-center">
+        <Link
+          href="/heatmap"
+          className="inline-block rounded-full border border-purple-700 px-5 py-2 text-purple-400"
+        >
+          Ver mapa de calor da coleção →
+        </Link>
       </section>
 
       <BottomNav />

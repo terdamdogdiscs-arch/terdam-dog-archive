@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const score = collectionScore;
 
   return (
-    <main className="min-h-screen bg-[#050505] text-[#f4ead8] p-6">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-6">
 
       <Link
         href="/vault"

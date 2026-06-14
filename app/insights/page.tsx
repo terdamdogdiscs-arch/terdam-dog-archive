@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BottomNav from "../components/BottomNav";
+import { genreColor } from "../lib/genreColor";
 import {
   collectionSeed,
   collectionStats,
@@ -54,7 +55,7 @@ export default function InsightsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#080706] text-[#f4ead8] p-5 pb-32">
+    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Collection
       </Link>
@@ -107,10 +108,56 @@ export default function InsightsPage() {
         <Card title="Ganho potencial" value={`R$ ${totalPotentialGain}`} />
       </section>
 
-      <Section title="Distribuição por gênero" data={byGenre} />
+      <Section title="Distribuição por gênero" data={byGenre} accentFor={genreColor} />
       <Section title="Distribuição por país" data={byCountry} />
       <Section title="Distribuição por década" data={byDecade} />
       <Section title="Papéis narrativos" data={byRole} />
+
+      <section className="mt-8">
+        <h2 className="text-3xl font-black mb-4">Visualizações</h2>
+
+        <div className="grid grid-cols-2 gap-3">
+          <Link
+            href="/heatmap"
+            className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
+          >
+            <p className="font-black">Heatmap</p>
+            <p className="text-sm text-[#9d9079] mt-1">
+              Onde a coleção pulsa por gênero, país e papel
+            </p>
+          </Link>
+
+          <Link
+            href="/timeline"
+            className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
+          >
+            <p className="font-black">Timeline</p>
+            <p className="text-sm text-[#9d9079] mt-1">
+              A coleção pelo tempo, da fundação 001–019
+            </p>
+          </Link>
+
+          <Link
+            href="/universe"
+            className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
+          >
+            <p className="font-black">Universo</p>
+            <p className="text-sm text-[#9d9079] mt-1">
+              Constelações musicais conectadas por narrativa
+            </p>
+          </Link>
+
+          <Link
+            href="/world"
+            className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
+          >
+            <p className="font-black">Mundo</p>
+            <p className="text-sm text-[#9d9079] mt-1">
+              Países e cenas que formam a fundação
+            </p>
+          </Link>
+        </div>
+      </section>
 
       <BottomNav />
     </main>
@@ -138,9 +185,11 @@ function Card({
 function Section({
   title,
   data,
+  accentFor,
 }: {
   title: string;
   data: Record<string, number>;
+  accentFor?: (key: string) => { bg: string; text: string };
 }) {
   const max = Math.max(...Object.values(data));
 
@@ -151,17 +200,21 @@ function Section({
       <div className="space-y-4">
         {Object.entries(data).map(([key, value]) => {
           const width = `${(value / max) * 100}%`;
+          const accent = accentFor?.(key) ?? {
+            bg: "bg-purple-500",
+            text: "text-purple-400",
+          };
 
           return (
             <div key={key}>
               <div className="flex justify-between mb-1">
                 <span>{key}</span>
-                <span className="text-purple-400 font-black">{value}</span>
+                <span className={`${accent.text} font-black`}>{value}</span>
               </div>
 
               <div className="h-2 bg-[#11100e] rounded">
                 <div
-                  className="h-2 bg-purple-500 rounded"
+                  className={`h-2 ${accent.bg} rounded`}
                   style={{ width }}
                 />
               </div>
