@@ -128,5 +128,12 @@ export const notes = {
     note: "O Brasil aparece visto de fora, mas sem perder sua identidade.",
     story: "Brasil Global",
     previous: "018",
+    next: "020",
+  },
+
+  "020": {
+    note: "O retorno ao Brasil por um caminho diferente. Enquanto Sergio Mendes traduzia o Brasil para o mundo, Jorge Ben mostrava que não precisava de tradução.",
+    story: "Brasil Direto",
+    previous: "019",
   },
 };

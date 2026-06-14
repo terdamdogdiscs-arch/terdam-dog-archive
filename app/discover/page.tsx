@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { albums } from "../data/albums";
+import { albums, type Album } from "../data/albums";
 import { discoveries } from "../data/discover";
 import { connections } from "../data/connections";
 import BottomNav from "../components/BottomNav";
@@ -29,7 +29,7 @@ export default function DiscoverPage() {
         {discoveries.map((block) => {
           const baseAlbums = block.basedOn
             .map((catalog) => albums.find((album) => album.catalog === catalog))
-            .filter(Boolean);
+            .filter((album): album is Album => Boolean(album));
 
           return (
             <article
@@ -52,7 +52,7 @@ export default function DiscoverPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {baseAlbums.map((album: any) => {
+                  {baseAlbums.map((album) => {
                     const link = connections.find(
                       (item) =>
                         item.source === album.catalog ||

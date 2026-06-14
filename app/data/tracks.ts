@@ -245,4 +245,14 @@ export const tracks = [
   { catalog: "019", side: "B", number: 9, title: "Samba De Uma Nota Só", duration: "", bpm: null },
   { catalog: "019", side: "B", number: 10, title: "She's A Carioca", duration: "", bpm: null },
   { catalog: "019", side: "B", number: 11, title: "Day Tripper", duration: "", bpm: null },
+
+  { catalog: "020", side: "A", number: 1, title: "Taj Mahal", duration: "4:18", bpm: null },
+  { catalog: "020", side: "A", number: 2, title: "Os Alquimistas Estão Chegando Os Alquimistas", duration: "5:12", bpm: null },
+  { catalog: "020", side: "A", number: 3, title: "Chove Chuva", duration: "3:59", bpm: null },
+  { catalog: "020", side: "A", number: 4, title: "Georgia", duration: "4:00", bpm: null },
+  { catalog: "020", side: "A", number: 5, title: "O Namorado da Viúva", duration: "4:46", bpm: null },
+  { catalog: "020", side: "B", number: 6, title: "My Lady", duration: "8:15", bpm: null },
+  { catalog: "020", side: "B", number: 7, title: "Jesus de Praga", duration: "3:54", bpm: null },
+  { catalog: "020", side: "B", number: 8, title: "Mas Que Nada", duration: "6:30", bpm: null },
+  { catalog: "020", side: "B", number: 9, title: "País Tropical", duration: "3:41", bpm: null },
 ];

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { albums } from "../data/albums";
+import { albums, type Album } from "../data/albums";
 import BottomNav from "../components/BottomNav";
 
 const nodes = [
@@ -44,7 +44,7 @@ export default function UniversePage() {
         {nodes.map((node, index) => {
           const nodeAlbums = node.catalogs
             .map((catalog) => albums.find((album) => album.catalog === catalog))
-            .filter(Boolean);
+            .filter((album): album is Album => Boolean(album));
 
           return (
             <div key={node.label}>
@@ -58,7 +58,7 @@ export default function UniversePage() {
                 </h2>
 
                 <div className="mt-5 space-y-3">
-                  {nodeAlbums.map((album: any) => (
+                  {nodeAlbums.map((album) => (
                     <Link
                       key={album.catalog}
                       href={`/album/${album.catalog}`}

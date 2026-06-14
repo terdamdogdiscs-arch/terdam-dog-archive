@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { albums } from "../data/albums";
+import { albums, type Album } from "../data/albums";
 import { notes } from "../data/notes";
 import BottomNav from "../components/BottomNav";
 
@@ -99,7 +99,7 @@ function CuratorCard({
   text,
 }: {
   title: string;
-  album: any;
+  album: Album;
   text: string;
 }) {
   return (

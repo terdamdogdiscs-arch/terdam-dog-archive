@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
-import { albums } from "../../data/albums";
+import { albums, type Album } from "../../data/albums";
 import { tracks } from "../../data/tracks";
 import { dna } from "../../data/dna";
 import { connections } from "../../data/connections";
@@ -415,7 +415,11 @@ export default function AlbumPage() {
   );
 }
 
-function CoverImage({ album }: { album: any }) {
+function CoverImage({
+  album,
+}: {
+  album: Pick<Album, "catalog" | "album" | "artist" | "year" | "cover">;
+}) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {

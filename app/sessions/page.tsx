@@ -30,7 +30,7 @@ export default function SessionsPage() {
           <div>#010 Fugees</div>
           <div>#013 Guru</div>
           <div>#014 Sonny Rollins</div>
-          <div>#019 Sergio Mendes & Brasil '66</div>
+          <div>#019 Sergio Mendes & Brasil &apos;66</div>
         </div>
       </div>
       <BottomNav />

@@ -3,7 +3,7 @@ import { albums } from "../data/albums";
 import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
 
-function countBy<T extends Record<string, any>>(items: T[], field: keyof T) {
+function countBy<T extends Record<string, unknown>>(items: T[], field: keyof T) {
   return items.reduce<Record<string, number>>((acc, item) => {
     const key = String(item[field] || "Não informado");
     acc[key] = (acc[key] || 0) + 1;

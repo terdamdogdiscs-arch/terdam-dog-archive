@@ -1,4 +1,21 @@
-export const albums = [
+export type Album = {
+  catalog: string;
+  artist: string;
+  album: string;
+  year: number;
+  country: string;
+  genre: string;
+  subgenre: string;
+  role: string;
+  tracks: number;
+  cover: string;
+  label: string;
+  pressing: string;
+  estimatedValue: number;
+  note: string;
+};
+
+export const albums: Album[] = [
   { catalog: "001", artist: "Black Alien", album: "Babylon By Gus Vol. 1", year: 2004, country: "Brasil", genre: "Hip-Hop", subgenre: "Rap Nacional", role: "Origem", tracks: 12, cover: "/covers/001.jpg", label: "Trama", pressing: "1ª edição BR · 2004", estimatedValue: 180, note: "A origem da coleção começa no Brasil, mas já olhando para fora. Black Alien abre o arquivo com palavra, rua e imaginação sonora." },
   { catalog: "002", artist: "Junior Byles", album: "Beat Down Babylon", year: 1972, country: "Jamaica", genre: "Reggae", subgenre: "Roots Reggae", role: "Conexão", tracks: 14, cover: "/covers/002.jpg", label: "Trojan Records", pressing: "Reedição Trojan", estimatedValue: 160, note: "Depois da palavra, vem a raiz. Junior Byles leva a coleção para a Jamaica espiritual, política e profunda." },
   { catalog: "003", artist: "Various Artists", album: "Rudeboy: The Story of Trojan Records", year: 2018, country: "Jamaica / Reino Unido", genre: "Reggae", subgenre: "Ska / Rocksteady", role: "Contexto", tracks: 24, cover: "/covers/003.jpg", label: "BMG / Trojan Records", pressing: "Box set BMG · 2018", estimatedValue: 220, note: "Aqui a coleção abre o mapa. Trojan aparece como documento de uma cultura em trânsito entre Jamaica, Reino Unido e rua." },
@@ -18,4 +35,5 @@ export const albums = [
   { catalog: "017", artist: "Oscar Peterson", album: "Girl Talk", year: 1968, country: "Canadá", genre: "Jazz", subgenre: "Piano Jazz", role: "Intimidade", tracks: 5, cover: "/covers/017.jpg", label: "MPS Records", pressing: "Original MPS · Alemanha", estimatedValue: 160, note: "Depois da intensidade, o piano aproxima a escuta. Oscar Peterson abre uma sala mais íntima dentro do arquivo." },
   { catalog: "018", artist: "Various Artists", album: "The Alternate Blues", year: 1982, country: "EUA", genre: "Jazz", subgenre: "Blues / Jazz", role: "Encerramento", tracks: 6, cover: "/covers/018.jpg", label: "Pablo Records", pressing: "Original Pablo", estimatedValue: 190, note: "O bloco do jazz se encerra em conversa. Trompetes, piano e blues aparecem como escuta coletiva entre gigantes." },
   { catalog: "019", artist: "Sergio Mendes & Brasil '66", album: "Herb Alpert Presents", year: 1966, country: "Brasil / EUA", genre: "MPB", subgenre: "Bossa Nova / Brazilian Jazz", role: "Visão de Fora", tracks: 11, cover: "/covers/019.jpg", label: "A&M Records", pressing: "Original A&M", estimatedValue: 180, note: "A virada brasileira chega vista de fora. Sergio Mendes leva o Brasil para Los Angeles e transforma bossa, pop e jazz em linguagem global." },
+  { catalog: "020", artist: "Jorge Ben", album: "Tropical", year: 1976, country: "Brasil", genre: "MPB", subgenre: "Samba Rock", role: "Virada", tracks: 9, cover: "/covers/020.jpg", label: "Island Records", pressing: "Original Island Records · 1976", estimatedValue: 220, note: "O retorno ao Brasil por um caminho diferente. Enquanto Sergio Mendes traduzia o Brasil para o mundo, Jorge Ben mostrava que não precisava de tradução." },
 ];

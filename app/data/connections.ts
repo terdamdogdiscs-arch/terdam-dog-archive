@@ -47,4 +47,11 @@ export const connections = [
     target: "019",
     reason: "Brazilian Connection",
   },
+
+  {
+    source: "019",
+    target: "020",
+    reason: "Brasil Global",
+    description: "Sergio Mendes levou o Brasil ao mundo via Los Angeles. Jorge Ben prova que não precisava de tradutor.",
+  },
 ]

@@ -5,6 +5,7 @@ import { useState } from "react";
 import BottomNav from "./components/BottomNav";
 import FadeIn from "./components/FadeIn";
 import { genreColor } from "./lib/genreColor";
+import type { Album } from "./data/albums";
 import {
   collectionSeed,
   collectionStats,
@@ -380,7 +381,11 @@ export default function Home() {
   );
 }
 
-function CoverImage({ album }: { album: any }) {
+function CoverImage({
+  album,
+}: {
+  album: Pick<Album, "catalog" | "album" | "artist" | "cover">;
+}) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {
