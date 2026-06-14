@@ -16,13 +16,26 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   metadataBase: new URL("https://terdam-dog-archive.vercel.app"),
   title: "TerdamDog Archive",
-  description: "EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM",
+  description:
+    "Arquivo pessoal de vinil. EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM",
+  keywords: [
+    "vinil",
+    "coleção",
+    "reggae",
+    "hip-hop",
+    "jazz",
+    "brasil",
+    "vinyl collector",
+  ],
   openGraph: {
     title: "TerdamDog Archive",
-    description: "EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM",
+    description:
+      "Arquivo pessoal de vinil. EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM",
     url: "/",
     siteName: "TerdamDog Archive",
     images: ["/logo.png"],
+    locale: "pt_BR",
+    type: "website",
   },
 };
 

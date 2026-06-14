@@ -15,7 +15,7 @@ export default function NarrativePage() {
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <section className="mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          NARRATIVE GRAPH
+          GRAFO NARRATIVO
         </p>
 
         <h1 className="text-5xl font-black mt-3">
@@ -50,7 +50,7 @@ export default function NarrativePage() {
 
               <div className="mt-5 rounded-2xl bg-brand-black p-4">
                 <p className="text-xs tracking-[0.25em] text-purple-400">
-                  STORY
+                  HISTÓRIA
                 </p>
 
                 <p className="mt-2 font-black">

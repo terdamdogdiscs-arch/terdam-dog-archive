@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TerdamDog Archive
 
-## Getting Started
+**EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM**
 
-First, run the development server:
+Este não é um catálogo. É um arquivo vivo.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A fundação 001–019 reúne os discos que abrem esta coleção: começa no Brasil,
+atravessa a música jamaicana, encontra Nova York pelo hip-hop, abre passagem
+para o jazz e retorna ao Brasil por uma rota internacional. Cada disco ocupa
+uma função dentro dessa narrativa — alguns abrem portas, outros fazem pontes,
+alguns consolidam blocos inteiros da escuta.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A coleção Terdam Dog não é sobre raridade. É sobre conexões.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## O arquivo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Coleção** — todos os discos, com ficha do colecionador, DNA sonoro e notas Terdam Dog.
+- **Narrativa** — como os discos se conectam, disco a disco.
+- **Curadoria IA** — escolha do curador e leituras por gênero.
+- **Descoberta** — sugestões baseadas nos caminhos que a fundação 001–019 já abriu.
+- **Cofre** — valor estimado da coleção e os itens mais valiosos.
+- **Mapa de Calor / Linha do Tempo / Universo** — a coleção por gênero, país, década e tempo.
+- **Ensaio** — os quatro pilares da coleção.
 
-## Learn More
+## Quatro pilares
 
-To learn more about Next.js, take a look at the following resources:
+- 🌴 **Reggae** — raízes, rocksteady e diáspora.
+- 🎤 **Hip-Hop** — golden age, jazz rap e rua.
+- 🎷 **Jazz** — fonte, improviso e ponte.
+- 🇧🇷 **Brasil** — origem, retorno e visão global.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Acompanhe
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Instagram: [@terdamdogdiscs](https://instagram.com/terdamdogdiscs)

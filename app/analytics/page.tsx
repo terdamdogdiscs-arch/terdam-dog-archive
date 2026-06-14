@@ -46,11 +46,11 @@ export default function AnalyticsPage() {
   return (
     <main className="min-h-screen bg-brand-black text-white p-6 pb-24">
       <Link href="/" className="text-purple-400">
-        ← Voltar
+        ← Coleção
       </Link>
 
       <h1 className="text-4xl font-bold mt-8 mb-2">
-        📊 Collector BI
+        📊 BI do Colecionador
       </h1>
 
       <p className="text-gray-500 mb-8">
@@ -59,7 +59,7 @@ export default function AnalyticsPage() {
 
       <section className="border border-purple-700 rounded p-6 mb-8 bg-purple-950/20">
         <p className="text-gray-400 text-sm">
-          Collection Score
+          Pontuação da Coleção
         </p>
 
         <p className="text-6xl font-bold mt-2">
@@ -92,7 +92,7 @@ export default function AnalyticsPage() {
 
       <section className="mt-10 border border-gray-800 rounded p-4">
         <h2 className="text-2xl font-bold mb-4">
-          Data Health
+          Saúde dos Dados
         </h2>
 
         <Health

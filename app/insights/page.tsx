@@ -57,12 +57,12 @@ export default function InsightsPage() {
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
-        ← Collection
+        ← Coleção
       </Link>
 
       <section className="mt-8 mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          COLLECTION INSIGHTS
+          LEITURA DA COLEÇÃO
         </p>
 
         <h1 className="text-5xl font-black mt-3 leading-none">
@@ -76,7 +76,7 @@ export default function InsightsPage() {
       </section>
 
       <section className="rounded-[2rem] border border-purple-800 bg-purple-950/20 p-6 mb-8">
-        <p className="text-sm text-purple-300">Collection Score</p>
+        <p className="text-sm text-purple-300">Pontuação da Coleção</p>
 
         <p className="text-6xl font-black mt-2">
           {collectionScore}
@@ -121,7 +121,7 @@ export default function InsightsPage() {
             href="/heatmap"
             className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
           >
-            <p className="font-black">Heatmap</p>
+            <p className="font-black">Mapa de Calor</p>
             <p className="text-sm text-[#9d9079] mt-1">
               Onde a coleção pulsa por gênero, país e papel
             </p>
@@ -131,7 +131,7 @@ export default function InsightsPage() {
             href="/timeline"
             className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500"
           >
-            <p className="font-black">Timeline</p>
+            <p className="font-black">Linha do Tempo</p>
             <p className="text-sm text-[#9d9079] mt-1">
               A coleção pelo tempo, da fundação 001–019
             </p>

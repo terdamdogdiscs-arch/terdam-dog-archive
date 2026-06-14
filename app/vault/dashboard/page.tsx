@@ -16,17 +16,17 @@ export default function DashboardPage() {
         href="/vault"
         className="text-purple-400"
       >
-        ← Vault
+        ← Cofre
       </Link>
 
       <section className="mt-8">
 
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          COLLECTOR DASHBOARD
+          PAINEL DO COLECIONADOR
         </p>
 
         <h1 className="text-5xl font-black mt-4">
-          Intelligence
+          Inteligência
         </h1>
 
       </section>
@@ -68,7 +68,7 @@ export default function DashboardPage() {
       <section className="mt-10 rounded-3xl border border-purple-800 bg-purple-950/20 p-6">
 
         <h2 className="text-2xl font-black">
-          Collector DNA
+          DNA do Colecionador
         </h2>
 
         <p className="text-[#b8aa91] mt-3">

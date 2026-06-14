@@ -8,12 +8,12 @@ export default function TimelinePage() {
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
-        ← Collection
+        ← Coleção
       </Link>
 
       <section className="mt-8 mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          COLLECTION TIMELINE
+          LINHA DO TEMPO DA COLEÇÃO
         </p>
 
         <h1 className="text-5xl font-black mt-3 leading-none">

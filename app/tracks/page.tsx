@@ -34,7 +34,7 @@ export default function Home() {
         </h1>
 
         <p className="text-[#c7bda8] mt-4">
-          Collection #000 — Fundação 001 a 019
+          Coleção #000 — Fundação 001 a 019
         </p>
       </section>
 
@@ -63,11 +63,11 @@ export default function Home() {
       </section>
 
       <nav className="grid grid-cols-2 gap-3 mb-8">
-        <Menu href="/" title="📀 Collection" />
-        <Menu href="/tracks" title="🎵 Tracks" />
-        <Menu href="/narrative" title="🧠 Narrative" />
-        <Menu href="/analytics" title="📊 Collector BI" />
-        <Menu href="/sessions" title="🎧 Sessions" />
+        <Menu href="/" title="📀 Coleção" />
+        <Menu href="/tracks" title="🎵 Faixas" />
+        <Menu href="/narrative" title="🧠 Narrativa" />
+        <Menu href="/analytics" title="📊 BI do Colecionador" />
+        <Menu href="/sessions" title="🎧 Sessões" />
       </nav>
 
       <input
@@ -79,7 +79,7 @@ export default function Home() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-bold">
-          Collection ({filteredAlbums.length})
+          Coleção ({filteredAlbums.length})
         </h2>
 
         {filteredAlbums.map((album) => (

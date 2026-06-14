@@ -22,7 +22,7 @@ export default function AlbumPage() {
     return (
       <main className="min-h-screen bg-brand-black text-[#f4ead8] p-6">
         <Link href="/" className="text-purple-400">
-          ← Voltar
+          ← Coleção
         </Link>
 
         <h1 className="text-3xl font-bold mt-8">
@@ -70,7 +70,7 @@ export default function AlbumPage() {
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
-        ← Collection
+        ← Coleção
       </Link>
 
       <section className="mt-8 rounded-[2rem] border border-purple-800 bg-[#11100e] overflow-hidden">
@@ -93,7 +93,7 @@ export default function AlbumPage() {
 
           <section className="mt-8 rounded-3xl border border-yellow-700 bg-yellow-950/20 p-5">
             <p className="text-xs tracking-[0.3em] text-yellow-400">
-              COLLECTOR CARD
+              FICHA DO COLECIONADOR
             </p>
 
             <h3 className="text-3xl font-black mt-3">
@@ -156,7 +156,7 @@ export default function AlbumPage() {
 
           <section className="mt-8 rounded-3xl border border-purple-800 bg-purple-950/20 p-6">
             <p className="text-xs tracking-[0.3em] text-purple-400">
-              TERDAM DOG NOTES
+              NOTAS TERDAM DOG
             </p>
 
             <h3 className="text-3xl font-black mt-4">

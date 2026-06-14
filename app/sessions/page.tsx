@@ -5,16 +5,16 @@ export default function SessionsPage() {
   return (
     <main className="min-h-screen bg-brand-black text-white p-6 pb-24">
       <Link href="/" className="text-purple-400">
-        ← Voltar
+        ← Coleção
       </Link>
 
       <h1 className="text-4xl font-bold mt-8 mb-6">
-        🎧 Sessions
+        🎧 Sessões
       </h1>
 
       <div className="border border-gray-800 rounded p-6">
         <h2 className="text-2xl font-bold">
-          Session #001
+          Sessão #001
         </h2>
 
         <p className="text-gray-400 mt-2">

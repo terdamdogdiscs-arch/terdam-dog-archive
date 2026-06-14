@@ -7,12 +7,12 @@ export default function DiscoverPage() {
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
-        ← Collection
+        ← Coleção
       </Link>
 
       <section className="mt-8 mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          DISCOVERY ENGINE
+          MOTOR DE DESCOBERTA
         </p>
 
         <h1 className="text-5xl font-black mt-3 leading-none">
@@ -36,7 +36,7 @@ export default function DiscoverPage() {
               className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-5"
             >
               <p className="text-xs tracking-[0.3em] text-purple-400">
-                DISCOVERY PATH
+                CAMINHO DE DESCOBERTA
               </p>
 
               <h2 className="text-3xl font-black mt-3">{block.title}</h2>

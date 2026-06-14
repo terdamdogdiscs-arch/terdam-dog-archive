@@ -24,17 +24,17 @@ export default function VaultPage() {
         href="/"
         className="text-purple-400"
       >
-        ← Collection
+        ← Coleção
       </Link>
 
       <section className="mt-8">
 
         <p className="text-sm tracking-[0.35em] text-purple-400">
-          PRIVATE VAULT
+          COFRE PRIVADO
         </p>
 
         <h1 className="text-5xl font-black mt-4">
-          Collection Value
+          Valor da Coleção
         </h1>
 
       </section>
@@ -57,7 +57,7 @@ export default function VaultPage() {
         />
 
         <Card
-          title="Top Item"
+          title="Mais Valioso"
           value={`TD-${topAlbums[0]?.catalog}`}
         />
 
@@ -66,7 +66,7 @@ export default function VaultPage() {
       <section className="mt-10">
 
         <h2 className="text-3xl font-black mb-4">
-          Top 10 Valor
+          Top 10 em Valor
         </h2>
 
         <div className="space-y-3">

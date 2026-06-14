@@ -117,14 +117,14 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-3 gap-3 mt-6">
-          <MiniStat value={collectionStats.totalAlbums} label="Records" />
-          <MiniStat value={collectionStats.countries.length} label="Countries" />
-          <MiniStat value={collectionStats.genres.length} label="Genres" />
+          <MiniStat value={collectionStats.totalAlbums} label="Discos" />
+          <MiniStat value={collectionStats.countries.length} label="Países" />
+          <MiniStat value={collectionStats.genres.length} label="Gêneros" />
         </div>
 
         <section className="mt-5 rounded-3xl border border-purple-800 bg-purple-950/20 p-4">
           <p className="text-xs tracking-[0.25em] text-purple-400">
-            COLLECTION SCORE
+            PONTUAÇÃO DA COLEÇÃO
           </p>
 
           <div className="flex items-end justify-between mt-2">
@@ -188,7 +188,7 @@ export default function Home() {
 
       <section className="rounded-[2rem] border border-yellow-700 bg-yellow-950/20 p-5 mb-6">
         <p className="text-yellow-400 text-xs tracking-[0.25em]">
-          CURATOR&apos;S PICK
+          ESCOLHA DO CURADOR
         </p>
 
         <div className="flex gap-4 mt-4">
@@ -225,7 +225,7 @@ export default function Home() {
 
       <section className="rounded-[2rem] border border-green-800 bg-green-950/10 p-5 mb-7">
         <p className="text-green-400 text-xs tracking-[0.25em]">
-          PRIVATE VALUE SNAPSHOT
+          PANORAMA DE VALOR PRIVADO
         </p>
 
         <div className="grid grid-cols-2 gap-4 mt-4">
@@ -241,7 +241,7 @@ export default function Home() {
         </div>
 
         <Link href="/vault" className="inline-block mt-4 text-sm text-green-300">
-          Abrir Vault →
+          Abrir Cofre →
         </Link>
       </section>
 
@@ -249,14 +249,14 @@ export default function Home() {
         <div className="flex items-end justify-between mb-3">
           <div>
             <p className="text-xs tracking-[0.25em] text-purple-400">
-              LISTENING PATHS
+              CAMINHOS DE ESCUTA
             </p>
 
             <h2 className="text-2xl font-black">Caminhos de escuta</h2>
           </div>
 
           <Link href="/narrative" className="text-sm text-purple-400">
-            Story →
+            Narrativa →
           </Link>
         </div>
 
@@ -300,7 +300,7 @@ export default function Home() {
         <div className="flex items-end justify-between mb-4">
           <div>
             <p className="text-xs tracking-[0.25em] text-purple-400">
-              COLLECTION
+              COLEÇÃO
             </p>
 
             <h2 className="text-3xl font-black">
@@ -309,7 +309,7 @@ export default function Home() {
           </div>
 
           <Link href="/discover" className="text-sm text-purple-400">
-            Discover →
+            Descobrir →
           </Link>
         </div>
 
