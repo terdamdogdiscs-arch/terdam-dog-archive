@@ -1,16 +1,9 @@
 import Link from "next/link";
 import { collectionSeed } from "../data/seed";
+import { captions } from "../data/captions";
 import BottomNav from "../components/BottomNav";
-
-const journey = [
-  { catalog: "001", chapter: "Origem brasileira", connection: "abre a porta" },
-  { catalog: "002", chapter: "Raiz jamaicana", connection: "leva para a Jamaica" },
-  { catalog: "007", chapter: "Jamaica encontra Nova York", connection: "faz a virada" },
-  { catalog: "008", chapter: "Linguagem do hip-hop", connection: "estrutura a palavra" },
-  { catalog: "013", chapter: "Ponte para o jazz", connection: "revela a fonte" },
-  { catalog: "014", chapter: "Entrada no jazz", connection: "volta à origem musical" },
-  { catalog: "019", chapter: "Brasil global", connection: "fecha o ciclo" },
-];
+import FadeIn from "../components/FadeIn";
+import CoverImage from "../components/CoverImage";
 
 export default function JourneyPage() {
   return (
@@ -27,41 +20,44 @@ export default function JourneyPage() {
         </h1>
 
         <p className="text-[#b8aa91] mt-5">
-          A fundação 001–019 contada como uma sequência de ideias musicais.
+          A coleção 001–020 contada em teses, do primeiro ao último disco.
         </p>
       </section>
 
-      <section className="space-y-5">
-        {journey.map((step, index) => {
-          const album = collectionSeed.find((item) => item.catalog === step.catalog);
-
-          if (!album) return null;
+      <section>
+        {collectionSeed.map((album, index) => {
+          const caption = captions[album.catalog];
+          if (!caption) return null;
 
           return (
-            <div key={step.catalog}>
+            <FadeIn key={album.catalog}>
               <Link
                 href={`/album/${album.catalog}`}
-                className="block rounded-3xl border border-[#2b241c] bg-[#11100e] p-5 hover:border-purple-500"
+                className="flex gap-4 rounded-3xl border border-[#2b241c] bg-[#11100e] p-5 hover:border-purple-500 transition"
               >
-                <p className="text-purple-400">TD-{album.catalog}</p>
+                <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
+                  <CoverImage album={album} />
+                </div>
 
-                <h2 className="text-3xl font-black mt-2">{step.chapter}</h2>
+                <div className="flex-1">
+                  <p className="text-sm text-purple-400">
+                    TD-{album.catalog} · {album.artist} — {album.album}
+                  </p>
 
-                <p className="text-xl font-bold mt-3">{album.artist}</p>
+                  <p className="mt-3 text-sm italic text-[#9d9079]">{caption.ponte}</p>
 
-                <p className="text-[#b8aa91]">{album.album}</p>
-
-                <p className="text-[#9d9079] mt-4">{album.note}</p>
+                  <p className="mt-4 text-2xl font-black text-brand-yellow leading-tight">
+                    &ldquo;{caption.tese}&rdquo;
+                  </p>
+                </div>
               </Link>
 
-              {index < journey.length - 1 && (
-                <div className="flex justify-center my-4">
-                  <span className="rounded-full border border-purple-700 px-4 py-2 text-purple-400">
-                    ↓ {step.connection}
-                  </span>
+              {index < collectionSeed.length - 1 && (
+                <div className="flex justify-center my-3">
+                  <span className="text-2xl text-brand-purple">↓</span>
                 </div>
               )}
-            </div>
+            </FadeIn>
           );
         })}
       </section>
