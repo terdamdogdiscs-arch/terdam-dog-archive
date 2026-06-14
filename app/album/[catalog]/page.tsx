@@ -7,6 +7,8 @@ import { useState } from "react";
 import { albums } from "../../data/albums";
 import { tracks } from "../../data/tracks";
 import { dna } from "../../data/dna";
+import { connections } from "../../data/connections";
+import { acquisitions } from "../../data/acquisitions";
 import BottomNav from "../../components/BottomNav";
 
 export default function AlbumPage() {
@@ -35,13 +37,25 @@ export default function AlbumPage() {
   const nextAlbum = albums[currentIndex + 1];
 
   const albumDna = dna[catalog as keyof typeof dna];
+  const acquisition = acquisitions[catalog as keyof typeof acquisitions];
+
+  const curatedConnections = connections
+    .filter((item) => item.source === catalog || item.target === catalog)
+    .map((item) => {
+      const otherCatalog = item.source === catalog ? item.target : item.source;
+      const otherAlbum = albums.find((entry) => entry.catalog === otherCatalog);
+      return otherAlbum ? { ...otherAlbum, reason: item.reason } : null;
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
 
   const relatedAlbums = albums
     .filter(
       (item) =>
-        item.genre === album.genre && item.catalog !== album.catalog
+        item.genre === album.genre &&
+        item.catalog !== album.catalog &&
+        !curatedConnections.some((connection) => connection.catalog === item.catalog)
     )
-    .slice(0, 3);
+    .slice(0, Math.max(0, 3 - curatedConnections.length));
 
   const groupedTracks = albumTracks.reduce<Record<string, typeof albumTracks>>(
     (acc, track) => {
@@ -103,6 +117,26 @@ export default function AlbumPage() {
                 <DnaBar label="Brasil" value={albumDna.brasil} />
               </div>
             )}
+
+            {acquisition && (
+              <div className="mt-6">
+                <p className="text-xs tracking-[0.3em] text-yellow-400">
+                  AQUISIÇÃO
+                </p>
+
+                <div className="grid grid-cols-2 gap-4 mt-3">
+                  <Info label="Pago em" value={`R$ ${acquisition.pricePaid}`} />
+                  <Info label="Estado" value={acquisition.condition} />
+                  <Info label="Origem" value={acquisition.source} />
+                  {album.estimatedValue && (
+                    <Info
+                      label="Ganho potencial"
+                      value={`R$ ${album.estimatedValue - acquisition.pricePaid}`}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
           </section>
 
           <section className="mt-8 rounded-3xl border border-[#2b241c] p-5">
@@ -147,13 +181,37 @@ export default function AlbumPage() {
             </div>
           </section>
 
-          {relatedAlbums.length > 0 && (
+          {(curatedConnections.length > 0 || relatedAlbums.length > 0) && (
             <section className="mt-8 rounded-3xl border border-[#2b241c] p-5">
               <h3 className="text-2xl font-black mb-4">
                 Conexões
               </h3>
 
               <div className="space-y-3">
+                {curatedConnections.map((item) => (
+                  <Link
+                    key={item.catalog}
+                    href={`/album/${item.catalog}`}
+                    className="block rounded-2xl border border-[#2b241c] p-4 hover:border-purple-500"
+                  >
+                    <p className="text-purple-400">
+                      TD-{item.catalog}
+                    </p>
+
+                    <p className="font-black">
+                      {item.artist}
+                    </p>
+
+                    <p className="text-sm text-[#9d9079]">
+                      {item.album}
+                    </p>
+
+                    <p className="text-xs tracking-[0.2em] text-yellow-400 mt-2">
+                      ↳ {item.reason}
+                    </p>
+                  </Link>
+                ))}
+
                 {relatedAlbums.map((item) => (
                   <Link
                     key={item.catalog}

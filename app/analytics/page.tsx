@@ -2,6 +2,7 @@ import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import { albums } from "../data/albums";
 import { tracks } from "../data/tracks";
+import { collectionScore } from "../data/seed";
 
 function countBy<T extends Record<string, any>>(items: T[], field: keyof T) {
   return items.reduce<Record<string, number>>((acc, item) => {
@@ -13,29 +14,6 @@ function countBy<T extends Record<string, any>>(items: T[], field: keyof T) {
 
 function decadeFromYear(year: number) {
   return `${Math.floor(year / 10) * 10}s`;
-}
-
-function calculateCollectionScore() {
-  const countries = new Set(albums.map((album) => album.country)).size;
-  const genres = new Set(albums.map((album) => album.genre)).size;
-  const decades = new Set(albums.map((album) => decadeFromYear(album.year))).size;
-
-  const tracksWithDuration = tracks.filter(
-    (track) => track.duration && track.duration !== ""
-  ).length;
-
-  const tracksWithBpm = tracks.filter(
-    (track) => track.bpm !== null
-  ).length;
-
-  const countryScore = Math.min(countries * 5, 25);
-  const genreScore = Math.min(genres * 5, 25);
-  const decadeScore = Math.min(decades * 4, 25);
-  const dataScore = Math.round(
-    ((tracksWithDuration + tracksWithBpm) / (tracks.length * 2)) * 25
-  );
-
-  return countryScore + genreScore + decadeScore + dataScore;
 }
 
 export default function AnalyticsPage() {
@@ -65,8 +43,6 @@ export default function AnalyticsPage() {
         )
       : 0;
 
-  const collectionScore = calculateCollectionScore();
-
   return (
     <main className="min-h-screen bg-black text-white p-6 pb-24">
       <Link href="/" className="text-purple-400">
@@ -91,7 +67,7 @@ export default function AnalyticsPage() {
         </p>
 
         <p className="text-gray-500 mt-2">
-          Pontuação baseada em diversidade, décadas e qualidade dos dados.
+          Mede diversidade de gêneros, países e décadas usando o seed central.
         </p>
 
         <div className="h-3 bg-gray-900 rounded mt-4">

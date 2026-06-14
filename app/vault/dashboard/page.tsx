@@ -1,42 +1,13 @@
 import Link from "next/link";
-import { albums } from "../../data/albums";
+import { collectionStats, collectionScore } from "../../data/seed";
 
 export default function DashboardPage() {
 
-  const countries =
-    new Set(
-      albums.map(
-        (album) => album.country
-      )
-    ).size;
-
-  const genres =
-    new Set(
-      albums.map(
-        (album) => album.genre
-      )
-    ).size;
-
-  const decades =
-    new Set(
-      albums.map(
-        (album) =>
-          Math.floor(album.year / 10) * 10
-      )
-    ).size;
-
-  const totalValue = albums.reduce(
-    (sum, album) =>
-      sum + (album.estimatedValue || 0),
-    0
-  );
-
-  const score = Math.min(
-    100,
-    countries * 8 +
-      genres * 12 +
-      decades * 10
-  );
+  const countries = collectionStats.countries.length;
+  const genres = collectionStats.genres.length;
+  const decades = collectionStats.decades.length;
+  const totalValue = collectionStats.totalEstimatedValue;
+  const score = collectionScore;
 
   return (
     <main className="min-h-screen bg-[#050505] text-[#f4ead8] p-6">
@@ -69,7 +40,7 @@ export default function DashboardPage() {
 
         <Metric
           title="Discos"
-          value={albums.length}
+          value={collectionStats.totalAlbums}
         />
 
         <Metric
