@@ -17,25 +17,25 @@ const exploreItems = [
   {
     label: "Jamaica",
     icon: "🌴",
-    query: "Reggae",
+    href: "/album/002",
     description: "Roots, rocksteady e dub.",
   },
   {
     label: "Hip-Hop",
     icon: "🎤",
-    query: "Hip-Hop",
+    href: "/album/008",
     description: "Golden age, jazz rap e rua.",
   },
   {
     label: "Jazz",
     icon: "🎷",
-    query: "Jazz",
+    href: "/album/014",
     description: "Fonte, improviso e ponte.",
   },
   {
     label: "Brasil",
     icon: "🇧🇷",
-    query: "Brasil",
+    href: "/album/001",
     description: "Origem, retorno e visão global.",
   },
 ];
@@ -60,7 +60,6 @@ const listeningPaths = [
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [activeFilter, setActiveFilter] = useState("Todos");
 
   const recordOfTheDay =
     collectionSeed[new Date().getDate() % collectionSeed.length];
@@ -72,27 +71,16 @@ export default function Home() {
   const filteredAlbums = collectionSeed.filter((album) => {
     const q = search.toLowerCase();
 
-    const matchesSearch =
+    return (
       album.catalog.toLowerCase().includes(q) ||
       album.artist.toLowerCase().includes(q) ||
       album.album.toLowerCase().includes(q) ||
       album.genre.toLowerCase().includes(q) ||
       album.country.toLowerCase().includes(q) ||
       album.role.toLowerCase().includes(q) ||
-      album.story.toLowerCase().includes(q);
-
-    const matchesFilter =
-      activeFilter === "Todos" ||
-      album.genre.toLowerCase().includes(activeFilter.toLowerCase()) ||
-      album.country.toLowerCase().includes(activeFilter.toLowerCase());
-
-    return matchesSearch && matchesFilter;
+      album.story.toLowerCase().includes(q)
+    );
   });
-
-  function applyExplore(query: string) {
-    setActiveFilter(query);
-    setSearch("");
-  }
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
@@ -149,10 +137,7 @@ export default function Home() {
         className="w-full mb-4 rounded-2xl border border-[#2b241c] bg-[#120f0b] p-4 text-[#f4ead8] outline-none focus:border-purple-500"
         placeholder="Pesquisar artista, disco, gênero, país..."
         value={search}
-        onChange={(event) => {
-          setSearch(event.target.value);
-          setActiveFilter("Todos");
-        }}
+        onChange={(event) => setSearch(event.target.value)}
       />
 
       <section className="mb-6">
@@ -162,33 +147,17 @@ export default function Home() {
 
         <div className="grid grid-cols-2 gap-3">
           {exploreItems.map((item) => (
-            <button
+            <Link
               key={item.label}
-              onClick={() => applyExplore(item.query)}
-              className={`premium-card rounded-3xl border p-4 text-left transition ${
-                activeFilter === item.query
-                  ? "border-purple-500 bg-purple-950/30"
-                  : "border-[#2b241c] bg-[#11100e]"
-              }`}
+              href={item.href}
+              className="premium-card cursor-pointer rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 text-left transition hover:border-brand-yellow"
             >
               <p className="text-2xl">{item.icon}</p>
               <p className="font-black mt-2">{item.label}</p>
               <p className="text-xs text-[#9d9079] mt-1">{item.description}</p>
-            </button>
+            </Link>
           ))}
         </div>
-
-        {activeFilter !== "Todos" && (
-          <button
-            onClick={() => {
-              setActiveFilter("Todos");
-              setSearch("");
-            }}
-            className="mt-3 text-sm text-purple-400"
-          >
-            Limpar exploração
-          </button>
-        )}
       </section>
 
       <section className="premium-card rounded-[2rem] border border-yellow-700 bg-yellow-950/20 p-5 mb-6">
@@ -320,7 +289,7 @@ export default function Home() {
             </p>
 
             <h2 className="text-4xl font-black text-brand-yellow">
-              {filteredAlbums.length} discos
+              {albums.length} discos
             </h2>
           </div>
 
@@ -367,14 +336,52 @@ export default function Home() {
           EST. 2026 · BRASIL · VINYL COLLECTOR · ANTIFA · 174 BPM
         </p>
 
-        <a
-          href="https://instagram.com/terdamdogdiscs"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-block text-sm text-purple-400"
-        >
-          @terdamdogdiscs
-        </a>
+        <div className="mt-3 flex items-center justify-center gap-5">
+          <a
+            href="https://instagram.com/terdamdogdiscs"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-[#9d9079] transition hover:text-brand-yellow"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+
+          <a
+            href="https://open.spotify.com/user/31arerzcinbp6p42ubzthec4mtvq?si=NiySpF3pSRq7bTeFlpbGzg"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Spotify"
+            className="text-[#9d9079] transition hover:text-brand-yellow"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9 9.5 16 12 9 14.5z" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+        </div>
       </footer>
 
       <BottomNav />
