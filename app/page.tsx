@@ -15,7 +15,7 @@ const exploreItems = [
     label: "Jamaica",
     icon: "🌴",
     query: "Reggae",
-    description: "Roots, rocksteady e diáspora.",
+    description: "Roots, rocksteady e dub.",
   },
   {
     label: "Hip-Hop",
@@ -188,7 +188,7 @@ export default function Home() {
 
       <section className="rounded-[2rem] border border-yellow-700 bg-yellow-950/20 p-5 mb-6">
         <p className="text-yellow-400 text-xs tracking-[0.25em]">
-          ESCOLHA DO CURADOR
+          SELEÇÃO DO CURADOR
         </p>
 
         <div className="flex gap-4 mt-4">
@@ -225,7 +225,7 @@ export default function Home() {
 
       <section className="rounded-[2rem] border border-green-800 bg-green-950/10 p-5 mb-7">
         <p className="text-green-400 text-xs tracking-[0.25em]">
-          PANORAMA DE VALOR PRIVADO
+          VALOR DA COLEÇÃO
         </p>
 
         <div className="grid grid-cols-2 gap-4 mt-4">
@@ -249,7 +249,7 @@ export default function Home() {
         <div className="flex items-end justify-between mb-3">
           <div>
             <p className="text-xs tracking-[0.25em] text-purple-400">
-              CAMINHOS DE ESCUTA
+              JORNADAS DE ESCUTA
             </p>
 
             <h2 className="text-2xl font-black">Caminhos de escuta</h2>
