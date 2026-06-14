@@ -5,6 +5,7 @@ import { useState } from "react";
 import BottomNav from "./components/BottomNav";
 import FadeIn from "./components/FadeIn";
 import { genreColor } from "./lib/genreColor";
+import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
 import {
   collectionSeed,
@@ -109,7 +110,7 @@ export default function Home() {
             </p>
 
             <h1 className="text-3xl font-black leading-none mt-1">
-              001 → 019
+              {albums[0].catalog} → {albums[albums.length - 1].catalog}
             </h1>
 
             <p className="text-sm text-[#b8aa91] mt-2">
