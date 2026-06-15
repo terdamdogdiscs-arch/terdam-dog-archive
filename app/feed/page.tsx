@@ -60,9 +60,9 @@ export default function FeedPage() {
                   {album.artist} — {album.album} ({album.year})
                 </h2>
 
-                <p className="mt-4 text-sm italic text-[#9d9079]">{caption.ponte}</p>
+                <p className="mt-4 text-base italic text-[#9d9079]">{caption.ponte}</p>
 
-                <div className="mt-4 space-y-3 text-[#f0ede4] leading-relaxed">
+                <div className="mt-4 space-y-3 text-base text-[#f0ede4] leading-relaxed">
                   {caption.contexto.split("\n\n").map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
@@ -72,7 +72,7 @@ export default function FeedPage() {
                   {caption.tese}
                 </p>
 
-                <p className="mt-4 text-xs text-brand-purple">{caption.hashtags}</p>
+                <p className="mt-4 text-sm text-brand-purple">{caption.hashtags}</p>
 
                 <CopyButton text={caption.instagram} />
               </article>

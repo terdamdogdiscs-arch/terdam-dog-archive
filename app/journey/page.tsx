@@ -44,7 +44,7 @@ export default function JourneyPage() {
                     TD-{album.catalog} · {album.artist} — {album.album}
                   </p>
 
-                  <p className="mt-3 text-sm italic text-[#9d9079]">{caption.ponte}</p>
+                  <p className="mt-3 text-base italic text-[#9d9079]">{caption.ponte}</p>
 
                   <p className="mt-4 text-2xl font-black text-brand-yellow leading-tight">
                     &ldquo;{caption.tese}&rdquo;
