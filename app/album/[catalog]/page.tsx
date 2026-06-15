@@ -355,6 +355,11 @@ export default async function AlbumPage({
                       {sideTracks.map((track) => {
                         const discogsTrack = discogsTracks[track.number - 1];
 
+                        const displayDuration =
+                          discogsTrack && discogsTrack.duration !== "—"
+                            ? discogsTrack.duration
+                            : track.duration;
+
                         return (
                           <div
                             key={`${track.catalog}-${track.number}`}
@@ -366,9 +371,9 @@ export default async function AlbumPage({
 
                             <span>{track.title}</span>
 
-                            {discogsTrack && discogsTrack.duration !== "—" && (
+                            {!!displayDuration && (
                               <span className="ml-auto text-sm text-[#9d9079]">
-                                {discogsTrack.duration}
+                                {displayDuration}
                               </span>
                             )}
 
