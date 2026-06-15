@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import BottomNav from "./components/BottomNav";
 import FadeIn from "./components/FadeIn";
 import { genreColor } from "./lib/genreColor";
@@ -88,6 +88,7 @@ const listeningPaths = [
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const week = Math.floor(new Date().getTime() / (7 * 24 * 60 * 60 * 1000));
   const recordOfTheDay = collectionSeed[week % collectionSeed.length];
@@ -96,19 +97,32 @@ export default function Home() {
     (a, b) => b.financial.estimatedValue - a.financial.estimatedValue
   )[0];
 
-  const filteredAlbums = collectionSeed.filter((album) => {
-    const q = search.toLowerCase();
+  const dropdownResults = search.trim()
+    ? collectionSeed
+        .filter((album) => {
+          const q = search.toLowerCase();
+          return (
+            album.catalog.toLowerCase().includes(q) ||
+            album.artist.toLowerCase().includes(q) ||
+            album.album.toLowerCase().includes(q) ||
+            album.genre.toLowerCase().includes(q) ||
+            album.country.toLowerCase().includes(q) ||
+            album.role.toLowerCase().includes(q) ||
+            album.story.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 5)
+    : [];
 
-    return (
-      album.catalog.toLowerCase().includes(q) ||
-      album.artist.toLowerCase().includes(q) ||
-      album.album.toLowerCase().includes(q) ||
-      album.genre.toLowerCase().includes(q) ||
-      album.country.toLowerCase().includes(q) ||
-      album.role.toLowerCase().includes(q) ||
-      album.story.toLowerCase().includes(q)
-    );
-  });
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearch("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
@@ -161,12 +175,47 @@ export default function Home() {
 
       <div className="h-px mb-4 bg-gradient-to-r from-brand-green to-brand-purple" />
 
-      <input
-        className="w-full mb-4 rounded-2xl border border-[#2b241c] bg-[#120f0b] p-4 text-[#f4ead8] outline-none focus:border-purple-500"
-        placeholder="Pesquisar artista, disco, gênero, país..."
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
+      <div ref={searchRef} className="relative mb-4">
+        <input
+          className="w-full rounded-2xl border border-[#2b241c] bg-[#120f0b] p-4 text-[#f4ead8] outline-none focus:border-purple-500"
+          placeholder="Pesquisar artista, disco, gênero, país..."
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+
+        {search.trim() && (
+          <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-xl border border-brand-purple bg-[#1a1a1a] shadow-xl">
+            {dropdownResults.length > 0 ? (
+              dropdownResults.map((album) => (
+                <Link
+                  key={album.catalog}
+                  href={`/album/${album.catalog}`}
+                  onClick={() => setSearch("")}
+                  className="flex items-center gap-3 px-4 py-3 transition hover:bg-[#232323]"
+                >
+                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-[#2b241c]">
+                    <CoverImage album={album} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-black leading-tight">
+                      {album.artist}
+                    </p>
+
+                    <p className="truncate text-xs text-[#9d9079]">
+                      {album.album} · {album.year}
+                    </p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p className="px-4 py-4 text-sm text-[#9d9079]">
+                Nenhum disco encontrado.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
 
       <section className="mb-6">
         <p className="text-xs tracking-[0.25em] text-purple-400 mb-3">
@@ -333,7 +382,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {filteredAlbums.map((album, index) => (
+          {collectionSeed.map((album, index) => (
             <FadeIn key={album.catalog} delay={Math.min(index * 40, 320)}>
               <Link href={`/album/${album.catalog}`} className="group block">
                 <div className="premium-card aspect-square rounded-3xl border border-[#2b241c] bg-[#11100e] overflow-hidden group-hover:border-purple-500 transition">
