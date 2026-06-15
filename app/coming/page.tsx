@@ -6,11 +6,17 @@ import FadeIn from "../components/FadeIn";
 
 export const dynamic = "force-dynamic";
 
+// Discos com título no Discogs muito diferente do título cadastrado (ex.: tradução/edição).
+const TITLE_ALIASES: Record<string, string[]> = {
+  "019": ["Herb Alpert Apresenta Sergio Mendes & Brasil '66"],
+};
+
 function normalize(text: string): string {
   return text
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
+    .replace(/\bvolume\b/g, "vol")
     .replace(/[^a-z0-9]/g, "");
 }
 
@@ -20,19 +26,26 @@ function isPublished(item: DiscogsItem): boolean {
 
   return albums.some((album) => {
     const albumArtist = normalize(album.artist);
-    const albumTitle = normalize(album.album);
+    const albumTitles = [album.album, ...(TITLE_ALIASES[album.catalog] ?? [])].map(normalize);
 
-    const artistMatches =
+    const titleMatches = albumTitles.some(
+      (albumTitle) =>
+        albumTitle === itemTitle ||
+        albumTitle.includes(itemTitle) ||
+        itemTitle.includes(albumTitle)
+    );
+
+    if (!titleMatches) return false;
+
+    if (albumArtist === "variousartists" || albumArtist === "various") {
+      return true;
+    }
+
+    return (
       albumArtist === itemArtist ||
       albumArtist.includes(itemArtist) ||
-      itemArtist.includes(albumArtist);
-
-    const titleMatches =
-      albumTitle === itemTitle ||
-      albumTitle.includes(itemTitle) ||
-      itemTitle.includes(albumTitle);
-
-    return artistMatches && titleMatches;
+      itemArtist.includes(albumArtist)
+    );
   });
 }
 
