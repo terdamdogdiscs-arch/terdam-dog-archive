@@ -1,21 +1,22 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useState } from "react";
 
-import { albums, type Album } from "../../data/albums";
+import { albums } from "../../data/albums";
 import { tracks } from "../../data/tracks";
 import { dna } from "../../data/dna";
 import { connections } from "../../data/connections";
 import { notes } from "../../data/notes";
 import { acquisitions } from "../../data/acquisitions";
 import BottomNav from "../../components/BottomNav";
+import CoverImage from "./CoverImage";
 import { genreColor, dnaAccents, GenreAccent } from "../../lib/genreColor";
+import { getReleaseTracks, formatTotalDuration } from "../../lib/discogs";
 
-export default function AlbumPage() {
-  const params = useParams();
-  const catalog = String(params.catalog);
+export default async function AlbumPage({
+  params,
+}: {
+  params: Promise<{ catalog: string }>;
+}) {
+  const { catalog } = await params;
 
   const album = albums.find((item) => item.catalog === catalog);
 
@@ -92,6 +93,10 @@ export default function AlbumPage() {
     },
     {}
   );
+
+  const discogsTracks = album.discogsId
+    ? await getReleaseTracks(album.discogsId)
+    : [];
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
@@ -347,28 +352,47 @@ export default function AlbumPage() {
                     </h4>
 
                     <div className="space-y-3">
-                      {sideTracks.map((track) => (
-                        <div
-                          key={`${track.catalog}-${track.number}`}
-                          className="flex gap-3 border-b border-[#241f18] pb-2"
-                        >
-                          <span className="text-purple-400 w-8">
-                            {track.number}
-                          </span>
+                      {sideTracks.map((track) => {
+                        const discogsTrack = discogsTracks[track.number - 1];
 
-                          <span>{track.title}</span>
-
-                          {track.bpm && (
-                            <span className="ml-auto text-sm text-[#9d9079]">
-                              {track.bpm} BPM
+                        return (
+                          <div
+                            key={`${track.catalog}-${track.number}`}
+                            className="flex gap-3 border-b border-[#241f18] pb-2"
+                          >
+                            <span className="text-purple-400 w-8">
+                              {track.number}
                             </span>
-                          )}
-                        </div>
-                      ))}
+
+                            <span>{track.title}</span>
+
+                            {discogsTrack && discogsTrack.duration !== "—" && (
+                              <span className="ml-auto text-sm text-[#9d9079]">
+                                {discogsTrack.duration}
+                              </span>
+                            )}
+
+                            {track.bpm && (
+                              <span className="text-sm text-[#9d9079]">
+                                {track.bpm} BPM
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
               </div>
+
+              {!!album.totalDurationSeconds && (
+                <p className="mt-5 text-sm tracking-[0.2em] text-[#9d9079]">
+                  DURAÇÃO TOTAL ·{" "}
+                  <span className="font-bold text-brand-yellow">
+                    {formatTotalDuration(album.totalDurationSeconds)}
+                  </span>
+                </p>
+              )}
             </section>
           )}
         </div>
@@ -412,41 +436,6 @@ export default function AlbumPage() {
 
       <BottomNav />
     </main>
-  );
-}
-
-function CoverImage({
-  album,
-}: {
-  album: Pick<Album, "catalog" | "album" | "artist" | "year" | "cover">;
-}) {
-  const [hasError, setHasError] = useState(false);
-
-  if (hasError) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#18130e] to-[#070707] text-center p-6">
-        <p className="text-6xl font-black text-purple-400">
-          TD-{album.catalog}
-        </p>
-
-        <p className="text-xl font-black mt-4">
-          {album.artist}
-        </p>
-
-        <p className="text-sm text-[#9d9079] mt-2">
-          {album.year}
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={album.cover}
-      alt={album.album}
-      className="w-full h-full object-cover"
-      onError={() => setHasError(true)}
-    />
   );
 }
 

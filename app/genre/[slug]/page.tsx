@@ -7,6 +7,7 @@ import { genreColor } from "../../lib/genreColor";
 import BottomNav from "../../components/BottomNav";
 import FadeIn from "../../components/FadeIn";
 import CoverImage from "../../components/CoverImage";
+import { formatTotalDuration } from "../../lib/discogs";
 
 const GENRES: Record<
   string,
@@ -60,6 +61,11 @@ export default function GenrePage() {
 
   const filteredAlbums = collectionSeed.filter(genre.filter);
 
+  const totalDuration = filteredAlbums.reduce(
+    (sum, album) => sum + (album.totalDurationSeconds || 0),
+    0
+  );
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
       <Link href="/" className="text-purple-400">
@@ -77,6 +83,7 @@ export default function GenrePage() {
 
         <p className="text-xs text-purple-400 mt-2">
           {filteredAlbums.length} discos
+          {totalDuration > 0 && ` · ${formatTotalDuration(totalDuration)} de música`}
         </p>
       </section>
 
@@ -84,8 +91,14 @@ export default function GenrePage() {
         {filteredAlbums.map((album, index) => (
           <FadeIn key={album.catalog} delay={Math.min(index * 40, 320)}>
             <Link href={`/album/${album.catalog}`} className="group block">
-              <div className="premium-card aspect-square rounded-3xl border border-[#2b241c] bg-[#11100e] overflow-hidden group-hover:border-purple-500 transition">
+              <div className="premium-card relative aspect-square rounded-3xl border border-[#2b241c] bg-[#11100e] overflow-hidden group-hover:border-purple-500 transition">
                 <CoverImage album={album} />
+
+                {!!album.totalDurationSeconds && (
+                  <span className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] text-[#f4ead8]">
+                    {formatTotalDuration(album.totalDurationSeconds)}
+                  </span>
+                )}
               </div>
 
               <div className="mt-2">
@@ -109,6 +122,15 @@ export default function GenrePage() {
           </FadeIn>
         ))}
       </section>
+
+      {totalDuration > 0 && (
+        <p className="mt-6 text-center text-sm tracking-[0.2em] text-[#9d9079]">
+          TEMPO TOTAL DE ESCUTA DESTE BLOCO ·{" "}
+          <span className="font-bold text-brand-yellow">
+            {formatTotalDuration(totalDuration)}
+          </span>
+        </p>
+      )}
 
       <BottomNav />
     </main>

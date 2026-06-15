@@ -7,6 +7,7 @@ import FadeIn from "./components/FadeIn";
 import { genreColor } from "./lib/genreColor";
 import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
+import { formatTotalDuration } from "./lib/discogs";
 import {
   collectionSeed,
   collectionStats,
@@ -273,6 +274,11 @@ export default function Home() {
 
             if (!cover) return null;
 
+            const pathDuration = path.catalogs.reduce((sum, catalog) => {
+              const item = collectionSeed.find((entry) => entry.catalog === catalog);
+              return sum + (item?.totalDurationSeconds || 0);
+            }, 0);
+
             return (
               <FadeIn
                 key={path.title}
@@ -295,7 +301,9 @@ export default function Home() {
                     </p>
 
                     <p className="text-xs text-purple-400 mt-2">
-                      {path.catalogs.length} discos
+                      {pathDuration > 0
+                        ? `${formatTotalDuration(pathDuration)} · ${path.catalogs.length} discos`
+                        : `${path.catalogs.length} discos`}
                     </p>
                   </div>
                 </Link>

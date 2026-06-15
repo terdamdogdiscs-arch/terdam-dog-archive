@@ -1,11 +1,19 @@
 import Link from "next/link";
 import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
+import { formatTotalDuration } from "../lib/discogs";
 import {
   collectionSeed,
   collectionStats,
   collectionScore,
 } from "../data/seed";
+
+const GENRE_GROUPS: { label: string; filter: (album: (typeof collectionSeed)[number]) => boolean }[] = [
+  { label: "Reggae", filter: (album) => album.genre.toLowerCase().includes("reggae") },
+  { label: "Hip-Hop", filter: (album) => album.genre.toLowerCase().includes("hip-hop") },
+  { label: "Jazz", filter: (album) => album.genre.toLowerCase().includes("jazz") },
+  { label: "Brasil", filter: (album) => album.country.toLowerCase().includes("brasil") },
+];
 
 function countBy<T extends Record<string, unknown>>(items: T[], field: keyof T) {
   return items.reduce<Record<string, number>>((acc, item) => {
@@ -53,6 +61,44 @@ export default function InsightsPage() {
   const avgValue = Math.round(
     collectionStats.totalEstimatedValue / collectionStats.totalAlbums
   );
+
+  const albumsWithDuration = collectionSeed.filter(
+    (album) => (album.totalDurationSeconds || 0) > 0
+  );
+
+  const totalDurationSeconds = albumsWithDuration.reduce(
+    (sum, album) => sum + (album.totalDurationSeconds || 0),
+    0
+  );
+
+  const avgDurationSeconds = albumsWithDuration.length
+    ? Math.round(totalDurationSeconds / albumsWithDuration.length)
+    : 0;
+
+  const longestAlbum = albumsWithDuration.length
+    ? [...albumsWithDuration].sort(
+        (a, b) => (b.totalDurationSeconds || 0) - (a.totalDurationSeconds || 0)
+      )[0]
+    : undefined;
+
+  const shortestAlbum = albumsWithDuration.length
+    ? [...albumsWithDuration].sort(
+        (a, b) => (a.totalDurationSeconds || 0) - (b.totalDurationSeconds || 0)
+      )[0]
+    : undefined;
+
+  const durationByGenre = GENRE_GROUPS.map((group) => {
+    const items = collectionSeed.filter(group.filter);
+    const seconds = items.reduce(
+      (sum, album) => sum + (album.totalDurationSeconds || 0),
+      0
+    );
+
+    return { ...group, seconds, count: items.length };
+  });
+
+  const movieCount = Math.round(totalDurationSeconds / (2 * 3600));
+  const totalDays = totalDurationSeconds / (24 * 3600);
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
@@ -112,6 +158,97 @@ export default function InsightsPage() {
       <Section title="Distribuição por país" data={byCountry} />
       <Section title="Distribuição por década" data={byDecade} />
       <Section title="Papéis narrativos" data={byRole} />
+
+      {totalDurationSeconds > 0 && (
+        <section className="mt-8">
+          <h2 className="text-3xl font-black mb-4">⏱ Tempo de escuta</h2>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <Card
+              title="Tempo total da coleção"
+              value={formatTotalDuration(totalDurationSeconds)}
+              detail={`${albumsWithDuration.length} de ${collectionStats.totalAlbums} discos com dados de duração`}
+            />
+
+            <Card
+              title="Média por disco"
+              value={formatTotalDuration(avgDurationSeconds)}
+            />
+
+            {longestAlbum && (
+              <Card
+                title="Disco mais longo"
+                value={formatTotalDuration(longestAlbum.totalDurationSeconds || 0)}
+                detail={`${longestAlbum.artist} — ${longestAlbum.album}`}
+              />
+            )}
+
+            {shortestAlbum && (
+              <Card
+                title="Disco mais curto"
+                value={formatTotalDuration(shortestAlbum.totalDurationSeconds || 0)}
+                detail={`${shortestAlbum.artist} — ${shortestAlbum.album}`}
+              />
+            )}
+          </div>
+
+          <div className="space-y-4">
+            {durationByGenre
+              .filter((group) => group.count > 0)
+              .map((group) => (
+                <div key={group.label}>
+                  <div className="flex justify-between mb-1">
+                    <span>{group.label}</span>
+
+                    <span className="font-black text-brand-yellow">
+                      {group.seconds > 0
+                        ? `${formatTotalDuration(group.seconds)} (${group.count} ${group.count === 1 ? "disco" : "discos"})`
+                        : `${group.count} ${group.count === 1 ? "disco" : "discos"}`}
+                    </span>
+                  </div>
+
+                  <div className="h-2 bg-[#11100e] rounded">
+                    <div
+                      className="h-2 bg-brand-yellow rounded"
+                      style={{
+                        width: `${totalDurationSeconds ? (group.seconds / totalDurationSeconds) * 100 : 0}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
+
+      {totalDurationSeconds > 0 && (
+        <section className="premium-card mt-8 rounded-[2rem] border border-yellow-700 bg-yellow-950/10 p-6">
+          <p className="text-sm tracking-[0.3em] text-yellow-400">
+            MARATONA DE ESCUTA
+          </p>
+
+          <p className="text-4xl font-black mt-3 leading-tight">
+            Para ouvir toda a coleção você precisaria de{" "}
+            <span className="text-brand-yellow">
+              {formatTotalDuration(totalDurationSeconds)}
+            </span>
+            .
+          </p>
+
+          <p className="text-[#b8aa91] mt-4">
+            {movieCount > 0
+              ? `Isso equivale a cerca de ${movieCount} ${movieCount === 1 ? "filme" : "filmes"} de 2 horas, ou`
+              : "Isso equivale a"}{" "}
+            {totalDays >= 1
+              ? `${totalDays.toFixed(1)} dias de música contínua, sem parar para dormir.`
+              : "menos de um dia de música contínua — dá para tocar do café da manhã até o fim da noite."}
+          </p>
+
+          <p className="text-xs text-[#9d9079] mt-4">
+            * baseado nos {albumsWithDuration.length} discos da coleção com duração disponível no Discogs.
+          </p>
+        </section>
+      )}
 
       <section className="mt-8">
         <h2 className="text-3xl font-black mb-4">Visualizações</h2>
