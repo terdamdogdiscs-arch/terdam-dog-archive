@@ -89,8 +89,8 @@ const listeningPaths = [
 export default function Home() {
   const [search, setSearch] = useState("");
 
-  const recordOfTheDay =
-    collectionSeed[new Date().getDate() % collectionSeed.length];
+  const week = Math.floor(new Date().getTime() / (7 * 24 * 60 * 60 * 1000));
+  const recordOfTheDay = collectionSeed[week % collectionSeed.length];
 
   const mostValuable = [...collectionSeed].sort(
     (a, b) => b.financial.estimatedValue - a.financial.estimatedValue

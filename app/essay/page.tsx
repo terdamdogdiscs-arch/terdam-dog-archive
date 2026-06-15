@@ -1,6 +1,42 @@
 import Link from "next/link";
 import { collectionStats, collectionScore } from "../data/seed";
 import BottomNav from "../components/BottomNav";
+import { genreColor } from "../lib/genreColor";
+
+const PILLARS = [
+  {
+    number: "01",
+    icon: "🌴",
+    title: "Reggae",
+    accent: genreColor("Reggae"),
+    description:
+      "Da Jamaica ao mundo. Raízes, espiritualidade e consciência social como base de toda a jornada.",
+  },
+  {
+    number: "02",
+    icon: "🎤",
+    title: "Hip-Hop",
+    accent: genreColor("Hip-Hop"),
+    description:
+      "Nova York, a palavra como arquitetura e a evolução da golden age até os dias de hoje.",
+  },
+  {
+    number: "03",
+    icon: "🎷",
+    title: "Jazz",
+    accent: genreColor("Jazz"),
+    description:
+      "Improviso, estrutura e a fonte que atravessa reggae e hip-hop por dentro.",
+  },
+  {
+    number: "04",
+    icon: "🇧🇷",
+    title: "Brasil",
+    accent: genreColor("Brasil"),
+    description:
+      "Origem e retorno. O Brasil entrando e saindo da coleção por rotas internacionais.",
+  },
+];
 
 export default function EssayPage() {
   return (
@@ -16,11 +52,13 @@ export default function EssayPage() {
           A coleção Terdam Dog não é sobre raridade.
         </h1>
 
-        <p className="text-[#b8aa91] text-xl mt-6 leading-relaxed">
+        <p className="font-display text-3xl text-brand-yellow my-12 leading-tight">
           Ela é sobre conexões.
         </p>
 
-        <section className="mt-10 space-y-6 text-[#d8ccb4] leading-relaxed text-lg">
+        <div className="h-px bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
+
+        <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
           <p>
             20 discos. Uma narrativa. A coleção começa no Brasil, atravessa a
             música jamaicana, encontra Nova York pelo hip-hop, abre passagem
@@ -28,16 +66,25 @@ export default function EssayPage() {
           </p>
 
           <p>
-            Cada disco ocupa uma função dentro da narrativa. Alguns abrem portas.
-            Outros fazem pontes. Alguns consolidam blocos inteiros da escuta.
+            Cada disco ocupa uma função dentro da narrativa.
           </p>
 
+          <blockquote className="border-l-[3px] border-brand-purple bg-[#111111] pl-5 py-4 text-brand-cream italic text-lg">
+            Alguns abrem portas. Outros fazem pontes. Alguns consolidam
+            blocos inteiros da escuta.
+          </blockquote>
+        </section>
+
+        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
+
+        <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
           <p>
             O Terdam Dog Archive existe para mostrar que uma coleção pode ser
-            mais do que um inventário. Ela pode ser uma forma de pensamento
-            musical.
+            mais do que um inventário.
           </p>
         </section>
+
+        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
 
         <section className="grid grid-cols-2 gap-4 mt-10">
           <Card title="Discos" value={collectionStats.totalAlbums} />
@@ -46,18 +93,23 @@ export default function EssayPage() {
           <Card title="Índice" value={`${collectionScore}/100`} />
         </section>
 
-        <section className="mt-10 rounded-3xl border border-purple-800 bg-purple-950/20 p-6">
+        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
+
+        <section className="-mx-5 mt-10 bg-[#111111] px-5 py-10">
           <p className="text-sm tracking-[0.3em] text-purple-400">
             QUATRO PILARES
           </p>
 
-          <div className="grid grid-cols-2 gap-4 mt-5">
-            <Pillar icon="🌴" title="Reggae" />
-            <Pillar icon="🎤" title="Hip-Hop" />
-            <Pillar icon="🎷" title="Jazz" />
-            <Pillar icon="🇧🇷" title="Brasil" />
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            {PILLARS.map((pillar) => (
+              <Pillar key={pillar.title} {...pillar} />
+            ))}
           </div>
         </section>
+
+        <p className="font-display text-3xl text-brand-yellow text-center mt-16 leading-tight">
+          Ela pode ser uma forma de pensamento musical.
+        </p>
       </article>
 
       <BottomNav />
@@ -74,11 +126,31 @@ function Card({ title, value }: { title: string; value: string | number }) {
   );
 }
 
-function Pillar({ icon, title }: { icon: string; title: string }) {
+function Pillar({
+  number,
+  icon,
+  title,
+  accent,
+  description,
+}: {
+  number: string;
+  icon: string;
+  title: string;
+  accent: { border: string; text: string };
+  description: string;
+}) {
   return (
-    <div className="rounded-3xl border border-[#2b241c] bg-brand-black p-4">
-      <p className="text-3xl">{icon}</p>
-      <p className="font-black mt-3">{title}</p>
+    <div className={`rounded-3xl border-[1.5px] ${accent.border} bg-brand-black p-4`}>
+      <div className="flex items-center justify-between">
+        <p className="text-3xl">{icon}</p>
+        <p className={`font-display text-2xl ${accent.text}`}>{number}</p>
+      </div>
+
+      <p className={`font-display text-xl mt-3 ${accent.text}`}>{title}</p>
+
+      <p className="mt-2 text-sm text-[#b8aa91] leading-relaxed">
+        {description}
+      </p>
     </div>
   );
 }

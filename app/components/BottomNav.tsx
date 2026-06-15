@@ -8,7 +8,6 @@ const navItems = [
   { href: "/journey", icon: "🧭", label: "Jornada" },
   { href: "/feed", icon: "📰", label: "Feed" },
   { href: "/coming", icon: "⏳", label: "Por Vir" },
-  { href: "/curator", icon: "✨", label: "Curadoria" },
   { href: "/essay", icon: "✍️", label: "Ensaio" },
   { href: "/insights", icon: "📊", label: "Análises" },
 ];
@@ -18,7 +17,7 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-3 right-3 z-50 rounded-[2rem] border border-[#3a3025] bg-black/90 px-3 py-3 shadow-2xl backdrop-blur">
-      <div className="grid grid-cols-7 gap-1 text-center text-[10px] text-[#f4ead8]">
+      <div className="grid grid-cols-6 gap-1 text-center text-[10px] text-[#f4ead8]">
         {navItems.map((item) => {
           const isActive =
             item.href === "/"
