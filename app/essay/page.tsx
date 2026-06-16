@@ -60,7 +60,7 @@ export default function EssayPage() {
 
         <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
           <p>
-            20 discos. Uma narrativa. A coleção começa no Brasil, atravessa a
+            {collectionStats.totalAlbums} discos. Uma narrativa. A coleção começa no Brasil, atravessa a
             música jamaicana, encontra Nova York pelo hip-hop, abre passagem
             para o jazz e retorna ao Brasil por uma rota internacional.
           </p>

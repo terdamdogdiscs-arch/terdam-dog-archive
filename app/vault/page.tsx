@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { albums } from "../data/albums";
+import { collectionStats } from "../data/seed";
+import { getTotalValue } from "../lib/stats";
 
 export default function VaultPage() {
-  const totalValue = albums.reduce(
-    (sum, album) => sum + (album.estimatedValue || 0),
-    0
-  );
+  const totalValue = getTotalValue(albums);
 
-  const averageValue = Math.round(totalValue / albums.length);
+  const averageValue = Math.round(totalValue / collectionStats.totalAlbums);
 
   const topAlbums = [...albums]
     .sort(

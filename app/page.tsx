@@ -8,6 +8,7 @@ import { genreColor } from "./lib/genreColor";
 import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
 import { formatTotalDuration } from "./lib/discogs";
+import { getTotalValue } from "./lib/stats";
 import { listeningPaths } from "./data/paths";
 import {
   collectionSeed,
@@ -240,7 +241,7 @@ export default function Home() {
 
         <div className="grid grid-cols-2 gap-4 mt-4">
           <MiniStat
-            value={`R$ ${collectionStats.totalEstimatedValue}`}
+            value={`R$ ${getTotalValue(albums)}`}
             label="Valor estimado"
           />
 

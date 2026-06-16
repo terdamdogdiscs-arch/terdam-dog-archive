@@ -1,12 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
 import { formatTotalDuration } from "../lib/discogs";
+import { getTotalValue } from "../lib/stats";
+import { albums } from "../data/albums";
 import {
   collectionSeed,
   collectionStats,
   collectionScore,
 } from "../data/seed";
+
+export const metadata: Metadata = {
+  title: "Análises — TerdamDog Archive",
+  description:
+    "Uma leitura automática da coleção: gêneros, países, décadas, valor estimado e narrativa.",
+};
 
 const GENRE_GROUPS: { label: string; filter: (album: (typeof collectionSeed)[number]) => boolean }[] = [
   { label: "Reggae", filter: (album) => album.genre.toLowerCase().includes("reggae") },
@@ -59,7 +68,7 @@ export default function InsightsPage() {
   }, 0);
 
   const avgValue = Math.round(
-    collectionStats.totalEstimatedValue / collectionStats.totalAlbums
+    getTotalValue(albums) / collectionStats.totalAlbums
   );
 
   const albumsWithDuration = collectionSeed.filter(
@@ -148,7 +157,7 @@ export default function InsightsPage() {
         <Card title="Papel dominante" value={`${topRole} (${topRoleCount})`} />
         <Card title="Mais antigo" value={`${oldestAlbum.year}`} detail={oldestAlbum.artist} />
         <Card title="Mais novo" value={`${newestAlbum.year}`} detail={newestAlbum.artist} />
-        <Card title="Valor estimado" value={`R$ ${collectionStats.totalEstimatedValue}`} />
+        <Card title="Valor estimado" value={`R$ ${getTotalValue(albums)}`} />
         <Card title="Média por disco" value={`R$ ${avgValue}`} />
         <Card title="Mais valioso" value={`TD-${mostValuable.catalog}`} detail={mostValuable.artist} />
         <Card title="Ganho potencial" value={`R$ ${totalPotentialGain}`} />
