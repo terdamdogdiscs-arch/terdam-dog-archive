@@ -8,6 +8,7 @@ import { genreColor } from "./lib/genreColor";
 import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
 import { formatTotalDuration } from "./lib/discogs";
+import { listeningPaths } from "./data/paths";
 import {
   collectionSeed,
   collectionStats,
@@ -41,50 +42,6 @@ const exploreItems = [
   },
 ];
 
-const listeningPaths = [
-  {
-    title: "Jamaica → NYC",
-    description: "Da raiz jamaicana à arquitetura verbal do hip-hop.",
-    catalogs: ["002", "007", "008", "010"],
-    cover: "007",
-  },
-  {
-    title: "Jazz Bridge",
-    description: "Quando a batida encontra a linguagem do jazz.",
-    catalogs: ["011", "013", "014", "016"],
-    cover: "014",
-  },
-  {
-    title: "Brasil Global",
-    description: "O Brasil entrando e saindo da coleção por rotas internacionais.",
-    catalogs: ["001", "019"],
-    cover: "019",
-  },
-  {
-    title: "De Kingston ao Bronx",
-    description: "Do reggae jamaicano ao hip-hop, via Shinehead.",
-    catalogs: ["002", "003", "004", "005", "006", "007", "008"],
-    cover: "007",
-  },
-  {
-    title: "A Era de Ouro",
-    description: "O auge do golden age do hip-hop.",
-    catalogs: ["008", "009", "010", "011", "012"],
-    cover: "010",
-  },
-  {
-    title: "Noite de Jazz",
-    description: "Um set completo, do hard bop ao blues.",
-    catalogs: ["013", "014", "015", "016", "017", "018"],
-    cover: "016",
-  },
-  {
-    title: "Raízes Brasileiras",
-    description: "O Brasil entrando e saindo da coleção.",
-    catalogs: ["001", "019", "020"],
-    cover: "020",
-  },
-];
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -335,7 +292,7 @@ export default function Home() {
                 className="min-w-[240px]"
               >
                 <Link
-                  href="/journey"
+                  href={`/journey?trilha=${path.slug}`}
                   className="premium-card flex gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition"
                 >
                   <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
