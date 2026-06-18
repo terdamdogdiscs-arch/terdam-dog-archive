@@ -293,22 +293,24 @@ export default function Home() {
               <FadeIn
                 key={path.title}
                 delay={index * 80}
-                className="min-w-[240px]"
+                className="min-w-[240px] self-stretch"
               >
                 <Link
                   href={`/journey?trilha=${path.slug}`}
-                  className="premium-card flex gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition"
+                  className="premium-card flex gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition h-full"
                 >
                   <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
                     <CoverImage album={cover} />
                   </div>
 
-                  <div>
-                    <p className="font-black leading-tight">{path.title}</p>
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <p className="font-black leading-tight">{path.title}</p>
 
-                    <p className="text-xs text-[#9d9079] mt-1">
-                      {path.description}
-                    </p>
+                      <p className="text-xs text-[#9d9079] mt-1">
+                        {path.description}
+                      </p>
+                    </div>
 
                     <p className="text-xs text-purple-400 mt-2">
                       {pathDuration > 0
