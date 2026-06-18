@@ -144,5 +144,13 @@ export const captions: Record<string, {
     tese: "Quando o Brasil não apenas influencia o mundo. Conversa com ele de igual para igual. 🇧🇷🌎",
     hashtags: "#JorgeBen #Tropical #SambaRock #MPB #BrazilianMusic #IslandRecords #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #020\n\nJorge Ben — Tropical (1976)\n\nDepois de atravessar o jazz brasileiro e a bossa nova internacional de Sergio Mendes, a jornada retorna ao Brasil por um caminho diferente.\n\nTropical mostra Jorge Ben expandindo sua linguagem sem abandonar aquilo que tornou sua música única: o encontro entre samba, funk, soul e balanço brasileiro.\n\nQuando o Brasil não apenas influencia o mundo. Conversa com ele de igual para igual. 🇧🇷🌎\n\n#JorgeBen #Tropical #SambaRock #MPB #BrazilianMusic #IslandRecords #VinylCollector #TerdamDogDiscs"
+  },
+  // TODO(TEST): caption de teste — remover junto com disco 021 se não for incorporado à coleção definitiva
+  "021": {
+    ponte: "Tropical foi o Brasil chegando ao mundo pela primeira vez. Benjor é o Brasil que já chegou — e que agora chama o mundo para dançar junto.",
+    contexto: "Novo nome, nova gravadora, nova década. Mas o mesmo Jorge Ben de sempre: groove inconfundível, letras que transitam entre o cotidiano e o sagrado, e uma facilidade rara de fazer música universal sem abrir mão da identidade brasileira. King Sunny Adé vindo da Nigéria encontra os Paralamas vindo do Rio — e ninguém estranha.",
+    tese: "Quando a música é grande o suficiente, as fronteiras se tornam apenas detalhes de mapa.",
+    hashtags: "#JorgeBenJor #Benjor #SambaFunk #WorldMusic #KingSunnyAde #MPB #Brasil #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #021\n\nJorge Ben Jor — Benjor (1989)\n\nTropical foi o Brasil chegando ao mundo pela primeira vez. Benjor é o Brasil que já chegou — e que agora chama o mundo para dançar junto.\n\nNovo nome, nova gravadora, nova década. Mas o mesmo Jorge Ben de sempre: groove inconfundível, letras que transitam entre o cotidiano e o sagrado, e uma facilidade rara de fazer música universal sem abrir mão da identidade brasileira. King Sunny Adé vindo da Nigéria encontra os Paralamas vindo do Rio — e ninguém estranha.\n\nQuando a música é grande o suficiente, as fronteiras se tornam apenas detalhes de mapa.\n\n#JorgeBenJor #Benjor #SambaFunk #WorldMusic #KingSunnyAde #MPB #Brasil #VinylCollector #TerdamDogDiscs"
   }
 };

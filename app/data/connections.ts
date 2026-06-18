@@ -54,4 +54,11 @@ export const connections = [
     reason: "Brasil Global",
     description: "Sergio Mendes levou o Brasil ao mundo via Los Angeles. Jorge Ben prova que não precisava de tradutor.",
   },
+  // TODO(TEST): conexão de teste — remover junto com disco 021 se não for incorporado
+  {
+    source: "020",
+    target: "021",
+    reason: "Reinvenção Brasileira",
+    description: "Tropical abriu as portas do mercado internacional. Benjor mostra o Brasil que já chegou — e que muda de nome sem perder a identidade.",
+  },
 ]

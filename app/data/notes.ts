@@ -135,5 +135,13 @@ export const notes = {
     note: "O retorno ao Brasil por um caminho diferente. Enquanto Sergio Mendes traduzia o Brasil para o mundo, Jorge Ben mostrava que não precisava de tradução.",
     story: "Brasil Direto",
     previous: "019",
+    next: "021", // TODO(TEST): remover se disco 021 não for incorporado
+  },
+
+  // TODO(TEST): entrada de teste — remover junto com disco 021 se não for incorporado à coleção definitiva
+  "021": {
+    note: "O Brasil que já chegou chama o mundo para dançar. Novo nome, nova gravadora, nova década — mas o mesmo groove inconfundível.",
+    story: "World Music",
+    previous: "020",
   },
 };
