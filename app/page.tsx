@@ -9,6 +9,7 @@ import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
 import { formatTotalDuration } from "./lib/discogs";
 import { getTotalValue } from "./lib/stats";
+import { generateJourneyPhrase } from "./lib/narrative";
 import { listeningPaths } from "./data/paths";
 import {
   collectionSeed,
@@ -47,6 +48,8 @@ const exploreItems = [
 export default function Home() {
   const [search, setSearch] = useState("");
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const journeyPhrase = generateJourneyPhrase(albums);
 
   const week = Math.floor(new Date().getTime() / (7 * 24 * 60 * 60 * 1000));
   const recordOfTheDay = collectionSeed[week % collectionSeed.length];
@@ -102,7 +105,7 @@ export default function Home() {
             </h1>
 
             <p className="text-sm text-[#b8aa91] mt-2">
-              Jamaica, Nova York, jazz e Brasil em uma coleção viva.
+              {journeyPhrase}
             </p>
           </div>
         </div>
