@@ -258,7 +258,6 @@ export const tracks = [
   { catalog: "020", side: "B", number: 8, title: "Mas Que Nada", duration: "6:30", bpm: null },
   { catalog: "020", side: "B", number: 9, title: "País Tropical", duration: "3:41", bpm: null },
 
-  // TODO(TEST): faixas do disco 021 — remover junto com o disco se não for incorporado
   { catalog: "021", side: "A", number: 1, title: "Pega Ela de Montão", duration: "4:55", bpm: null },
   { catalog: "021", side: "A", number: 2, title: "Miss X", duration: "4:11", bpm: null },
   { catalog: "021", side: "A", number: 3, title: "Homem do Espaço", duration: "4:56", bpm: null },

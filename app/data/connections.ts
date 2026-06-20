@@ -54,7 +54,6 @@ export const connections = [
     reason: "Brasil Global",
     description: "Sergio Mendes levou o Brasil ao mundo via Los Angeles. Jorge Ben prova que não precisava de tradutor.",
   },
-  // TODO(TEST): conexão de teste — remover junto com disco 021 se não for incorporado
   {
     source: "020",
     target: "021",
