@@ -109,4 +109,11 @@ export const connections: Connection[] = [
     description: "A coleção percorreu o litoral da Bahia com Dorival Caymmi. Agora desembarca nas ruas de São Paulo com Adoniran Barbosa — duas raízes igualmente brasileiras, igualmente verdadeiras.",
     type: "referencia",
   },
+  {
+    source: "028",
+    target: "025",
+    reason: "Mar, Cidade e Morro",
+    description: "Caymmi trouxe o mar. Adoniran trouxe a cidade. Cartola trouxe o morro — três geografias essenciais da identidade musical brasileira, reunidas na sequência de Referências.",
+    type: "referencia",
+  },
 ]

@@ -182,4 +182,10 @@ export const notes = {
     story: "Referência",
     previous: "025",
   },
+
+  "028": {
+    note: "Mudar a memória de um país. A obra de Cartola — durante décadas distante do reconhecimento — chegou às bancas de jornal de todo o Brasil nesta edição da coleção História da Música Popular Brasileira.",
+    story: "Referência",
+    previous: "025",
+  },
 };
