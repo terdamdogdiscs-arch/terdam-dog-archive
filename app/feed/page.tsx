@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import BottomNav from "../components/BottomNav";
 import FadeIn from "../components/FadeIn";
@@ -26,6 +26,38 @@ function CopyButton({ text }: { text: string }) {
 }
 
 export default function FeedPage() {
+  const [atTop, setAtTop] = useState(true);
+  const [atBottom, setAtBottom] = useState(false);
+
+  const captionedAlbums = collectionSeed.filter((a) => captions[a.catalog]);
+  const firstCatalog = captionedAlbums[0]?.catalog;
+  const lastCatalog = captionedAlbums[captionedAlbums.length - 1]?.catalog;
+
+  useEffect(() => {
+    const first = document.getElementById("feed-first");
+    const last = document.getElementById("feed-last");
+
+    const topObs = new IntersectionObserver(
+      ([entry]) => setAtTop(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    const bottomObs = new IntersectionObserver(
+      ([entry]) => setAtBottom(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    if (first) topObs.observe(first);
+    if (last) bottomObs.observe(last);
+
+    return () => {
+      topObs.disconnect();
+      bottomObs.disconnect();
+    };
+  }, []);
+
+  const scrollTo = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
       <Link href="/" className="text-purple-400">
@@ -45,9 +77,16 @@ export default function FeedPage() {
           const caption = captions[album.catalog];
           if (!caption) return null;
 
+          const articleId =
+            album.catalog === firstCatalog
+              ? "feed-first"
+              : album.catalog === lastCatalog
+              ? "feed-last"
+              : undefined;
+
           return (
             <FadeIn key={album.catalog}>
-              <article className="py-8">
+              <article id={articleId} className="py-8">
                 <div className="aspect-square w-full overflow-hidden rounded-3xl border border-[#2b241c] bg-[#11100e]">
                   <CoverImage album={album} />
                 </div>
@@ -84,6 +123,24 @@ export default function FeedPage() {
           );
         })}
       </section>
+
+      {!atTop && (
+        <button
+          onClick={() => scrollTo("feed-first")}
+          className="fixed bottom-24 left-4 z-40 flex items-center gap-1.5 rounded-full bg-brand-purple px-4 py-2.5 text-sm font-black tracking-[0.15em] text-white shadow-lg transition hover:brightness-110"
+        >
+          ↑ PRIMEIRO
+        </button>
+      )}
+
+      {!atBottom && (
+        <button
+          onClick={() => scrollTo("feed-last")}
+          className="fixed bottom-24 right-4 z-40 flex items-center gap-1.5 rounded-full bg-brand-purple px-4 py-2.5 text-sm font-black tracking-[0.15em] text-white shadow-lg transition hover:brightness-110"
+        >
+          ÚLTIMO ↓
+        </button>
+      )}
 
       <BottomNav />
     </main>
