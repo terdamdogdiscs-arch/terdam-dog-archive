@@ -124,6 +124,13 @@ export const connections: Connection[] = [
     type: "referencia",
   },
   {
+    source: "030",
+    target: "025",
+    reason: "Da Linguagem à Arquitetura",
+    description: "A sequência de Referências apresentou lugares, vozes e linguagens. O Fundo de Quintal apresenta uma nova arquitetura para o samba — o nascimento do pagode através do tan-tan, do repique de mão e do banjo.",
+    type: "referencia",
+  },
+  {
     source: "029",
     target: "008",
     reason: "Ancestral da Narrativa Falada",

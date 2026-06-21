@@ -180,6 +180,13 @@ export const captions: Record<string, {
     hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   },
+  "030": {
+    ponte: "A sequência de Referências apresentou lugares, vozes e linguagens. Agora ela apresenta uma nova arquitetura para o samba.",
+    contexto: "Ao incorporar o tan-tan, o repique de mão e o banjo à formação tradicional, o Fundo de Quintal não criou apenas um novo som. Mudou a forma como uma roda de samba podia respirar, responder e se movimentar. O que mais tarde seria chamado de pagode começou ali, quase sem perceber que estava fazendo história.",
+    tese: "Algumas revoluções não acontecem nas letras. Acontecem na maneira de tocar.",
+    hashtags: "#FundoDeQuintal #Pagode #Samba #MPB #RioDeJaneiro #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #030\n\nGrupo Fundo de Quintal — Do Fundo do Nosso Quintal (1987)\n\nA sequência de Referências apresentou lugares, vozes e linguagens.\n\nAgora ela apresenta uma nova arquitetura para o samba.\n\nAo incorporar o tan-tan, o repique de mão e o banjo à formação tradicional, o Fundo de Quintal não criou apenas um novo som. Mudou a forma como uma roda de samba podia respirar, responder e se movimentar. O que mais tarde seria chamado de pagode começou ali, quase sem perceber que estava fazendo história.\n\nAlgumas revoluções não acontecem nas letras.\n\nAcontecem na maneira de tocar.\n\n🥁📀\n\n#FundoDeQuintal #Pagode #Samba #MPB #RioDeJaneiro #VinylCollector #TerdamDogDiscs"
+  },
   "029": {
     ponte: "A coleção percorreu paisagens. Agora encontra uma linguagem.",
     contexto: "Muito antes de o rap transformar a narrativa em protagonista, Moreira da Silva já interrompia o samba para conversar com o ouvinte. O breque deixava de ser apenas uma pausa musical e se tornava parte da história, misturando humor, teatro e crônica popular em poucos segundos.\n\nMais do que um estilo de samba, o samba de breque ensinou que a música também pode ser conversa.",

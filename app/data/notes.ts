@@ -194,4 +194,10 @@ export const notes = {
     story: "Referência",
     previous: "025",
   },
+
+  "030": {
+    note: "A revolução que acontece na maneira de tocar. O Fundo de Quintal não criou apenas um novo som ao incorporar tan-tan, repique de mão e banjo — mudou a forma como uma roda de samba podia respirar, responder e se movimentar.",
+    story: "Referência",
+    previous: "025",
+  },
 };
