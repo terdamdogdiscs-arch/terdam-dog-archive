@@ -102,4 +102,11 @@ export const connections: Connection[] = [
     description: "Se Caymmi e Seu Violão apresentou uma das raízes da música brasileira, Um Interpreta o Outro mostra que nenhuma raiz cresce sozinha — dois mestres celebrando a obra um do outro.",
     type: "referencia",
   },
+  {
+    source: "027",
+    target: "025",
+    reason: "Da Bahia a São Paulo",
+    description: "A coleção percorreu o litoral da Bahia com Dorival Caymmi. Agora desembarca nas ruas de São Paulo com Adoniran Barbosa — duas raízes igualmente brasileiras, igualmente verdadeiras.",
+    type: "referencia",
+  },
 ]

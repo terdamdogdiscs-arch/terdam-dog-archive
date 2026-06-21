@@ -176,4 +176,10 @@ export const notes = {
     story: "Referência",
     previous: "025",
   },
+
+  "027": {
+    note: "Quando uma cidade passa a existir de verdade depois de ser cantada. Adoniran Barbosa reuniu Elis Regina, Djavan, Clara Nunes, Gonzaguinha e outros para celebrar a São Paulo que ele próprio ajudou a inventar.",
+    story: "Referência",
+    previous: "025",
+  },
 };
