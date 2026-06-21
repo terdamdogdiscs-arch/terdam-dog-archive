@@ -51,6 +51,8 @@ export default function InsightsPage() {
     return acc;
   }, {});
 
+  const referenceCount = collectionSeed.filter((a) => a.role === "Referência").length;
+
   const [topGenre, topGenreCount] = getTop(byGenre);
   const [topCountry, topCountryCount] = getTop(byCountry);
   const [topRole, topRoleCount] = getTop(byRole);
@@ -161,6 +163,11 @@ export default function InsightsPage() {
         <Card title="Média por disco" value={`R$ ${avgValue}`} />
         <Card title="Mais valioso" value={`TD-${mostValuable.catalog}`} detail={mostValuable.artist} />
         <Card title="Ganho potencial" value={`R$ ${totalPotentialGain}`} />
+        <Card
+          title="Discos de Referência"
+          value={referenceCount}
+          detail="Ancoragens atemporais da coleção"
+        />
       </section>
 
       <Section title="Distribuição por gênero" data={byGenre} accentFor={genreColor} />

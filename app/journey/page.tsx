@@ -122,18 +122,36 @@ export default async function JourneyPage({
           const caption = captions[album.catalog];
           if (!caption) return null;
 
+          const isRef = album.role === "Referência";
+          const nextAlbumInList = collectionSeed[index + 1];
+          const nextIsRef = nextAlbumInList?.role === "Referência";
+
           return (
             <FadeIn key={album.catalog}>
               <Link
                 href={`/album/${album.catalog}`}
-                className="flex gap-4 rounded-3xl border border-[#2b241c] bg-[#11100e] p-5 hover:border-purple-500 transition"
+                className={`flex gap-4 rounded-3xl border bg-[#11100e] p-5 transition ${
+                  isRef
+                    ? "border-yellow-700 hover:border-yellow-500"
+                    : "border-[#2b241c] hover:border-purple-500"
+                }`}
               >
-                <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
+                <div
+                  className={`h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-brand-black ${
+                    isRef ? "border-yellow-700" : "border-[#2b241c]"
+                  }`}
+                >
                   <CoverImage album={album} />
                 </div>
 
                 <div className="flex-1">
-                  <p className="text-sm text-purple-400">
+                  {isRef && (
+                    <p className="text-xs tracking-[0.25em] text-yellow-500 mb-1">
+                      ◆ REFERÊNCIA
+                    </p>
+                  )}
+
+                  <p className={`text-sm ${isRef ? "text-yellow-400" : "text-purple-400"}`}>
                     TD-{album.catalog} · {album.artist} — {album.album}
                   </p>
 
@@ -149,7 +167,11 @@ export default async function JourneyPage({
 
               {index < collectionSeed.length - 1 && (
                 <div className="flex justify-center my-3">
-                  <span className="text-2xl text-brand-purple">↓</span>
+                  {nextIsRef || isRef ? (
+                    <span className="text-xl text-yellow-700">◆</span>
+                  ) : (
+                    <span className="text-2xl text-brand-purple">↓</span>
+                  )}
                 </div>
               )}
             </FadeIn>

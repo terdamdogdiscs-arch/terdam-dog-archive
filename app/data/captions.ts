@@ -172,5 +172,12 @@ export const captions: Record<string, {
     tese: "Poucos têm a confiança de olhar para o que já construíram e enxergar ainda mais possibilidades. Menos ainda conseguem fazer o passado soar como futuro.",
     hashtags: "#JorgeBen #10AnosDepois #MPB #SambaRock #Brasil #Philips #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #024\n\nJorge Ben — 10 Anos Depois (1973)\n\nDepois da celebração de Bem-Vinda Amizade, a coleção retorna a um capítulo decisivo da trajetória de Jorge Ben.\n\nLançado em 1973, 10 Anos Depois revisita a primeira década de sua carreira através de sete medleys que reinventam sucessos como Mas Que Nada, País Tropical e Taj Mahal. Não se trata de nostalgia, mas de transformação: Jorge Ben reapresenta suas composições com a linguagem musical que ajudava a consolidar naquele momento.\n\nPoucos têm a confiança de olhar para o que já construíram e enxergar ainda mais possibilidades.\n\nMenos ainda conseguem fazer o passado soar como futuro.\n\n🇧🇷📀\n\n#JorgeBen #10AnosDepois #MPB #SambaRock #Brasil #Philips #VinylCollector #TerdamDogDiscs"
+  },
+  "025": {
+    ponte: "Nem toda conexão acontece entre discos. Algumas acontecem na origem.",
+    contexto: "Caymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.",
+    tese: "Por isso este não é um disco de transição. É um disco de referência. Porque toda coleção tem uma história. E toda história tem uma raiz.",
+    hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   }
 };

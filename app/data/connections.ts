@@ -1,5 +1,14 @@
 
-export const connections = [
+export type Connection = {
+  source: string;
+  target: string | null;
+  reason: string;
+  description?: string;
+  type?: "referencia";
+  influencedArtists?: string[];
+};
+
+export const connections: Connection[] = [
   {
     source: "001",
     target: "002",
@@ -77,5 +86,13 @@ export const connections = [
     target: "024",
     reason: "Da Celebração à Retrospectiva",
     description: "Bem-Vinda Amizade mostrou Jorge Ben confortável com a própria linguagem. 10 Anos Depois mostra o momento em que ele decidiu reescrever essa linguagem com as próprias mãos.",
+  },
+  {
+    source: "025",
+    target: null,
+    reason: "Raiz da Música Brasileira",
+    description: "Caymmi influenciou João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso — cada um encontrando, à sua maneira, o silêncio, o balanço e a economia já presentes nessa obra.",
+    type: "referencia",
+    influencedArtists: ["João Gilberto", "Tom Jobim", "Jorge Ben", "Gilberto Gil", "Caetano Veloso"],
   },
 ]

@@ -215,7 +215,62 @@ export default async function AlbumPage({
             </div>
           </section>
 
-          {(previousAlbum || nextAlbum) && (
+          {album.role === "Referência" && (() => {
+            const refConn = connections.find(
+              (c) => c.source === catalog && c.type === "referencia"
+            );
+            if (!refConn) return null;
+            return (
+              <section className="mt-8 rounded-3xl border border-yellow-700 bg-yellow-950/10 p-6">
+                <p className="text-xs tracking-[0.3em] text-yellow-400">
+                  ◆ DISCO DE REFERÊNCIA
+                </p>
+
+                <p className="text-xl font-bold mt-3">{refConn.reason}</p>
+
+                <p className="text-[#b8aa91] mt-3 text-sm leading-relaxed">
+                  {refConn.description}
+                </p>
+
+                {refConn.influencedArtists && (
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {refConn.influencedArtists.map((artistName) => {
+                      const artistAlbums = albums.filter(
+                        (a) =>
+                          a.artist === artistName ||
+                          a.artist.startsWith(artistName + " ")
+                      );
+                      if (artistAlbums.length > 0) {
+                        return (
+                          <Link
+                            key={artistName}
+                            href={`/album/${artistAlbums[0].catalog}`}
+                            className="rounded-full border border-yellow-600 px-3 py-1 text-sm text-yellow-300 hover:bg-yellow-950/30 transition"
+                          >
+                            {artistName}
+                            {artistAlbums.length > 1
+                              ? ` (${artistAlbums.length} discos)`
+                              : ""}{" "}
+                            ↗
+                          </Link>
+                        );
+                      }
+                      return (
+                        <span
+                          key={artistName}
+                          className="rounded-full border border-[#3b3020] px-3 py-1 text-sm text-[#9d9079]"
+                        >
+                          {artistName}
+                        </span>
+                      );
+                    })}
+                  </div>
+                )}
+              </section>
+            );
+          })()}
+
+          {album.role !== "Referência" && (previousAlbum || nextAlbum) && (
             <section className="mt-8 space-y-4">
               {previousAlbum && (
                 <div className="rounded-3xl border-[1.5px] border-brand-purple bg-purple-950/10 p-5">

@@ -164,4 +164,9 @@ export const notes = {
     story: "Retrospectiva",
     previous: "023",
   },
+
+  "025": {
+    note: "A raiz que influenciou gerações sem buscar protagonismo. Silêncio, balanço e economia — a linguagem que João Gilberto, Tom Jobim e Jorge Ben encontraram cada um à sua maneira.",
+    story: "Referência",
+  },
 };
