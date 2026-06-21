@@ -437,4 +437,16 @@ export const tracks = [
   { catalog: "034", side: "B", number: 10, title: "Judia De Mim", duration: "3:48", bpm: null },
   { catalog: "034", side: "B", number: 11, title: "Brincadeira Tem Hora", duration: "3:55", bpm: null },
   { catalog: "034", side: "B", number: 12, title: "Termina Aqui", duration: "4:15", bpm: null },
+
+  { catalog: "035", side: "A", number: 1, title: "Vietnam", duration: "4:49", bpm: null },
+  { catalog: "035", side: "A", number: 2, title: "Wild World", duration: "3:51", bpm: null },
+  { catalog: "035", side: "A", number: 3, title: "Sooner or Later", duration: "5:14", bpm: null },
+  { catalog: "035", side: "A", number: 4, title: "I'm No Immigrant", duration: "2:55", bpm: null },
+  { catalog: "035", side: "A", number: 5, title: "Give and Take", duration: "2:59", bpm: null },
+  { catalog: "035", side: "B", number: 6, title: "Sufferin' in the Land", duration: "3:08", bpm: null },
+  { catalog: "035", side: "B", number: 7, title: "You Can Get It If You Really Want", duration: "2:41", bpm: null },
+  { catalog: "035", side: "B", number: 8, title: "Wonderful World, Beautiful People", duration: "3:12", bpm: null },
+  { catalog: "035", side: "B", number: 9, title: "Struggling Man", duration: "3:28", bpm: null },
+  { catalog: "035", side: "B", number: 10, title: "The Harder They Come", duration: "3:38", bpm: null },
+  { catalog: "035", side: "B", number: 11, title: "Goodbye Yesterday", duration: "3:20", bpm: null },
 ];

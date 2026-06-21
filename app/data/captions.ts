@@ -180,6 +180,13 @@ export const captions: Record<string, {
     hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   },
+  "035": {
+    ponte: "A coleção percorreu as muitas vozes do samba brasileiro. Agora ela reencontra a Jamaica.",
+    contexto: "Décadas depois de gravar os clássicos reunidos neste disco, Jimmy Cliff pisaria no Pelourinho e encontraria grupos como Olodum e Ara Ketu. Desse encontro surgiria uma das conexões mais marcantes da música brasileira: o samba-reggae, resultado do diálogo entre o reggae jamaicano e a percussão baiana.",
+    tese: "Nenhum gênero nasce do acaso. Ele nasce quando duas histórias finalmente se encontram. 🇯🇲🇧🇷",
+    hashtags: "#JimmyCliff #Reggae #SambaReggae #Olodum #Bahia #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #035\n\nJimmy Cliff — The Best of Jimmy Cliff Vol. 1 (1976)\n\nA coleção percorreu as muitas vozes do samba brasileiro.\n\nAgora ela reencontra a Jamaica.\n\nDécadas depois de gravar os clássicos reunidos neste disco, Jimmy Cliff pisaria no Pelourinho e encontraria grupos como Olodum e Ara Ketu. Desse encontro surgiria uma das conexões mais marcantes da música brasileira: o samba-reggae, resultado do diálogo entre o reggae jamaicano e a percussão baiana.\n\nNenhum gênero nasce do acaso.\n\nEle nasce quando duas histórias finalmente se encontram.\n\n🇯🇲🇧🇷\n\n#JimmyCliff #Reggae #SambaReggae #Olodum #Bahia #VinylCollector #TerdamDogDiscs"
+  },
   "034": {
     ponte: "Depois de percorrer as raízes do samba, a coleção chega ao artista que fez toda essa história parecer espontânea.",
     contexto: "Zeca Pagodinho herdou um legado construído por muitas gerações e encontrou uma forma muito própria de mantê-lo vivo. Suas músicas falam de amizade, botequim, futebol, família e das pequenas alegrias do cotidiano — sempre com a sensação de que aquelas histórias poderiam acontecer com qualquer um.",

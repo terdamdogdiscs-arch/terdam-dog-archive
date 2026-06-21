@@ -138,6 +138,13 @@ export const connections: Connection[] = [
     type: "referencia-cruzada",
   },
   {
+    source: "035",
+    target: "002",
+    reason: "O Reencontro com a Jamaica",
+    description: "A coleção percorreu as muitas vozes do samba brasileiro. Agora ela reencontra a Jamaica — fechando o círculo aberto pelo bloco de reggae nos discos #002 a #007, e revelando que Jimmy Cliff ajudaria décadas depois a originar o samba-reggae ao lado de Olodum e Ara Ketu.",
+    type: "referencia",
+  },
+  {
     source: "034",
     target: "032",
     reason: "Da Validação à Popularização",
