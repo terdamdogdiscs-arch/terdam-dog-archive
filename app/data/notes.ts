@@ -229,11 +229,12 @@ export const notes = {
     note: "Décadas depois de gravar os clássicos reunidos neste disco, Jimmy Cliff pisaria no Pelourinho e encontraria grupos como Olodum e Ara Ketu — e desse encontro surgiria o samba-reggae, resultado do diálogo entre o reggae jamaicano e a percussão baiana.",
     story: "Referência",
     previous: "002",
+    next: "036",
   },
 
   "036": {
     note: "Rita Marley foi integrante fundadora do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers em sua trajetória mais celebrada. Cantora, compositora e guardiã da cultura rastafári, construiu também uma discografia solo que revelou uma voz e uma identidade artísticas próprias — e Greatest Hits reúne parte dessa caminhada.",
-    story: "Referência",
-    previous: "002",
+    story: "Família Marley",
+    previous: "035",
   },
 };

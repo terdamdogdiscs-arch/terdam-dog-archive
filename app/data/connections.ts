@@ -4,7 +4,7 @@ export type Connection = {
   target: string | null;
   reason: string;
   description?: string;
-  type?: "referencia" | "referencia-cruzada";
+  type?: "referencia" | "referencia-cruzada" | "virada";
   influencedArtists?: string[];
 };
 
@@ -180,10 +180,17 @@ export const connections: Connection[] = [
     type: "referencia",
   },
   {
+    source: "035",
+    target: "036",
+    reason: "Da Bahia à Família Marley",
+    description: "Jimmy Cliff fechou o círculo entre o samba-reggae brasileiro e suas raízes jamaicanas. Rita Marley abre a próxima sequência da coleção: a família que sustentou, por dentro, o maior nome do reggae mundial.",
+    type: "virada",
+  },
+  {
     source: "036",
     target: "002",
     reason: "A Coautoria Invisível do Reggae",
     description: "A coleção já celebrou o reggae através de Junior Byles, Toots, Alpha Blondy e Jimmy Cliff. Rita Marley lembra que essas histórias sempre tiveram vozes femininas sustentando a revolução por dentro — muitas vezes sem ocupar o centro do palco.",
-    type: "referencia",
+    type: "referencia-cruzada",
   },
 ]
