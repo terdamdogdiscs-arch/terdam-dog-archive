@@ -180,6 +180,13 @@ export const captions: Record<string, {
     hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   },
+  "034": {
+    ponte: "Depois de percorrer as raízes do samba, a coleção chega ao artista que fez toda essa história parecer espontânea.",
+    contexto: "Zeca Pagodinho herdou um legado construído por muitas gerações e encontrou uma forma muito própria de mantê-lo vivo. Suas músicas falam de amizade, botequim, futebol, família e das pequenas alegrias do cotidiano — sempre com a sensação de que aquelas histórias poderiam acontecer com qualquer um.",
+    tese: "Nem todo clássico nasce de um grande manifesto. Às vezes ele nasce de uma boa conversa. 🍺📀",
+    hashtags: "#ZecaPagodinho #Pagode #Samba #MPB #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #034\n\nZeca Pagodinho — O Melhor de Zeca Pagodinho (1989)\n\nDepois de percorrer as raízes do samba, a coleção chega ao artista que fez toda essa história parecer espontânea.\n\nZeca Pagodinho herdou um legado construído por muitas gerações e encontrou uma forma muito própria de mantê-lo vivo. Suas músicas falam de amizade, botequim, futebol, família e das pequenas alegrias do cotidiano — sempre com a sensação de que aquelas histórias poderiam acontecer com qualquer um.\n\nNem todo clássico nasce de um grande manifesto.\n\nÀs vezes ele nasce de uma boa conversa.\n\n🍺📀\n\n#ZecaPagodinho #Pagode #Samba #MPB #VinylCollector #TerdamDogDiscs"
+  },
   "033": {
     ponte: "Depois de conhecer quem escreveu o samba, quem o reinventou e quem abriu caminho para novas gerações, a coleção encontra quem lhe devolveu a memória.",
     contexto: "Clara Nunes transformou a religiosidade de matriz africana em parte inseparável da sua identidade artística. Em uma época em que esse tema ainda enfrentava preconceitos, ela escolheu cantar os orixás, a ancestralidade e a cultura popular brasileira com a mesma naturalidade com que cantava o amor.",

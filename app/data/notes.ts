@@ -218,4 +218,10 @@ export const notes = {
     story: "Referência",
     previous: "032",
   },
+
+  "034": {
+    note: "Zeca Pagodinho herdou um legado construído por muitas gerações e encontrou uma forma muito própria de mantê-lo vivo — fazendo toda essa história parecer espontânea, como uma boa conversa.",
+    story: "Referência",
+    previous: "032",
+  },
 };

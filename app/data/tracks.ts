@@ -424,4 +424,17 @@ export const tracks = [
   { catalog: "033", side: "D", number: 24, title: "Serrinha", duration: "—", bpm: null },
   { catalog: "033", side: "D", number: 25, title: "Coisa da Antiga", duration: "—", bpm: null },
   { catalog: "033", side: "D", number: 26, title: "Na Linha do Mar", duration: "—", bpm: null },
+
+  { catalog: "034", side: "A", number: 1, title: "Coração Em Desalinho", duration: "3:09", bpm: null },
+  { catalog: "034", side: "A", number: 2, title: "Tempo De Don-Don", duration: "3:49", bpm: null },
+  { catalog: "034", side: "A", number: 3, title: "S.P.C.", duration: "3:27", bpm: null },
+  { catalog: "034", side: "A", number: 4, title: "Gota De Esperança", duration: "3:28", bpm: null },
+  { catalog: "034", side: "A", number: 5, title: "Casal Sem-Vergonha", duration: "3:45", bpm: null },
+  { catalog: "034", side: "A", number: 6, title: "Pot-Pourri De Partido Alto (Hei De Guardar Teu Nome / Vou Lhe Deixar No Sereno / Macumba Da Nêga)", duration: "4:25", bpm: null },
+  { catalog: "034", side: "B", number: 7, title: "Bagaço Da Laranja", duration: "3:00", bpm: null },
+  { catalog: "034", side: "B", number: 8, title: "Maneiras", duration: "3:19", bpm: null },
+  { catalog: "034", side: "B", number: 9, title: "Quando Eu Contar (Iaiá)", duration: "3:09", bpm: null },
+  { catalog: "034", side: "B", number: 10, title: "Judia De Mim", duration: "3:48", bpm: null },
+  { catalog: "034", side: "B", number: 11, title: "Brincadeira Tem Hora", duration: "3:55", bpm: null },
+  { catalog: "034", side: "B", number: 12, title: "Termina Aqui", duration: "4:15", bpm: null },
 ];

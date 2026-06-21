@@ -138,6 +138,13 @@ export const connections: Connection[] = [
     type: "referencia-cruzada",
   },
   {
+    source: "034",
+    target: "032",
+    reason: "Da Validação à Popularização",
+    description: "Beth Carvalho validou o pagode diante da indústria. Zeca Pagodinho o tornou parte do cotidiano de qualquer brasileiro — sem nunca abandonar a raiz que vinha desde Cartola e Adoniran.",
+    type: "referencia",
+  },
+  {
     source: "033",
     target: "025",
     reason: "Caymmi Revisitado",
