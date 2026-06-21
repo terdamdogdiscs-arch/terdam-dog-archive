@@ -180,6 +180,13 @@ export const captions: Record<string, {
     hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   },
+  "033": {
+    ponte: "Depois de conhecer quem escreveu o samba, quem o reinventou e quem abriu caminho para novas gerações, a coleção encontra quem lhe devolveu a memória.",
+    contexto: "Clara Nunes transformou a religiosidade de matriz africana em parte inseparável da sua identidade artística. Em uma época em que esse tema ainda enfrentava preconceitos, ela escolheu cantar os orixás, a ancestralidade e a cultura popular brasileira com a mesma naturalidade com que cantava o amor.",
+    tese: "Sua música nunca separou arte e fé. Porque, para ela, uma nascia da outra. 🪘🌿",
+    hashtags: "#ClaraNunes #OTalentoDeClaraNunes #Samba #MPB #Candomblé #Brasil #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #033\n\nClara Nunes — O Talento de Clara Nunes (1985)\n\nDepois de conhecer quem escreveu o samba, quem o reinventou e quem abriu caminho para novas gerações, a coleção encontra quem lhe devolveu a memória.\n\nClara Nunes transformou a religiosidade de matriz africana em parte inseparável da sua identidade artística. Em uma época em que esse tema ainda enfrentava preconceitos, ela escolheu cantar os orixás, a ancestralidade e a cultura popular brasileira com a mesma naturalidade com que cantava o amor.\n\nSua música nunca separou arte e fé.\n\nPorque, para ela, uma nascia da outra.\n\n🪘🌿\n\n#ClaraNunes #OTalentoDeClaraNunes #Samba #MPB #Candomblé #Brasil #VinylCollector #TerdamDogDiscs"
+  },
   "032": {
     ponte: "Depois que o Fundo de Quintal reinventou a roda de samba, faltava alguém disposto a acreditar que aquele novo som merecia chegar mais longe.\n\nBeth Carvalho fez exatamente isso.",
     contexto: "Muito antes de o pagode ocupar rádios, palcos e rodas pelo país, ela reconheceu naquele grupo uma nova linguagem para o samba. No Pagode, lançado em 1979, registra esse momento de transição entre tradição e futuro.",

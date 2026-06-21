@@ -138,6 +138,20 @@ export const connections: Connection[] = [
     type: "referencia-cruzada",
   },
   {
+    source: "033",
+    target: "025",
+    reason: "Caymmi Revisitado",
+    description: "Clara Nunes gravou 'O Que É Que a Baiana Tem', composição original de Dorival Caymmi — fechando um círculo que a sequência de Referências havia aberto.",
+    type: "referencia",
+  },
+  {
+    source: "033",
+    target: "032",
+    reason: "De Quem Abriu Caminho a Quem Devolveu a Memória",
+    description: "Beth Carvalho abriu caminho para novas gerações. Clara Nunes devolveu à música brasileira sua memória ancestral — orixás, ancestralidade e cultura popular cantados com a mesma naturalidade de uma canção de amor.",
+    type: "referencia",
+  },
+  {
     source: "032",
     target: "030",
     reason: "Da Invenção à Validação",

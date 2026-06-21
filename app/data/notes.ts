@@ -212,4 +212,10 @@ export const notes = {
     story: "Referência",
     previous: "030",
   },
+
+  "033": {
+    note: "Clara Nunes transformou a religiosidade de matriz africana em parte inseparável da sua identidade artística — e escolheu cantar os orixás, a ancestralidade e a cultura popular brasileira com a mesma naturalidade com que cantava o amor.",
+    story: "Referência",
+    previous: "032",
+  },
 };
