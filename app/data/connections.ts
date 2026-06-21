@@ -4,7 +4,7 @@ export type Connection = {
   target: string | null;
   reason: string;
   description?: string;
-  type?: "referencia";
+  type?: "referencia" | "referencia-cruzada";
   influencedArtists?: string[];
 };
 
@@ -115,5 +115,19 @@ export const connections: Connection[] = [
     reason: "Mar, Cidade e Morro",
     description: "Caymmi trouxe o mar. Adoniran trouxe a cidade. Cartola trouxe o morro — três geografias essenciais da identidade musical brasileira, reunidas na sequência de Referências.",
     type: "referencia",
+  },
+  {
+    source: "029",
+    target: "025",
+    reason: "Da Paisagem à Linguagem",
+    description: "Caymmi trouxe o mar. Adoniran trouxe a cidade. Cartola trouxe o morro. Moreira da Silva trouxe a pausa — a invenção do samba-de-breque, um ancestral estrutural da narrativa falada que décadas depois o rap tornaria protagonista.",
+    type: "referencia",
+  },
+  {
+    source: "029",
+    target: "008",
+    reason: "Ancestral da Narrativa Falada",
+    description: "Muito antes de Eric B. & Rakim redefinirem o flow narrativo do hip-hop, Moreira da Silva já interrompia o samba para contar histórias direto ao ouvinte.",
+    type: "referencia-cruzada",
   },
 ]

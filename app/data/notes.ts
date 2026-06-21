@@ -188,4 +188,10 @@ export const notes = {
     story: "Referência",
     previous: "025",
   },
+
+  "029": {
+    note: "A revolução que acontece quando a música para. Moreira da Silva inventou o samba-de-breque — a pausa que vira narrativa, o ancestral estrutural do rap que o Brasil criou décadas antes de conhecer o hip-hop.",
+    story: "Referência",
+    previous: "025",
+  },
 };
