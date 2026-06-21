@@ -149,5 +149,12 @@ export const notes = {
     note: "O Brasil que olha para dentro e constrói um universo. Alquimia, espiritualidade e groove em um dos discos mais singulares da música brasileira.",
     story: "Aprofundamento",
     previous: "021",
+    next: "023",
+  },
+
+  "023": {
+    note: "O Brasil que sorri para o mundo. Depois de mergulhar no esoterismo, Jorge Ben emerge com o disco mais solar e generoso de sua discografia.",
+    story: "Leveza",
+    previous: "022",
   },
 };

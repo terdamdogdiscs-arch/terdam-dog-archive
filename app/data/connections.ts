@@ -66,4 +66,10 @@ export const connections = [
     reason: "Da Reinvenção ao Esoterismo",
     description: "Benjor mostrou Jorge Ben mudando de nome para acompanhar o tempo. A Tábua de Esmeralda mostra esse mesmo artista, quinze anos antes, mudando de direção quando ninguém esperava.",
   },
+  {
+    source: "022",
+    target: "023",
+    reason: "Da Alquimia à Simplicidade",
+    description: "A Tábua de Esmeralda foi Jorge Ben olhando para dentro, construindo um universo esotérico. Bem-Vinda Amizade é o retorno — simples, solar, generoso. O groove continua, mas o peso espiritual dá lugar à leveza.",
+  },
 ]
