@@ -137,4 +137,11 @@ export const connections: Connection[] = [
     description: "Muito antes de Eric B. & Rakim redefinirem o flow narrativo do hip-hop, Moreira da Silva já interrompia o samba para contar histórias direto ao ouvinte.",
     type: "referencia-cruzada",
   },
+  {
+    source: "031",
+    target: "027",
+    reason: "Do Compositor ao Intérprete",
+    description: "Adoniran escreveu sobre a vida simples de São Paulo. O Demônios da Garoa deu a essas histórias um coro — e um Brasil inteiro passou a cantar junto. Sem essa parceria, talvez Adoniran nunca tivesse saído das rodas de samba do Bixiga para a memória nacional.",
+    type: "referencia",
+  },
 ]

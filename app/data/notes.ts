@@ -200,4 +200,10 @@ export const notes = {
     story: "Referência",
     previous: "025",
   },
+
+  "031": {
+    note: "A coleção já passou por compositores, cidades, linguagens e instrumentos. Quando gravaram Trem das Onze, os Demônios da Garoa não eram apenas intérpretes — transformaram personagens, sotaques e cenas de São Paulo em parte da memória musical brasileira.",
+    story: "Referência",
+    previous: "027",
+  },
 };

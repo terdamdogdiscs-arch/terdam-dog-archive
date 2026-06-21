@@ -201,6 +201,13 @@ export const captions: Record<string, {
     hashtags: "#Cartola #HistoriaDaMusicaPopularBrasileira #Samba #MPB #RioDeJaneiro #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #028\n\nCartola — História da Música Popular Brasileira (1982)\n\nCaymmi trouxe o mar. Adoniran trouxe a cidade. Cartola trouxe o morro.\n\nLançado pela Abril Cultural como parte da coleção História da Música Popular Brasileira, este disco levou a obra de um dos maiores compositores brasileiros para muito além das lojas de discos, chegando às bancas de jornal de todo o país.\n\nDurante décadas, Cartola viveu distante do reconhecimento que sua música merecia. Foi apenas na velhice que viu suas composições ocuparem o lugar que sempre lhes pertenceu. Ainda assim, sua obra atravessou o tempo sem perder a delicadeza, a melancolia e a força.\n\nAlgumas vozes não mudam apenas a música.\n\nMudam a memória de um país.\n\n🎩📀\n\n#Cartola #HistoriaDaMusicaPopularBrasileira #Samba #MPB #RioDeJaneiro #VinylCollector #TerdamDogDiscs"
   },
+  "031": {
+    ponte: "A coleção já passou por compositores, cidades, linguagens e instrumentos. Agora ela apresenta quem levou essa música para o Brasil inteiro.",
+    contexto: "Quando gravaram Trem das Onze e tantas outras canções de Adoniran Barbosa, os Demônios da Garoa não eram apenas intérpretes. Transformaram personagens, sotaques e cenas da cidade de São Paulo em parte da memória musical brasileira.",
+    tese: "Há compositores que escrevem clássicos. Há intérpretes que transformam esses clássicos em patrimônio de um país.",
+    hashtags: "#DemoniosDaGaroa #TremDasOnze #AdoniranBarbosa #Samba #MPB #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #031\n\nDemônios da Garoa — Trem das Onze (1964)\n\nA coleção já passou por compositores, cidades, linguagens e instrumentos.\n\nAgora ela apresenta quem levou essa música para o Brasil inteiro.\n\nQuando gravaram Trem das Onze e tantas outras canções de Adoniran Barbosa, os Demônios da Garoa não eram apenas intérpretes. Transformaram personagens, sotaques e cenas da cidade de São Paulo em parte da memória musical brasileira.\n\nHá compositores que escrevem clássicos.\n\nHá intérpretes que transformam esses clássicos em patrimônio de um país.\n\n🚂🎶\n\n#DemoniosDaGaroa #TremDasOnze #AdoniranBarbosa #Samba #MPB #VinylCollector #TerdamDogDiscs"
+  },
   "027": {
     ponte: "A coleção percorreu o litoral da Bahia com Dorival Caymmi. Agora desembarca nas ruas de São Paulo.",
     contexto: "Gravado para celebrar os 70 anos de Adoniran Barbosa, este disco reúne diferentes vozes interpretando um compositor que fez da fala popular, do humor e da simplicidade uma forma única de contar a vida urbana.",

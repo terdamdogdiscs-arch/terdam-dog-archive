@@ -373,4 +373,15 @@ export const tracks = [
   { catalog: "030", side: "B", number: 12, title: "O Tempo", duration: "—", bpm: null },
   { catalog: "030", side: "B", number: 13, title: "Andei, Andei", duration: "—", bpm: null },
   { catalog: "030", side: "B", number: 14, title: "Mama Lala / Clube Marítimo Africano (part. Martinho da Vila)", duration: "—", bpm: null },
+
+  { catalog: "031", side: "A", number: 1, title: "Trem das Onze", duration: "3:00", bpm: null },
+  { catalog: "031", side: "A", number: 2, title: "Chum-Chim-Chum", duration: "3:14", bpm: null },
+  { catalog: "031", side: "A", number: 3, title: "Saudosa Maloca", duration: "2:39", bpm: null },
+  { catalog: "031", side: "A", number: 4, title: "Prova de Carinho", duration: "2:37", bpm: null },
+  { catalog: "031", side: "A", number: 5, title: "Abrigo de Vagabundos", duration: "2:55", bpm: null },
+  { catalog: "031", side: "B", number: 6, title: "Lenço na Molera", duration: "2:29", bpm: null },
+  { catalog: "031", side: "B", number: 7, title: "As Mariposas", duration: "2:33", bpm: null },
+  { catalog: "031", side: "B", number: 8, title: "Samba do Arnesto", duration: "2:40", bpm: null },
+  { catalog: "031", side: "B", number: 9, title: "Barracão Pegou Fogo", duration: "2:56", bpm: null },
+  { catalog: "031", side: "B", number: 10, title: "A Promessa de Jacó", duration: "2:31", bpm: null },
 ];
