@@ -188,6 +188,13 @@ export default function InsightsPage() {
         <section className="mt-8">
           <h2 className="text-3xl font-black mb-4">⏱ Tempo de escuta</h2>
 
+          {albumsWithDuration.length < collectionStats.totalAlbums && (
+            <p className="text-xs text-[#9d9079] mb-4 border border-[#2b241c] rounded-2xl px-4 py-2">
+              ⚠ {collectionStats.totalAlbums - albumsWithDuration.length}{" "}
+              {collectionStats.totalAlbums - albumsWithDuration.length === 1 ? "disco sem" : "discos sem"} dados de duração ainda não incluído{collectionStats.totalAlbums - albumsWithDuration.length === 1 ? "" : "s"} no total.
+            </p>
+          )}
+
           <div className="grid grid-cols-2 gap-4 mb-4">
             <Card
               title="Tempo total da coleção"

@@ -212,19 +212,25 @@ export default async function AlbumPage({
               <span className="rounded-full border border-green-600 px-3 py-1 text-sm">
                 TD-{album.catalog}
               </span>
+
+              {album.pressing.includes("2LP") && (
+                <span className="rounded-full border border-orange-600 px-3 py-1 text-sm text-orange-400">
+                  Álbum Duplo
+                </span>
+              )}
             </div>
           </section>
 
           {album.role === "Referência" && (() => {
-            const refConn = connections.find(
+            const refConns = connections.filter(
               (c) => c.source === catalog && c.type === "referencia"
             );
-            if (!refConn) return null;
+            if (refConns.length === 0) return null;
 
             const linkedRefDiscs = [
-              ...(refConn.target
-                ? [albums.find((a) => a.catalog === refConn.target)]
-                : []),
+              ...refConns.flatMap((c) =>
+                c.target ? [albums.find((a) => a.catalog === c.target)] : []
+              ),
               ...connections
                 .filter(
                   (c) => c.target === catalog && c.type === "referencia"
@@ -238,46 +244,50 @@ export default async function AlbumPage({
                   ◆ DISCO DE REFERÊNCIA
                 </p>
 
-                <p className="text-xl font-bold mt-3">{refConn.reason}</p>
+                {refConns.map((refConn, i) => (
+                  <div key={i} className={i > 0 ? "mt-6 pt-6 border-t border-yellow-900/50" : ""}>
+                    <p className="text-xl font-bold mt-3">{refConn.reason}</p>
 
-                <p className="text-[#b8aa91] mt-3 text-sm leading-relaxed">
-                  {refConn.description}
-                </p>
+                    <p className="text-[#b8aa91] mt-3 text-sm leading-relaxed">
+                      {refConn.description}
+                    </p>
 
-                {refConn.influencedArtists && (
-                  <div className="flex flex-wrap gap-2 mt-5">
-                    {refConn.influencedArtists.map((artistName) => {
-                      const artistAlbums = albums.filter(
-                        (a) =>
-                          a.artist === artistName ||
-                          a.artist.startsWith(artistName + " ")
-                      );
-                      if (artistAlbums.length > 0) {
-                        return (
-                          <Link
-                            key={artistName}
-                            href={`/album/${artistAlbums[0].catalog}`}
-                            className="rounded-full border border-yellow-600 px-3 py-1 text-sm text-yellow-300 hover:bg-yellow-950/30 transition"
-                          >
-                            {artistName}
-                            {artistAlbums.length > 1
-                              ? ` (${artistAlbums.length} discos)`
-                              : ""}{" "}
-                            ↗
-                          </Link>
-                        );
-                      }
-                      return (
-                        <span
-                          key={artistName}
-                          className="rounded-full border border-[#3b3020] px-3 py-1 text-sm text-[#9d9079]"
-                        >
-                          {artistName}
-                        </span>
-                      );
-                    })}
+                    {refConn.influencedArtists && (
+                      <div className="flex flex-wrap gap-2 mt-5">
+                        {refConn.influencedArtists.map((artistName) => {
+                          const artistAlbums = albums.filter(
+                            (a) =>
+                              a.artist === artistName ||
+                              a.artist.startsWith(artistName + " ")
+                          );
+                          if (artistAlbums.length > 0) {
+                            return (
+                              <Link
+                                key={artistName}
+                                href={`/album/${artistAlbums[0].catalog}`}
+                                className="rounded-full border border-yellow-600 px-3 py-1 text-sm text-yellow-300 hover:bg-yellow-950/30 transition"
+                              >
+                                {artistName}
+                                {artistAlbums.length > 1
+                                  ? ` (${artistAlbums.length} discos)`
+                                  : ""}{" "}
+                                ↗
+                              </Link>
+                            );
+                          }
+                          return (
+                            <span
+                              key={artistName}
+                              className="rounded-full border border-[#3b3020] px-3 py-1 text-sm text-[#9d9079]"
+                            >
+                              {artistName}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
 
                 {linkedRefDiscs.length > 0 && (
                   <div className="mt-5 border-t border-yellow-900/50 pt-4">
@@ -372,6 +382,40 @@ export default async function AlbumPage({
               )}
             </section>
           )}
+
+          {album.role !== "Referência" && (() => {
+            const futureRefConns = connections.filter(
+              (c) => c.target === catalog && c.type === "referencia" &&
+                albums.find((a) => a.catalog === c.source)?.role === "Referência"
+            );
+            if (futureRefConns.length === 0) return null;
+
+            return (
+              <section className="mt-8 rounded-3xl border border-yellow-800 bg-yellow-950/5 p-6">
+                <p className="text-xs tracking-[0.3em] text-yellow-600">
+                  ◆ REFERÊNCIA FUTURA
+                </p>
+
+                {futureRefConns.map((conn) => {
+                  const refAlbum = albums.find((a) => a.catalog === conn.source);
+                  if (!refAlbum) return null;
+                  return (
+                    <div key={conn.source} className="mt-4">
+                      <p className="text-xl font-bold text-yellow-300">{conn.reason}</p>
+                      <p className="text-[#b8aa91] mt-2 text-sm leading-relaxed">{conn.description}</p>
+                      <Link
+                        href={`/album/${refAlbum.catalog}`}
+                        className="flex items-center gap-3 rounded-2xl border border-yellow-800 p-3 hover:border-yellow-600 transition mt-4"
+                      >
+                        <span className="text-xs text-yellow-600 shrink-0">TD-{refAlbum.catalog}</span>
+                        <span className="text-sm font-black">{refAlbum.artist} — {refAlbum.album}</span>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </section>
+            );
+          })()}
 
           {(curatedConnections.length > 0 || relatedAlbums.length > 0) && (
             <section className="mt-8 rounded-3xl border border-[#2b241c] p-5">
@@ -493,6 +537,9 @@ export default async function AlbumPage({
                           return formatTotalDuration(parts[0] * 60 + parts[1]);
                         })()}
                   </span>
+                  {album.totalDurationOverride && !album.totalDurationSeconds && (
+                    <span className="ml-2 text-xs text-[#6b6050]">· confirmado via Apple Music</span>
+                  )}
                 </p>
               )}
             </section>

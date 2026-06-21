@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { collectionStats, collectionScore } from "../data/seed";
+import { collectionSeed, collectionStats, collectionScore } from "../data/seed";
 import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
 
-const PILLARS = [
+const STATIC_PILLARS = [
   {
     number: "01",
     icon: "🌴",
@@ -38,7 +38,25 @@ const PILLARS = [
   },
 ];
 
+const PAGODE_ACCENT = { bg: "bg-orange-500", border: "border-orange-600", text: "text-orange-400" };
+
 export default function EssayPage() {
+  const pagodeCount = collectionSeed.filter(
+    (a) => a.genre.toLowerCase().includes("pagode") || a.genre.toLowerCase().includes("samba")
+  ).length;
+  const pagodePct = Math.round((pagodeCount / collectionSeed.length) * 100);
+
+  const PILLARS = [
+    ...STATIC_PILLARS,
+    {
+      number: "05",
+      icon: "🥁",
+      title: "Pagode/Samba",
+      accent: PAGODE_ACCENT,
+      description: `Raiz, memória e invenção. ${pagodePct}% da coleção — de Caymmi ao pagode — documenta o samba como linguagem viva e em movimento.`,
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
@@ -97,12 +115,14 @@ export default function EssayPage() {
 
         <section className="-mx-5 mt-10 bg-[#111111] px-5 py-10">
           <p className="text-sm tracking-[0.3em] text-purple-400">
-            QUATRO PILARES
+            CINCO PILARES
           </p>
 
           <div className="grid grid-cols-2 gap-4 mt-6">
-            {PILLARS.map((pillar) => (
-              <Pillar key={pillar.title} {...pillar} />
+            {PILLARS.map((pillar, i) => (
+              <div key={pillar.title} className={i === PILLARS.length - 1 && PILLARS.length % 2 !== 0 ? "col-span-2" : ""}>
+                <Pillar {...pillar} />
+              </div>
             ))}
           </div>
         </section>

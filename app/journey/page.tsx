@@ -115,6 +115,21 @@ export default async function JourneyPage({
         <p className="text-[#b8aa91] mt-5">
           Uma jornada em andamento — {collectionSeed.length} capítulos e contando.
         </p>
+
+        <div className="flex gap-3 mt-5">
+          <a
+            href="#principal"
+            className="rounded-full border border-[#2b241c] px-4 py-1.5 text-xs text-purple-400 hover:border-purple-500 transition"
+          >
+            ↓ Sequência Principal (001–024)
+          </a>
+          <a
+            href="#referencias"
+            className="rounded-full border border-yellow-800 px-4 py-1.5 text-xs text-yellow-400 hover:border-yellow-600 transition"
+          >
+            ◆ Referências (025–035)
+          </a>
+        </div>
       </section>
 
       <section>
@@ -125,9 +140,11 @@ export default async function JourneyPage({
           const isRef = album.role === "Referência";
           const nextAlbumInList = collectionSeed[index + 1];
           const nextIsRef = nextAlbumInList?.role === "Referência";
+          const anchorId = index === 0 ? "principal" : isRef && !collectionSeed[index - 1] ? "referencias" : isRef && collectionSeed[index - 1]?.role !== "Referência" ? "referencias" : undefined;
 
           return (
             <FadeIn key={album.catalog}>
+              <div id={anchorId || undefined}>
               <Link
                 href={`/album/${album.catalog}`}
                 className={`flex gap-4 rounded-3xl border bg-[#11100e] p-5 transition ${
@@ -164,6 +181,7 @@ export default async function JourneyPage({
                   </p>
                 </div>
               </Link>
+              </div>
 
               {index < collectionSeed.length - 1 && (
                 <div className="flex justify-center my-3">

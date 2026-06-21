@@ -5,9 +5,10 @@ export function generateJourneyPhrase(albums: Album[]): string {
   const words: string[] = [];
 
   for (const album of albums) {
-    if (album.narrativeCountry && !seen.has(album.narrativeCountry)) {
-      seen.add(album.narrativeCountry);
-      words.push(album.narrativeCountry);
+    if (album.narrativeCountry && !seen.has(album.narrativeCountry.toLowerCase())) {
+      seen.add(album.narrativeCountry.toLowerCase());
+      const capitalized = album.narrativeCountry.charAt(0).toUpperCase() + album.narrativeCountry.slice(1);
+      words.push(capitalized);
     }
   }
 
