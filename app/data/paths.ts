@@ -59,8 +59,15 @@ export const listeningPaths: ListeningPath[] = [
   {
     slug: "raizes-eternas",
     title: "Raízes Eternas",
-    description: "Os 11 discos que ancoraram gerações — antes do hit, antes da rádio, antes do reconhecimento.",
-    catalogs: ["025", "026", "027", "028", "029", "030", "031", "032", "033", "034", "035", "036"],
+    description: "Os 10 discos que ancoraram gerações — antes do hit, antes da rádio, antes do reconhecimento.",
+    catalogs: ["025", "026", "027", "028", "029", "030", "031", "032", "033", "034"],
     cover: "025",
+  },
+  {
+    slug: "raizes-do-reggae",
+    title: "Raízes do Reggae",
+    description: "Da Jamaica ao mundo — roots, ska, rocksteady e a família que sustentou o legado.",
+    catalogs: ["002", "003", "004", "005", "006", "007", "035", "036"],
+    cover: "002",
   },
 ];
