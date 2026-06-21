@@ -156,5 +156,12 @@ export const notes = {
     note: "O Brasil que sorri para o mundo. Depois de mergulhar no esoterismo, Jorge Ben emerge com o disco mais solar e generoso de sua discografia.",
     story: "Leveza",
     previous: "022",
+    next: "024",
+  },
+
+  "024": {
+    note: "O passado soando como futuro. Jorge Ben revisita uma década inteira de composições e as reinventa com a linguagem que estava ajudando a criar.",
+    story: "Retrospectiva",
+    previous: "023",
   },
 };

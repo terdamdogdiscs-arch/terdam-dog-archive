@@ -289,4 +289,12 @@ export const tracks = [
   { catalog: "023", side: "B", number: 8, title: "Ela Mora Em Matogrosso Fronteira Com O Paraguai", duration: "3:17", bpm: null },
   { catalog: "023", side: "B", number: 9, title: "Para Que Digladiar", duration: "3:34", bpm: null },
   { catalog: "023", side: "B", number: 10, title: "Luiz Wagner Guitarreiro", duration: "3:25", bpm: null },
+  { catalog: "024", side: "A", number: 1, title: "Por Causa De Você, Menina / Chove Chuva / Mas Que Nada", duration: "4:12", bpm: null },
+  { catalog: "024", side: "A", number: 2, title: "Agora, Ninguém Chora Mais / Charles, Anjo 45 / Caramba!... Galileu Da Galileia", duration: "5:23", bpm: null },
+  { catalog: "024", side: "A", number: 3, title: "A Minha Menina / Que Maravilha / Zazueira", duration: "6:00", bpm: null },
+  { catalog: "024", side: "A", number: 4, title: "Bebete Vãobora / Crioula / Cadê Tereza", duration: "4:44", bpm: null },
+  { catalog: "024", side: "B", number: 5, title: "País Tropical / Fio Maravilha / Taj Mahal", duration: "5:53", bpm: null },
+  { catalog: "024", side: "B", number: 6, title: "Vendedor De Bananas / Cosa Nostra / Bicho Do Mato", duration: "6:30", bpm: null },
+  { catalog: "024", side: "B", number: 7, title: "Que Nega É Essa / Que Pena / Domingas", duration: "7:30", bpm: null },
+  { catalog: "024", side: "B", number: 8, title: "Vinheta", duration: "0:26", bpm: null },
 ];

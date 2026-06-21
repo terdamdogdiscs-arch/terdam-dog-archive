@@ -72,4 +72,10 @@ export const connections = [
     reason: "Da Alquimia à Simplicidade",
     description: "A Tábua de Esmeralda foi Jorge Ben olhando para dentro, construindo um universo esotérico. Bem-Vinda Amizade é o retorno — simples, solar, generoso. O groove continua, mas o peso espiritual dá lugar à leveza.",
   },
+  {
+    source: "023",
+    target: "024",
+    reason: "Da Celebração à Retrospectiva",
+    description: "Bem-Vinda Amizade mostrou Jorge Ben confortável com a própria linguagem. 10 Anos Depois mostra o momento em que ele decidiu reescrever essa linguagem com as próprias mãos.",
+  },
 ]
