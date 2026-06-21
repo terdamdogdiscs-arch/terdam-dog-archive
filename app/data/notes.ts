@@ -230,4 +230,10 @@ export const notes = {
     story: "Referência",
     previous: "002",
   },
+
+  "036": {
+    note: "Rita Marley foi integrante fundadora do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers em sua trajetória mais celebrada. Cantora, compositora e guardiã da cultura rastafári, construiu também uma discografia solo que revelou uma voz e uma identidade artísticas próprias — e Greatest Hits reúne parte dessa caminhada.",
+    story: "Referência",
+    previous: "002",
+  },
 };

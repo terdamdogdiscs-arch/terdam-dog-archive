@@ -179,4 +179,11 @@ export const connections: Connection[] = [
     description: "Adoniran escreveu sobre a vida simples de São Paulo. O Demônios da Garoa deu a essas histórias um coro — e um Brasil inteiro passou a cantar junto. Sem essa parceria, talvez Adoniran nunca tivesse saído das rodas de samba do Bixiga para a memória nacional.",
     type: "referencia",
   },
+  {
+    source: "036",
+    target: "002",
+    reason: "A Coautoria Invisível do Reggae",
+    description: "A coleção já celebrou o reggae através de Junior Byles, Toots, Alpha Blondy e Jimmy Cliff. Rita Marley lembra que essas histórias sempre tiveram vozes femininas sustentando a revolução por dentro — muitas vezes sem ocupar o centro do palco.",
+    type: "referencia",
+  },
 ]

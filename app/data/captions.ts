@@ -249,5 +249,12 @@ export const captions: Record<string, {
     tese: "Grandes obras permanecem. Grandes artistas também sabem celebrar as obras dos outros. 🎙️🇧🇷",
     hashtags: "#DorivalCaymmi #AryBarroso #MPB #Samba #Brasil #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #026\n\nDorival Caymmi & Ary Barroso — Um Interpreta o Outro (1958)\n\nSe o disco anterior apresentou uma das raízes da música brasileira, este mostra que nenhuma raiz cresce sozinha.\n\nDorival Caymmi e Ary Barroso ajudaram a definir diferentes caminhos do samba e da canção brasileira. Em Um Interpreta o Outro, deixam de lado qualquer ideia de protagonismo para interpretar as composições um do outro, num encontro raro entre dois mestres ainda em plena atividade.\n\nO álbum permanece como um documento de respeito artístico e de uma época em que grandes compositores reconheciam a importância de seus pares.\n\nGrandes obras permanecem.\n\nGrandes artistas também sabem celebrar as obras dos outros.\n\n🎙️🇧🇷\n\n#DorivalCaymmi #AryBarroso #MPB #Samba #Brasil #VinylCollector #TerdamDogDiscs"
+  },
+  "036": {
+    ponte: "A coleção apresentou artistas que criaram movimentos, transformaram gêneros e mudaram a história da música.\n\nRita Marley lembra que nenhuma dessas histórias é construída sozinha.",
+    contexto: "Integrante do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers, Rita foi muito mais do que um apoio de palco. Cantora, compositora e guardiã da cultura rastafári, construiu também uma trajetória solo que revelou sua própria identidade artística. Este álbum reúne parte dessa caminhada.",
+    tese: "Algumas vozes sustentam uma revolução sem precisar ocupar o centro do palco. 🎙️🇯🇲",
+    hashtags: "#RitaMarley #GreatestHits #Reggae #Jamaica #IThrees #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #036\n\nRita Marley — Greatest Hits (1993)\n\nA coleção apresentou artistas que criaram movimentos, transformaram gêneros e mudaram a história da música.\n\nRita Marley lembra que nenhuma dessas histórias é construída sozinha.\n\nIntegrante do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers, Rita foi muito mais do que um apoio de palco. Cantora, compositora e guardiã da cultura rastafári, construiu também uma trajetória solo que revelou sua própria identidade artística. Este álbum reúne parte dessa caminhada.\n\nAlgumas vozes sustentam uma revolução sem precisar ocupar o centro do palco.\n\n🎙️🇯🇲\n\n#RitaMarley #GreatestHits #Reggae #Jamaica #IThrees #VinylCollector #TerdamDogDiscs"
   }
 };

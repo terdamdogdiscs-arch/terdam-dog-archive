@@ -60,7 +60,7 @@ export const listeningPaths: ListeningPath[] = [
     slug: "raizes-eternas",
     title: "Raízes Eternas",
     description: "Os 11 discos que ancoraram gerações — antes do hit, antes da rádio, antes do reconhecimento.",
-    catalogs: ["025", "026", "027", "028", "029", "030", "031", "032", "033", "034", "035"],
+    catalogs: ["025", "026", "027", "028", "029", "030", "031", "032", "033", "034", "035", "036"],
     cover: "025",
   },
 ];
