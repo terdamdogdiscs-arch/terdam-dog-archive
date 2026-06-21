@@ -227,7 +227,7 @@ export const notes = {
 
   "035": {
     note: "Décadas depois de gravar os clássicos reunidos neste disco, Jimmy Cliff pisaria no Pelourinho e encontraria grupos como Olodum e Ara Ketu — e desse encontro surgiria o samba-reggae, resultado do diálogo entre o reggae jamaicano e a percussão baiana.",
-    story: "Referência",
+    story: "Virada",
     previous: "002",
     next: "036",
   },

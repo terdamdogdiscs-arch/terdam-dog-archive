@@ -127,7 +127,7 @@ export default async function JourneyPage({
             href="#referencias"
             className="rounded-full border border-yellow-800 px-4 py-1.5 text-xs text-yellow-400 hover:border-yellow-600 transition"
           >
-            ◆ Referências (025–035)
+            ◆ Referências (025–034)
           </a>
         </div>
       </section>
