@@ -463,7 +463,7 @@ export default async function AlbumPage({
 
                             <span>{track.title}</span>
 
-                            {!!displayDuration && (
+                            {!!displayDuration && displayDuration !== "—" && (
                               <span className="ml-auto text-sm text-[#9d9079]">
                                 {displayDuration}
                               </span>
