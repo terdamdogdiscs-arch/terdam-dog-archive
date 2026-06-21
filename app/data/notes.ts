@@ -142,5 +142,12 @@ export const notes = {
     note: "O Brasil que já chegou chama o mundo para dançar. Novo nome, nova gravadora, nova década — mas o mesmo groove inconfundível.",
     story: "World Music",
     previous: "020",
+    next: "022",
+  },
+
+  "022": {
+    note: "O Brasil que olha para dentro e constrói um universo. Alquimia, espiritualidade e groove em um dos discos mais singulares da música brasileira.",
+    story: "Aprofundamento",
+    previous: "021",
   },
 };

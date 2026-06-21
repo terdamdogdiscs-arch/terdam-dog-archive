@@ -53,7 +53,7 @@ export const listeningPaths: ListeningPath[] = [
     slug: "raizes-brasileiras",
     title: "Raízes Brasileiras",
     description: "O Brasil entrando e saindo da coleção.",
-    catalogs: ["001", "019", "020", "021"],
+    catalogs: ["001", "019", "020", "021", "022"],
     cover: "020",
   },
 ];

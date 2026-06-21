@@ -60,4 +60,10 @@ export const connections = [
     reason: "Reinvenção Brasileira",
     description: "Tropical abriu as portas do mercado internacional. Benjor mostra o Brasil que já chegou — e que muda de nome sem perder a identidade.",
   },
+  {
+    source: "021",
+    target: "022",
+    reason: "Da Reinvenção ao Esoterismo",
+    description: "Benjor mostrou Jorge Ben mudando de nome para acompanhar o tempo. A Tábua de Esmeralda mostra esse mesmo artista, quinze anos antes, mudando de direção quando ninguém esperava.",
+  },
 ]

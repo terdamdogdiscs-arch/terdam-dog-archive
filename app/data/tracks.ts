@@ -266,4 +266,17 @@ export const tracks = [
   { catalog: "021", side: "B", number: 6, title: "Homem de Negócios", duration: "5:50", bpm: null },
   { catalog: "021", side: "B", number: 7, title: "Cowboy Jorge", duration: "5:01", bpm: null },
   { catalog: "021", side: "B", number: 8, title: "Mama África", duration: "4:52", bpm: null },
+
+  { catalog: "022", side: "A", number: 1, title: "Os Alquimistas Estão Chegando Os Alquimistas", duration: "3:16", bpm: null },
+  { catalog: "022", side: "A", number: 2, title: "O Homem da Gravata Florida (A Gravata Florida de Paracelso)", duration: "3:06", bpm: null },
+  { catalog: "022", side: "A", number: 3, title: "Errare Humanum Est", duration: "4:55", bpm: null },
+  { catalog: "022", side: "A", number: 4, title: "Menina Mulher da Pele Preta", duration: "2:56", bpm: null },
+  { catalog: "022", side: "A", number: 5, title: "Eu Vou Torcer", duration: "3:13", bpm: null },
+  { catalog: "022", side: "A", number: 6, title: "Magnólia", duration: "3:13", bpm: null },
+  { catalog: "022", side: "B", number: 7, title: "Minha Teimosia, Uma Arma pra te Conquistar", duration: "2:43", bpm: null },
+  { catalog: "022", side: "B", number: 8, title: "Zumbi", duration: "3:29", bpm: null },
+  { catalog: "022", side: "B", number: 9, title: "Brother", duration: "2:54", bpm: null },
+  { catalog: "022", side: "B", number: 10, title: "O Namorado da Viúva", duration: "2:02", bpm: null },
+  { catalog: "022", side: "B", number: 11, title: "Hermes Trismegisto e sua Celeste Tábua de Esmeralda", duration: "5:28", bpm: null },
+  { catalog: "022", side: "B", number: 12, title: "Cinco Minutos", duration: "2:57", bpm: null },
 ];
