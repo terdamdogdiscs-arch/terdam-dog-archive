@@ -180,6 +180,13 @@ export const captions: Record<string, {
     hashtags: "#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #025\n\nDorival Caymmi — Caymmi e Seu Violão (1959)\n\nNem toda conexão acontece entre discos.\n\nAlgumas acontecem na origem.\n\nCaymmi e Seu Violão apresenta um artista que influenciou compositores de diferentes gerações sem jamais buscar protagonismo. João Gilberto, Tom Jobim, Jorge Ben, Gilberto Gil e Caetano Veloso encontraram, cada um à sua maneira, algo que já estava presente na música de Caymmi: o silêncio, o balanço, a economia e a força da canção.\n\nPor isso este não é um disco de transição.\n\nÉ um disco de referência.\n\nPorque toda coleção tem uma história.\n\nE toda história tem uma raiz.\n\n🌊📀\n\n#DorivalCaymmi #CaymmiESeuViolão #MPB #Bahia #MúsicaBrasileira #VinylCollector #TerdamDogDiscs"
   },
+  "032": {
+    ponte: "Depois que o Fundo de Quintal reinventou a roda de samba, faltava alguém disposto a acreditar que aquele novo som merecia chegar mais longe.\n\nBeth Carvalho fez exatamente isso.",
+    contexto: "Muito antes de o pagode ocupar rádios, palcos e rodas pelo país, ela reconheceu naquele grupo uma nova linguagem para o samba. No Pagode, lançado em 1979, registra esse momento de transição entre tradição e futuro.",
+    tese: "Ela não apenas gravou um disco. Gravou o início de um movimento. 🌿📀",
+    hashtags: "#BethCarvalho #NoPagode #Pagode #Samba #MPB #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #032\n\nBeth Carvalho — No Pagode (1979)\n\nDepois que o Fundo de Quintal reinventou a roda de samba, faltava alguém disposto a acreditar que aquele novo som merecia chegar mais longe.\n\nBeth Carvalho fez exatamente isso.\n\nMuito antes de o pagode ocupar rádios, palcos e rodas pelo país, ela reconheceu naquele grupo uma nova linguagem para o samba. No Pagode, lançado em 1979, registra esse momento de transição entre tradição e futuro.\n\nEla não apenas gravou um disco.\n\nGravou o início de um movimento.\n\n🌿📀\n\n#BethCarvalho #NoPagode #Pagode #Samba #MPB #VinylCollector #TerdamDogDiscs"
+  },
   "030": {
     ponte: "A sequência de Referências apresentou lugares, vozes e linguagens. Agora ela apresenta uma nova arquitetura para o samba.",
     contexto: "Ao incorporar o tan-tan, o repique de mão e o banjo à formação tradicional, o Fundo de Quintal não criou apenas um novo som. Mudou a forma como uma roda de samba podia respirar, responder e se movimentar. O que mais tarde seria chamado de pagode começou ali, quase sem perceber que estava fazendo história.",

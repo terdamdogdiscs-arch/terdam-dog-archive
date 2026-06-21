@@ -384,4 +384,17 @@ export const tracks = [
   { catalog: "031", side: "B", number: 8, title: "Samba do Arnesto", duration: "2:40", bpm: null },
   { catalog: "031", side: "B", number: 9, title: "Barracão Pegou Fogo", duration: "2:56", bpm: null },
   { catalog: "031", side: "B", number: 10, title: "A Promessa de Jacó", duration: "2:31", bpm: null },
+
+  { catalog: "032", side: "A", number: 1, title: "Coisinha do Pai", duration: "2:58", bpm: null },
+  { catalog: "032", side: "A", number: 2, title: "Senhora Rezadeira", duration: "3:11", bpm: null },
+  { catalog: "032", side: "A", number: 3, title: "Pedi ao Céu", duration: "2:50", bpm: null },
+  { catalog: "032", side: "A", number: 4, title: "Não Chora Nenem", duration: "3:17", bpm: null },
+  { catalog: "032", side: "A", number: 5, title: "Dindinha Lua", duration: "2:42", bpm: null },
+  { catalog: "032", side: "A", number: 6, title: "Beija-Flor", duration: "2:56", bpm: null },
+  { catalog: "032", side: "B", number: 7, title: "Tem Nada Não", duration: "2:49", bpm: null },
+  { catalog: "032", side: "B", number: 8, title: "Samba no Quintal", duration: "3:26", bpm: null },
+  { catalog: "032", side: "B", number: 9, title: "Meu Sexto Sentido", duration: "2:59", bpm: null },
+  { catalog: "032", side: "B", number: 10, title: "Xô Gafanhoto", duration: "2:43", bpm: null },
+  { catalog: "032", side: "B", number: 11, title: "Obrigada, Pelas Flores", duration: "2:44", bpm: null },
+  { catalog: "032", side: "B", number: 12, title: "Andança", duration: "3:41", bpm: null },
 ];

@@ -138,6 +138,13 @@ export const connections: Connection[] = [
     type: "referencia-cruzada",
   },
   {
+    source: "032",
+    target: "030",
+    reason: "Da Invenção à Validação",
+    description: "O Fundo de Quintal mudou a arquitetura do samba. Beth Carvalho, madrinha do grupo, foi quem acreditou que aquele novo som merecia chegar mais longe — e gravou seu próprio disco em homenagem ao gênero que ajudou a apadrinhar.",
+    type: "referencia",
+  },
+  {
     source: "031",
     target: "027",
     reason: "Do Compositor ao Intérprete",

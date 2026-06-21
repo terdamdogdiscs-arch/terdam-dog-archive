@@ -206,4 +206,10 @@ export const notes = {
     story: "Referência",
     previous: "027",
   },
+
+  "032": {
+    note: "Muito antes de o pagode ocupar rádios, palcos e rodas pelo país, Beth Carvalho reconheceu no Fundo de Quintal uma nova linguagem para o samba — e gravou o disco que registrou o início desse movimento.",
+    story: "Referência",
+    previous: "030",
+  },
 };
