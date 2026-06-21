@@ -6,9 +6,10 @@ import FadeIn from "../components/FadeIn";
 
 export const dynamic = "force-dynamic";
 
-// Discos com título no Discogs muito diferente do título cadastrado (ex.: tradução/edição).
+// Discos com título no Discogs muito diferente do título cadastrado.
 const TITLE_ALIASES: Record<string, string[]> = {
   "019": ["Herb Alpert Apresenta Sergio Mendes & Brasil '66"],
+  "026": ["Ary Caymmi Dorival Barroso"],
 };
 
 function normalize(text: string): string {
@@ -20,31 +21,36 @@ function normalize(text: string): string {
     .replace(/[^a-z0-9]/g, "");
 }
 
-function isPublished(item: DiscogsItem): boolean {
+// Verifica se um item da coleção Discogs já está coberto em albums.ts.
+// Usado apenas para filtrar itens "por vir" — não define o que é "publicado".
+function isCovered(item: DiscogsItem): boolean {
+  // Primário: match por release ID
+  if (item.releaseId > 0 && albums.some((a) => a.discogsId === item.releaseId)) {
+    return true;
+  }
+
+  // Fallback: match fuzzy por título + artista
   const itemArtist = normalize(item.artist);
   const itemTitle = normalize(item.title);
+  const itemArtistParts = item.artist.split(", ").map(normalize);
 
   return albums.some((album) => {
     const albumArtist = normalize(album.artist);
     const albumTitles = [album.album, ...(TITLE_ALIASES[album.catalog] ?? [])].map(normalize);
 
     const titleMatches = albumTitles.some(
-      (albumTitle) =>
-        albumTitle === itemTitle ||
-        albumTitle.includes(itemTitle) ||
-        itemTitle.includes(albumTitle)
+      (t) => t === itemTitle || t.includes(itemTitle) || itemTitle.includes(t)
     );
-
     if (!titleMatches) return false;
 
-    if (albumArtist === "variousartists" || albumArtist === "various") {
-      return true;
-    }
+    if (albumArtist === "variousartists" || albumArtist === "various") return true;
 
     return (
       albumArtist === itemArtist ||
       albumArtist.includes(itemArtist) ||
-      itemArtist.includes(albumArtist)
+      itemArtist.includes(albumArtist) ||
+      (itemArtistParts.length > 1 &&
+        itemArtistParts.every((part) => albumArtist.includes(part)))
     );
   });
 }
@@ -52,13 +58,25 @@ function isPublished(item: DiscogsItem): boolean {
 export default async function ComingPage() {
   const collection = await getDiscogsCollection();
 
-  const items = collection.map((item) => ({
-    ...item,
-    published: isPublished(item),
+  // PUBLICADOS: todos os discos de albums.ts, com capas locais
+  const publishedItems = albums.map((album) => ({
+    id: parseInt(album.catalog, 10),
+    releaseId: album.discogsId ?? 0,
+    artist: album.artist,
+    title: album.album,
+    year: album.year,
+    cover: album.cover,
+    published: true,
   }));
 
-  const publishedCount = items.filter((item) => item.published).length;
-  const upcomingCount = items.length - publishedCount;
+  // POR VIR: itens da coleção Discogs ainda não cobertos em albums.ts
+  const upcomingItems = collection
+    .filter((item) => !isCovered(item))
+    .map((item) => ({ ...item, published: false }));
+
+  const items = [...publishedItems, ...upcomingItems];
+  const publishedCount = publishedItems.length;
+  const upcomingCount = upcomingItems.length;
 
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">

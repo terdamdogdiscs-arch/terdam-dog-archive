@@ -5,6 +5,7 @@ const DISCOGS_API_BASE = "https://api.discogs.com";
 
 export type DiscogsItem = {
   id: number;
+  releaseId: number;
   artist: string;
   title: string;
   year: number;
@@ -16,6 +17,7 @@ type DiscogsArtist = {
 };
 
 type DiscogsBasicInformation = {
+  id: number;
   title: string;
   year: number;
   cover_image: string;
@@ -130,7 +132,7 @@ export async function getDiscogsCollection(): Promise<DiscogsItem[]> {
         `${DISCOGS_API_BASE}/users/${DISCOGS_USERNAME}/collection/folders/0/releases?page=${page}&per_page=100&sort=artist`,
         {
           headers,
-          next: { revalidate: 3600 },
+          next: { revalidate: 300 },
         }
       );
 
@@ -143,6 +145,7 @@ export async function getDiscogsCollection(): Promise<DiscogsItem[]> {
 
         items.push({
           id: release.id,
+          releaseId: info.id ?? 0,
           artist:
             info.artists
               ?.map((artist) => cleanArtistName(artist.name))
