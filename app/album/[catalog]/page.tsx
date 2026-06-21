@@ -482,11 +482,16 @@ export default async function AlbumPage({
                 ))}
               </div>
 
-              {!!album.totalDurationSeconds && (
+              {(album.totalDurationSeconds || album.totalDurationOverride) && (
                 <p className="mt-5 text-sm tracking-[0.2em] text-[#9d9079]">
                   DURAÇÃO TOTAL ·{" "}
                   <span className="font-bold text-brand-yellow">
-                    {formatTotalDuration(album.totalDurationSeconds)}
+                    {album.totalDurationSeconds
+                      ? formatTotalDuration(album.totalDurationSeconds)
+                      : (() => {
+                          const parts = album.totalDurationOverride!.split(":").map(Number);
+                          return formatTotalDuration(parts[0] * 60 + parts[1]);
+                        })()}
                   </span>
                 </p>
               )}

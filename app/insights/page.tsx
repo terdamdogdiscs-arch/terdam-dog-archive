@@ -73,12 +73,21 @@ export default function InsightsPage() {
     getTotalValue(albums) / collectionStats.totalAlbums
   );
 
+  function resolvedDurationSeconds(album: (typeof collectionSeed)[number]): number {
+    if (album.totalDurationSeconds) return album.totalDurationSeconds;
+    if (album.totalDurationOverride) {
+      const parts = album.totalDurationOverride.split(":").map(Number);
+      if (parts.length === 2) return parts[0] * 60 + parts[1];
+    }
+    return 0;
+  }
+
   const albumsWithDuration = collectionSeed.filter(
-    (album) => (album.totalDurationSeconds || 0) > 0
+    (album) => resolvedDurationSeconds(album) > 0
   );
 
   const totalDurationSeconds = albumsWithDuration.reduce(
-    (sum, album) => sum + (album.totalDurationSeconds || 0),
+    (sum, album) => sum + resolvedDurationSeconds(album),
     0
   );
 
@@ -88,20 +97,20 @@ export default function InsightsPage() {
 
   const longestAlbum = albumsWithDuration.length
     ? [...albumsWithDuration].sort(
-        (a, b) => (b.totalDurationSeconds || 0) - (a.totalDurationSeconds || 0)
+        (a, b) => resolvedDurationSeconds(b) - resolvedDurationSeconds(a)
       )[0]
     : undefined;
 
   const shortestAlbum = albumsWithDuration.length
     ? [...albumsWithDuration].sort(
-        (a, b) => (a.totalDurationSeconds || 0) - (b.totalDurationSeconds || 0)
+        (a, b) => resolvedDurationSeconds(a) - resolvedDurationSeconds(b)
       )[0]
     : undefined;
 
   const durationByGenre = GENRE_GROUPS.map((group) => {
     const items = collectionSeed.filter(group.filter);
     const seconds = items.reduce(
-      (sum, album) => sum + (album.totalDurationSeconds || 0),
+      (sum, album) => sum + resolvedDurationSeconds(album),
       0
     );
 
