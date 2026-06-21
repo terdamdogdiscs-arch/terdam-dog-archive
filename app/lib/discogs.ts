@@ -48,8 +48,14 @@ type DiscogsTracklistEntry = {
   type_?: string;
 };
 
+type DiscogsImage = {
+  type: string;
+  uri: string;
+};
+
 type DiscogsReleaseDetail = {
   tracklist?: DiscogsTracklistEntry[];
+  images?: DiscogsImage[];
 };
 
 function cleanArtistName(name: string): string {
@@ -91,6 +97,14 @@ export const getDiscogsRelease = cache(
     } catch {
       return null;
     }
+  }
+);
+
+export const getReleaseCoverUrl = cache(
+  async (releaseId: number): Promise<string | null> => {
+    const release = await getDiscogsRelease(releaseId);
+    const primary = release?.images?.find((img) => img.type === "primary");
+    return primary?.uri ?? release?.images?.[0]?.uri ?? null;
   }
 );
 
