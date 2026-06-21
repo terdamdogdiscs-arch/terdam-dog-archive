@@ -168,5 +168,12 @@ export const notes = {
   "025": {
     note: "A raiz que influenciou gerações sem buscar protagonismo. Silêncio, balanço e economia — a linguagem que João Gilberto, Tom Jobim e Jorge Ben encontraram cada um à sua maneira.",
     story: "Referência",
+    next: "026",
+  },
+
+  "026": {
+    note: "Nenhuma raiz cresce sozinha. Dois mestres do samba e da canção brasileira se encontram para celebrar a obra um do outro, num documento raro de respeito artístico.",
+    story: "Referência",
+    previous: "025",
   },
 };

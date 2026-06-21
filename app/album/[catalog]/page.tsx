@@ -220,6 +220,18 @@ export default async function AlbumPage({
               (c) => c.source === catalog && c.type === "referencia"
             );
             if (!refConn) return null;
+
+            const linkedRefDiscs = [
+              ...(refConn.target
+                ? [albums.find((a) => a.catalog === refConn.target)]
+                : []),
+              ...connections
+                .filter(
+                  (c) => c.target === catalog && c.type === "referencia"
+                )
+                .map((c) => albums.find((a) => a.catalog === c.source)),
+            ].filter((a): a is NonNullable<typeof a> => !!a);
+
             return (
               <section className="mt-8 rounded-3xl border border-yellow-700 bg-yellow-950/10 p-6">
                 <p className="text-xs tracking-[0.3em] text-yellow-400">
@@ -264,6 +276,31 @@ export default async function AlbumPage({
                         </span>
                       );
                     })}
+                  </div>
+                )}
+
+                {linkedRefDiscs.length > 0 && (
+                  <div className="mt-5 border-t border-yellow-900/50 pt-4">
+                    <p className="text-xs tracking-[0.2em] text-yellow-600 mb-3">
+                      SEQUÊNCIA DE REFERÊNCIAS
+                    </p>
+
+                    <div className="space-y-2">
+                      {linkedRefDiscs.map((disc) => (
+                        <Link
+                          key={disc.catalog}
+                          href={`/album/${disc.catalog}`}
+                          className="flex items-center gap-3 rounded-2xl border border-yellow-800 p-3 hover:border-yellow-600 transition"
+                        >
+                          <span className="text-xs text-yellow-600 shrink-0">
+                            TD-{disc.catalog}
+                          </span>
+                          <span className="text-sm font-black">
+                            {disc.artist} — {disc.album}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </section>

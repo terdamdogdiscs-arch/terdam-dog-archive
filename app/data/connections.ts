@@ -95,4 +95,11 @@ export const connections: Connection[] = [
     type: "referencia",
     influencedArtists: ["João Gilberto", "Tom Jobim", "Jorge Ben", "Gilberto Gil", "Caetano Veloso"],
   },
+  {
+    source: "026",
+    target: "025",
+    reason: "Raízes em Diálogo",
+    description: "Se Caymmi e Seu Violão apresentou uma das raízes da música brasileira, Um Interpreta o Outro mostra que nenhuma raiz cresce sozinha — dois mestres celebrando a obra um do outro.",
+    type: "referencia",
+  },
 ]
