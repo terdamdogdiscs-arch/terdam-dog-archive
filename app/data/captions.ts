@@ -8,7 +8,7 @@ export const captions: Record<string, {
   "001": {
     ponte: "Toda jornada precisa de um ponto de partida.",
     contexto: "Em seu primeiro álbum solo, Black Alien constrói uma ponte entre o rap e a cultura reggae, começando já pelo título: uma referência direta a Babylon by Bus, clássico de Bob Marley & The Wailers.\n\nLirismo afiado, flow preciso e uma produção que continua atual duas décadas depois. Mais do que um marco do rap nacional, este disco aponta para muitas das conexões que moldariam os próximos capítulos desta coleção.",
-    tese: "O começo da história está aqui.",
+    tese: "O começo da história está aqui. 🎤📀",
     hashtags: "#BlackAlien #BabylonByGus #RapNacional #HipHopBrasileiro #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #001\n\nBlack Alien — Babylon by Gus, Vol. 1: O Ano do Macaco (2004)\n\nToda jornada precisa de um ponto de partida.\n\nEm seu primeiro álbum solo, Black Alien constrói uma ponte entre o rap e a cultura reggae, começando já pelo título: uma referência direta a Babylon by Bus, clássico de Bob Marley & The Wailers.\n\nLirismo afiado, flow preciso e uma produção que continua atual duas décadas depois. Mais do que um marco do rap nacional, este disco aponta para muitas das conexões que moldariam os próximos capítulos desta coleção.\n\nO começo da história está aqui.\n\n🎤📀\n\n#BlackAlien #BabylonByGus #RapNacional #HipHopBrasileiro #VinylCollector #TerdamDogDiscs"
   },
@@ -50,9 +50,9 @@ export const captions: Record<string, {
   "007": {
     ponte: "Depois de atravessar Jamaica, Reino Unido e Costa do Marfim, a jornada chega ao artista que conecta tudo isso ao próximo capítulo.",
     contexto: "Nascido na Inglaterra, criado no Bronx e profundamente ligado às raízes jamaicanas, Shinehead construiu uma linguagem própria ao misturar dancehall, reggae, soul e hip-hop em uma época em que essas fronteiras ainda pareciam bem definidas.\n\nEm Sidewalk University, essa fusão aparece de forma natural. O álbum passeia por samples, referências e influências que vão de Bob Marley a Eric B. & Rakim, passando por Stevie Wonder e Paul McCartney, sem perder a identidade.",
-    tese: "Algumas pontes ligam cidades. Outras ligam culturas.",
+    tese: "Algumas pontes ligam cidades. Outras ligam culturas. 🌉",
     hashtags: "#Shinehead #SidewalkUniversity #Dancehall #Ragga #HipHop #Reggae #Bronx #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
-    instagram: "💿 Disco #007\n\nShinehead — Sidewalk University (1992)\n\nDepois de atravessar Jamaica, Reino Unido e Costa do Marfim, a jornada chega ao artista que conecta tudo isso ao próximo capítulo.\n\nNascido na Inglaterra, criado no Bronx e profundamente ligado às raízes jamaicanas, Shinehead construiu uma linguagem própria ao misturar dancehall, reggae, soul e hip-hop em uma época em que essas fronteiras ainda pareciam bem definidas.\n\nAlgumas pontes ligam cidades. Outras ligam culturas.\n\n#Shinehead #SidewalkUniversity #Dancehall #Ragga #HipHop #Reggae #Bronx #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
+    instagram: "💿 Disco #007\n\nShinehead — Sidewalk University (1992)\n\nDepois de atravessar Jamaica, Reino Unido e Costa do Marfim, a jornada chega ao artista que conecta tudo isso ao próximo capítulo.\n\nNascido na Inglaterra, criado no Bronx e profundamente ligado às raízes jamaicanas, Shinehead construiu uma linguagem própria ao misturar dancehall, reggae, soul e hip-hop em uma época em que essas fronteiras ainda pareciam bem definidas.\n\nAlgumas pontes ligam cidades. Outras ligam culturas. 🌉\n\n#Shinehead #SidewalkUniversity #Dancehall #Ragga #HipHop #Reggae #Bronx #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
   },
   "008": {
     ponte: "Depois da ponte entre Jamaica e Nova York construída por Shinehead, a jornada chega a um dos discos que mudou para sempre a linguagem do hip-hop.",
@@ -85,9 +85,9 @@ export const captions: Record<string, {
   "012": {
     ponte: "O vaso quebrado na capa não era acidente. Era uma declaração.",
     contexto: "Depois do sucesso de 3 Feet High and Rising, Posdnuos, Trugoy e Maseo decidiram abandonar a imagem colorida e psicodélica que havia marcado o início do grupo. Em seu lugar surgiu um álbum mais sombrio, introspectivo e ambicioso.\n\nMisturando jazz, soul, rock e a produção inventiva de Prince Paul, De La Soul Is Dead explorou temas pouco comuns para o hip-hop da época: mortalidade, identidade, expectativas e o peso do próprio sucesso.",
-    tese: "Às vezes, para seguir em frente, é preciso quebrar a própria imagem.",
+    tese: "Às vezes, para seguir em frente, é preciso quebrar a própria imagem. 🥀",
     hashtags: "#DeLaSoul #DeLaSoulIsDead #PrincePaul #NativeTongues #HipHop #GoldenAgeHipHop #NewYork #VinylCollection #VinylCollector #TerdamDogDiscs",
-    instagram: "💿 Disco #012\n\nDe La Soul — De La Soul Is Dead (1991)\n\nO vaso quebrado na capa não era acidente. Era uma declaração.\n\nDepois do sucesso de 3 Feet High and Rising, o grupo decidiu abandonar a imagem colorida que havia marcado seu início. Em seu lugar surgiu um álbum mais sombrio, introspectivo e ambicioso.\n\nÀs vezes, para seguir em frente, é preciso quebrar a própria imagem.\n\n#DeLaSoul #DeLaSoulIsDead #PrincePaul #NativeTongues #HipHop #GoldenAgeHipHop #NewYork #VinylCollection #VinylCollector #TerdamDogDiscs"
+    instagram: "💿 Disco #012\n\nDe La Soul — De La Soul Is Dead (1991)\n\nO vaso quebrado na capa não era acidente. Era uma declaração.\n\nDepois do sucesso de 3 Feet High and Rising, o grupo decidiu abandonar a imagem colorida que havia marcado seu início. Em seu lugar surgiu um álbum mais sombrio, introspectivo e ambicioso.\n\nÀs vezes, para seguir em frente, é preciso quebrar a própria imagem. 🥀\n\n#DeLaSoul #DeLaSoulIsDead #PrincePaul #NativeTongues #HipHop #GoldenAgeHipHop #NewYork #VinylCollection #VinylCollector #TerdamDogDiscs"
   },
   "013": {
     ponte: "O bloco de hip-hop se encerra, mas antes da próxima curva aparece um disco que vive exatamente na fronteira entre dois mundos.",
