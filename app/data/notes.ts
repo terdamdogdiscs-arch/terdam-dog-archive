@@ -41,7 +41,7 @@ export const notes = {
   },
 
   "007": {
-    note: "A virada acontece na calçada. Shinehead conecta Jamaica e Nova York.",
+    note: "Algumas pontes ligam cidades. Outras ligam culturas. Shinehead conecta Jamaica e Nova York.",
     story: "Jamaica → Hip-Hop",
     next: "008",
     previous: "006",
