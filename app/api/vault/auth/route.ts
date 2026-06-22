@@ -3,6 +3,14 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const { password } = await req.json();
 
+  // === DEBUG TEMPORÁRIO — REMOVER DEPOIS ===
+  const envPw = process.env.VAULT_PASSWORD;
+  console.log("[vault-auth] env defined:", typeof envPw, "| env length:", envPw?.length ?? "undefined");
+  console.log("[vault-auth] received length:", password?.length ?? "undefined");
+  console.log("[vault-auth] exact match:", password === envPw);
+  console.log("[vault-auth] trimmed match:", password?.trim() === envPw?.trim());
+  // === FIM DEBUG ===
+
   if (password && password === process.env.VAULT_PASSWORD) {
     const response = NextResponse.json({ success: true });
 
