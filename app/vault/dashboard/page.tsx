@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { collectionStats, collectionScore } from "../../data/seed";
+import VaultGate from "../../components/VaultGate";
 
 export default function DashboardPage() {
 
@@ -10,6 +11,7 @@ export default function DashboardPage() {
   const score = collectionScore;
 
   return (
+    <VaultGate redirectTo="/vault/dashboard">
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-6">
 
       <Link
@@ -81,6 +83,7 @@ export default function DashboardPage() {
       </section>
 
     </main>
+    </VaultGate>
   );
 }
 

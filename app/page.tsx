@@ -8,7 +8,6 @@ import { genreColor } from "./lib/genreColor";
 import { albums } from "./data/albums";
 import type { Album } from "./data/albums";
 import { formatTotalDuration } from "./lib/discogs";
-import { getTotalValue } from "./lib/stats";
 import { generateJourneyPhrase } from "./lib/narrative";
 import { listeningPaths } from "./data/paths";
 import {
@@ -53,10 +52,6 @@ export default function Home() {
 
   const week = Math.floor(new Date().getTime() / (7 * 24 * 60 * 60 * 1000));
   const recordOfTheDay = collectionSeed[week % collectionSeed.length];
-
-  const mostValuable = [...collectionSeed].sort(
-    (a, b) => b.financial.estimatedValue - a.financial.estimatedValue
-  )[0];
 
   const dropdownResults = search.trim()
     ? collectionSeed
@@ -237,27 +232,11 @@ export default function Home() {
 
       <div className="h-px my-6 bg-gradient-to-r from-brand-green to-brand-purple" />
 
-      <section className="premium-card rounded-[2rem] border border-green-800 bg-green-950/10 p-5 mb-7">
-        <p className="text-green-400 text-xs tracking-[0.25em]">
-          VALOR DA COLEÇÃO
-        </p>
-
-        <div className="grid grid-cols-2 gap-4 mt-4">
-          <MiniStat
-            value={`R$ ${getTotalValue(albums)}`}
-            label="Valor estimado"
-          />
-
-          <MiniStat
-            value={`TD-${mostValuable.catalog}`}
-            label="Mais valioso"
-          />
-        </div>
-
-        <Link href="/vault" className="inline-block mt-4 text-sm text-green-300">
-          Abrir Cofre →
+      <div className="mb-7">
+        <Link href="/vault" className="text-sm text-purple-400">
+          Abrir cofre →
         </Link>
-      </section>
+      </div>
 
       <div className="h-px mb-6 bg-gradient-to-r from-brand-green to-brand-purple" />
 

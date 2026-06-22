@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
 import { formatTotalDuration } from "../lib/discogs";
@@ -40,7 +41,10 @@ function getDecade(year: number) {
   return `${Math.floor(year / 10) * 10}s`;
 }
 
-export default function InsightsPage() {
+export default async function InsightsPage() {
+  const cookieStore = await cookies();
+  const vaultUnlocked = cookieStore.get("vault_access")?.value === "granted";
+
   const byGenre = countBy(collectionSeed, "genre");
   const byCountry = countBy(collectionSeed, "country");
   const byRole = countBy(collectionSeed, "role");
@@ -168,10 +172,29 @@ export default function InsightsPage() {
         <Card title="Papel dominante" value={`${topRole} (${topRoleCount})`} />
         <Card title="Mais antigo" value={`${oldestAlbum.year}`} detail={oldestAlbum.artist} />
         <Card title="Mais novo" value={`${newestAlbum.year}`} detail={newestAlbum.artist} />
-        <Card title="Valor estimado" value={`R$ ${getTotalValue(albums)}`} />
-        <Card title="Média por disco" value={`R$ ${avgValue}`} />
-        <Card title="Mais valioso" value={`TD-${mostValuable.catalog}`} detail={mostValuable.artist} />
-        <Card title="Ganho potencial" value={`R$ ${totalPotentialGain}`} />
+
+        {vaultUnlocked ? (
+          <>
+            <Card title="Valor estimado" value={`R$ ${getTotalValue(albums)}`} />
+            <Card title="Média por disco" value={`R$ ${avgValue}`} />
+            <Card title="Mais valioso" value={`TD-${mostValuable.catalog}`} detail={mostValuable.artist} />
+            <Card title="Ganho potencial" value={`R$ ${totalPotentialGain}`} />
+          </>
+        ) : (
+          <div className="col-span-2 premium-card rounded-3xl border border-[#2b241c] bg-[#11100e] p-5">
+            <p className="text-sm text-[#9d9079]">Valor da coleção</p>
+            <p className="text-2xl font-black mt-2 select-none blur-sm text-[#9d9079]">
+              R$ ••••••
+            </p>
+            <Link
+              href="/vault/login?from=/insights"
+              className="mt-3 inline-block text-sm text-purple-400"
+            >
+              🔒 Desbloquear valor →
+            </Link>
+          </div>
+        )}
+
         <Card
           title="Discos de Referência"
           value={referenceCount}

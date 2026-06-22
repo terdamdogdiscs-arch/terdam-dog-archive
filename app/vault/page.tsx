@@ -2,6 +2,7 @@ import Link from "next/link";
 import { albums } from "../data/albums";
 import { collectionStats } from "../data/seed";
 import { getTotalValue } from "../lib/stats";
+import VaultGate from "../components/VaultGate";
 
 export default function VaultPage() {
   const totalValue = getTotalValue(albums);
@@ -17,6 +18,7 @@ export default function VaultPage() {
     .slice(0, 10);
 
   return (
+    <VaultGate redirectTo="/vault">
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-6">
 
       <Link
@@ -103,6 +105,7 @@ export default function VaultPage() {
       </section>
 
     </main>
+    </VaultGate>
   );
 }
 
