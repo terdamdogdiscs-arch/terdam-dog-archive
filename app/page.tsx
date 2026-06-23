@@ -255,7 +255,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="flex gap-3 overflow-x-auto pb-1">
+        <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
           {listeningPaths.map((path, index) => {
             const cover = collectionSeed.find(
               (item) => item.catalog === path.cover
@@ -272,21 +272,23 @@ export default function Home() {
               <FadeIn
                 key={path.title}
                 delay={index * 80}
-                className="min-w-[240px] self-stretch"
+                className="min-w-[240px] max-w-[240px] self-stretch"
               >
                 <Link
                   href={`/journey?trilha=${path.slug}`}
-                  className="premium-card flex gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition h-full"
+                  className="premium-card flex h-36 gap-3 rounded-3xl border border-[#2b241c] bg-[#11100e] p-4 hover:border-purple-500 transition"
                 >
                   <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
                     <CoverImage album={cover} />
                   </div>
 
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-1 flex-col justify-between min-w-0">
                     <div>
-                      <p className="font-black leading-tight">{path.title}</p>
+                      <p className="font-black leading-tight line-clamp-2">
+                        {path.title}
+                      </p>
 
-                      <p className="text-xs text-[#9d9079] mt-1">
+                      <p className="text-xs text-[#9d9079] mt-1 line-clamp-2">
                         {path.description}
                       </p>
                     </div>
