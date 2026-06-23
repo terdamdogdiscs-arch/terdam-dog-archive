@@ -57,6 +57,48 @@ export default function EssayPage() {
     },
   ];
 
+  // Sequências narrativas calculadas dinamicamente a partir do catálogo atual.
+  const principal = collectionSeed.filter((a) => a.catalog <= "024");
+  const referencias = collectionSeed.filter((a) => a.role === "Referência");
+  const viradas = collectionSeed.filter((a) => a.role === "Virada");
+  const marley = collectionSeed.filter((a) => a.role === "Família Marley");
+
+  const hint = (list: typeof collectionSeed) =>
+    list.length === 0
+      ? "—"
+      : `${list[0].catalog}–${list[list.length - 1].catalog}`;
+
+  const SEQUENCES = [
+    {
+      title: "Sequência Principal",
+      hint: hint(principal),
+      count: principal.length,
+      accent: "border-purple-700 text-purple-400",
+      role: "A espinha dorsal: do Brasil ao reggae, ao hip-hop, ao jazz — e a volta para casa.",
+    },
+    {
+      title: "Referências",
+      hint: hint(referencias),
+      count: referencias.length,
+      accent: "border-yellow-700 text-yellow-400",
+      role: "Raízes atemporais que ancoram a coleção antes do hit e da rádio.",
+    },
+    {
+      title: "Viradas",
+      hint: viradas.map((a) => a.catalog).join(" · ") || "—",
+      count: viradas.length,
+      accent: "border-green-700 text-green-400",
+      role: "Os discos onde a narrativa muda de direção.",
+    },
+    {
+      title: "Família Marley",
+      hint: marley.length ? `${marley[0].catalog}+` : "—",
+      count: marley.length,
+      accent: "border-orange-600 text-orange-400",
+      role: "O novo capítulo: a família que sustentou o reggae por dentro.",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
@@ -78,9 +120,25 @@ export default function EssayPage() {
 
         <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
           <p>
-            {collectionStats.totalAlbums} discos. Uma narrativa. A coleção começa no Brasil, atravessa a
-            música jamaicana, encontra Nova York pelo hip-hop, abre passagem
-            para o jazz e retorna ao Brasil por uma rota internacional.
+            {collectionStats.totalAlbums} discos. Uma narrativa. A coleção
+            começa no Brasil, atravessa a música jamaicana, encontra Nova York
+            pelo hip-hop, abre passagem para o jazz e retorna ao Brasil.
+          </p>
+
+          <p>
+            Depois, ela mergulha nas raízes. {referencias.length} discos de
+            Referência — Caymmi, Adoniran, Cartola, o samba-de-breque, o pagode —
+            ancoram tudo o que veio antes em algo atemporal.
+          </p>
+
+          <p>
+            E então a coleção dá a volta. Jimmy Cliff reconduz a escuta de volta
+            à Jamaica, fechando o círculo do reggae. E um novo capítulo se abre:
+            a Família Marley começa com Rita Marley —{" "}
+            {marley.length === 1
+              ? "o primeiro disco"
+              : `${marley.length} discos`}{" "}
+            de uma história que ainda está sendo escrita.
           </p>
 
           <p>
@@ -100,6 +158,25 @@ export default function EssayPage() {
             O Terdam Dog Archive existe para mostrar que uma coleção pode ser
             mais do que um inventário.
           </p>
+        </section>
+
+        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
+
+        <section className="mt-10">
+          <p className="text-sm tracking-[0.3em] text-purple-400">
+            SEQUÊNCIAS DA COLEÇÃO
+          </p>
+
+          <p className="text-[#b8aa91] mt-3">
+            As camadas narrativas que organizam os {collectionStats.totalAlbums}{" "}
+            discos.
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            {SEQUENCES.map((seq) => (
+              <SequenceCard key={seq.title} {...seq} />
+            ))}
+          </div>
         </section>
 
         <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
@@ -142,6 +219,35 @@ function Card({ title, value }: { title: string; value: string | number }) {
     <div className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
       <p className="text-sm text-[#9d9079]">{title}</p>
       <p className="text-3xl font-black mt-2">{value}</p>
+    </div>
+  );
+}
+
+function SequenceCard({
+  title,
+  hint,
+  count,
+  accent,
+  role,
+}: {
+  title: string;
+  hint: string;
+  count: number;
+  accent: string;
+  role: string;
+}) {
+  const [border, text] = accent.split(" ");
+
+  return (
+    <div className={`rounded-3xl border-[1.5px] ${border} bg-brand-black p-4`}>
+      <div className="flex items-baseline justify-between">
+        <p className={`font-display text-xl ${text}`}>{title}</p>
+        <p className={`font-display text-3xl ${text}`}>{count}</p>
+      </div>
+
+      <p className="text-[10px] tracking-[0.2em] text-[#9d9079] mt-1">{hint}</p>
+
+      <p className="mt-3 text-sm text-[#b8aa91] leading-relaxed">{role}</p>
     </div>
   );
 }
