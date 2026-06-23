@@ -111,24 +111,7 @@ function buildPaths(): DiscoveryPath[] {
     });
   }
 
-  // 2) Gênero adjacente ausente: Choro (raiz instrumental do samba)
-  if (sambaCats.length > 0) {
-    paths.push({
-      id: "choro",
-      title: "Choro Brasileiro",
-      reason: `A coleção tem ${sambaCats.length} discos de samba/pagode, mas nenhum de choro — a raiz instrumental que antecede e alimenta todo o samba brasileiro.`,
-      basedOn: sambaCats.slice(0, 4),
-      suggestions: [
-        "Pixinguinha — Pixinguinha e Sua Orquestra",
-        "Jacob do Bandolim — Vibrações",
-        "Waldir Azevedo — Brasileirinho",
-        "Os Ingênuos — Choros Imortais",
-      ],
-      gap: has("choro") ? 0 : 88,
-    });
-  }
-
-  // 3) Década sub-representada (totalmente dinâmico)
+  // 2) Década sub-representada (totalmente dinâmico)
   const [thinDecade, thinCats] = decadesSorted[0] ?? ["", []];
   if (thinDecade && DECADE_SUGGESTIONS[thinDecade] && thinCats.length <= 2) {
     paths.push({
