@@ -5,7 +5,24 @@ import { listeningPaths } from "../data/paths";
 import BottomNav from "../components/BottomNav";
 import FadeIn from "../components/FadeIn";
 import CoverImage from "../components/CoverImage";
+import JourneyNav from "../components/JourneyNav";
 import { formatTotalDuration } from "../lib/discogs";
+
+const categoryOf = (role: string) =>
+  role === "Referência"
+    ? "referencias"
+    : role === "Virada"
+    ? "virada"
+    : role === "Família Marley"
+    ? "familia-marley"
+    : "principal";
+
+const NAV_META = [
+  { id: "principal", title: "Sequência Principal", icon: "↓", border: "border-purple-700", text: "text-purple-400" },
+  { id: "referencias", title: "Referências", icon: "◆", border: "border-yellow-700", text: "text-yellow-400" },
+  { id: "virada", title: "Viradas", icon: "↔", border: "border-red-800", text: "text-red-400" },
+  { id: "familia-marley", title: "Família Marley", icon: "🌿", border: "border-green-800", text: "text-green-400" },
+];
 
 export default async function JourneyPage({
   searchParams,
@@ -99,6 +116,33 @@ export default async function JourneyPage({
     );
   }
 
+  const navItems = NAV_META.map((meta) => {
+    const cats = collectionSeed
+      .filter((a) => categoryOf(a.role) === meta.id)
+      .map((a) => a.catalog)
+      .sort();
+
+    const range =
+      cats.length === 0
+        ? "—"
+        : cats.length <= 3
+        ? cats.join(" · ")
+        : `${cats[0]}–${cats[cats.length - 1]}`;
+
+    return { ...meta, count: cats.length, range };
+  }).filter((item) => item.count > 0);
+
+  // A primeira ocorrência (na ordem de exibição) de cada categoria recebe a âncora.
+  const anchorForCatalog: Record<string, string> = {};
+  const seenCategories = new Set<string>();
+  collectionSeed.forEach((album) => {
+    const cat = categoryOf(album.role);
+    if (!seenCategories.has(cat)) {
+      seenCategories.add(cat);
+      anchorForCatalog[album.catalog] = cat;
+    }
+  });
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
@@ -116,20 +160,7 @@ export default async function JourneyPage({
           Uma jornada em andamento — {collectionSeed.length} capítulos e contando.
         </p>
 
-        <div className="flex gap-3 mt-5">
-          <a
-            href="#principal"
-            className="rounded-full border border-[#2b241c] px-4 py-1.5 text-xs text-purple-400 hover:border-purple-500 transition"
-          >
-            ↓ Sequência Principal (001–024)
-          </a>
-          <a
-            href="#referencias"
-            className="rounded-full border border-yellow-800 px-4 py-1.5 text-xs text-yellow-400 hover:border-yellow-600 transition"
-          >
-            ◆ Referências (025–034)
-          </a>
-        </div>
+        <JourneyNav items={navItems} />
       </section>
 
       <section>
@@ -140,11 +171,11 @@ export default async function JourneyPage({
           const isRef = album.role === "Referência";
           const nextAlbumInList = collectionSeed[index + 1];
           const nextIsRef = nextAlbumInList?.role === "Referência";
-          const anchorId = index === 0 ? "principal" : isRef && !collectionSeed[index - 1] ? "referencias" : isRef && collectionSeed[index - 1]?.role !== "Referência" ? "referencias" : undefined;
+          const anchorId = anchorForCatalog[album.catalog];
 
           return (
             <FadeIn key={album.catalog}>
-              <div id={anchorId || undefined}>
+              <div id={anchorId || undefined} className={anchorId ? "scroll-mt-24" : undefined}>
               <Link
                 href={`/album/${album.catalog}`}
                 className={`flex gap-4 rounded-3xl border bg-[#11100e] p-5 transition ${
