@@ -8,20 +8,33 @@ import CoverImage from "../components/CoverImage";
 import JourneyNav from "../components/JourneyNav";
 import { formatTotalDuration } from "../lib/discogs";
 
-const categoryOf = (role: string) =>
-  role === "Referência"
-    ? "referencias"
-    : role === "Virada"
-    ? "virada"
-    : role === "Família Marley"
-    ? "familia-marley"
-    : "principal";
+type SeedAlbum = (typeof collectionSeed)[number];
+
+// Categoria de cada disco: papéis especiais (role) têm prioridade; os demais
+// são agrupados por bloco de gênero/região via faixa de catalog.
+const categoryOf = (album: SeedAlbum) => {
+  if (album.role === "Referência") return "referencias";
+  if (album.role === "Virada") return "virada";
+  if (album.role === "Família Marley") return "familia-marley";
+
+  const c = album.catalog;
+  if (c === "001") return "origem";
+  if (c >= "002" && c <= "007") return "reggae";
+  if (c >= "008" && c <= "012") return "hip-hop";
+  if (c >= "014" && c <= "018") return "jazz";
+  if (c >= "020" && c <= "024") return "jorge-ben";
+  return "principal";
+};
 
 const NAV_META = [
-  { id: "principal", title: "Sequência Principal", icon: "↓", border: "border-purple-700", text: "text-purple-400" },
-  { id: "referencias", title: "Referências", icon: "◆", border: "border-yellow-700", text: "text-yellow-400" },
+  { id: "origem", title: "Origem Brasil", icon: "🌅", border: "border-rose-800", text: "text-rose-400" },
+  { id: "reggae", title: "Bloco Reggae", icon: "🌴", border: "border-green-800", text: "text-green-400" },
+  { id: "hip-hop", title: "Bloco Hip-Hop", icon: "🎤", border: "border-purple-700", text: "text-purple-400" },
   { id: "virada", title: "Viradas", icon: "↔", border: "border-red-800", text: "text-red-400" },
-  { id: "familia-marley", title: "Família Marley", icon: "🌿", border: "border-green-800", text: "text-green-400" },
+  { id: "jazz", title: "Bloco Jazz", icon: "🎷", border: "border-blue-800", text: "text-blue-400" },
+  { id: "jorge-ben", title: "Bloco Jorge Ben", icon: "🎸", border: "border-orange-700", text: "text-orange-400" },
+  { id: "referencias", title: "Referências", icon: "◆", border: "border-yellow-700", text: "text-yellow-400" },
+  { id: "familia-marley", title: "Família Marley", icon: "🌿", border: "border-teal-700", text: "text-teal-400" },
 ];
 
 export default async function JourneyPage({
@@ -118,7 +131,7 @@ export default async function JourneyPage({
 
   const navItems = NAV_META.map((meta) => {
     const cats = collectionSeed
-      .filter((a) => categoryOf(a.role) === meta.id)
+      .filter((a) => categoryOf(a) === meta.id)
       .map((a) => a.catalog)
       .sort();
 
@@ -136,7 +149,7 @@ export default async function JourneyPage({
   const anchorForCatalog: Record<string, string> = {};
   const seenCategories = new Set<string>();
   collectionSeed.forEach((album) => {
-    const cat = categoryOf(album.role);
+    const cat = categoryOf(album);
     if (!seenCategories.has(cat)) {
       seenCategories.add(cat);
       anchorForCatalog[album.catalog] = cat;
