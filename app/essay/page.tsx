@@ -1,60 +1,50 @@
 import Link from "next/link";
-import { collectionSeed, collectionStats, collectionScore } from "../data/seed";
+import { collectionSeed, collectionStats } from "../data/seed";
+import { captions } from "../data/captions";
 import BottomNav from "../components/BottomNav";
-import { genreColor } from "../lib/genreColor";
 
-const STATIC_PILLARS = [
-  {
-    number: "01",
-    icon: "🌴",
-    title: "Reggae",
-    accent: genreColor("Reggae"),
-    description:
-      "Da Jamaica ao mundo. Raízes, espiritualidade e consciência social como base de toda a jornada.",
-  },
-  {
-    number: "02",
-    icon: "🎤",
-    title: "Hip-Hop",
-    accent: genreColor("Hip-Hop"),
-    description:
-      "Nova York, a palavra como arquitetura e a evolução da golden age até os dias de hoje.",
-  },
-  {
-    number: "03",
-    icon: "🎷",
-    title: "Jazz",
-    accent: genreColor("Jazz"),
-    description:
-      "Improviso, estrutura e a fonte que atravessa reggae e hip-hop por dentro.",
-  },
-  {
-    number: "04",
-    icon: "🇧🇷",
-    title: "Brasil",
-    accent: genreColor("Brasil"),
-    description:
-      "Origem e retorno. O Brasil entrando e saindo da coleção por rotas internacionais.",
-  },
+// Bucket único por disco (partição exclusiva → contagens somam o total).
+const bucketOf = (album: (typeof collectionSeed)[number]) => {
+  const g = album.genre.toLowerCase();
+  if (g.includes("reggae")) return "Reggae";
+  if (g.includes("hip-hop")) return "Hip-Hop";
+  if (g.includes("jazz")) return "Jazz";
+  if (g.includes("samba") || g.includes("pagode")) return "Pagode/Samba";
+  if (album.country.toLowerCase().includes("brasil")) return "Brasil";
+  return null;
+};
+
+const formatDuration = (seconds: number) => {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.round((seconds % 3600) / 60);
+  return h > 0 ? `${h}h${String(m).padStart(2, "0")}min` : `${m}min`;
+};
+
+const PILLAR_DEFS = [
+  { title: "Reggae", icon: "🌴", border: "border-green-700", text: "text-green-400", prose: "Da Jamaica ao mundo. Raízes, espiritualidade e consciência social como base de toda a jornada." },
+  { title: "Hip-Hop", icon: "🎤", border: "border-purple-700", text: "text-purple-400", prose: "Nova York e a palavra como arquitetura — da golden age em diante." },
+  { title: "Jazz", icon: "🎷", border: "border-yellow-700", text: "text-yellow-400", prose: "Improviso, estrutura e a fonte que atravessa reggae e hip-hop por dentro." },
+  { title: "Brasil", icon: "🇧🇷", border: "border-red-800", text: "text-red-400", prose: "Origem e retorno. O Brasil entrando e saindo da coleção por rotas internacionais." },
+  { title: "Pagode/Samba", icon: "🥁", border: "border-orange-600", text: "text-orange-400", prose: "Raiz, memória e invenção. Do samba-de-breque ao pagode, a linguagem viva do Brasil." },
 ];
 
-const PAGODE_ACCENT = { bg: "bg-orange-500", border: "border-orange-600", text: "text-orange-400" };
-
 export default function EssayPage() {
-  const pagodeCount = collectionSeed.filter(
-    (a) => a.genre.toLowerCase().includes("pagode") || a.genre.toLowerCase().includes("samba")
-  ).length;
-  const pagodePct = Math.round((pagodeCount / collectionSeed.length) * 100);
+  const PILLARS = PILLAR_DEFS.map((def, i) => {
+    const items = collectionSeed.filter((a) => bucketOf(a) === def.title);
+    const seconds = items.reduce((sum, a) => sum + (a.totalDurationSeconds || 0), 0);
+    return {
+      number: String(i + 1).padStart(2, "0"),
+      ...def,
+      count: items.length,
+      duration: formatDuration(seconds),
+    };
+  });
 
-  const PILLARS = [
-    ...STATIC_PILLARS,
-    {
-      number: "05",
-      icon: "🥁",
-      title: "Pagode/Samba",
-      accent: PAGODE_ACCENT,
-      description: `Raiz, memória e invenção. ${pagodePct}% da coleção — de Caymmi ao pagode — documenta o samba como linguagem viva e em movimento.`,
-    },
+  // Teses reais usadas como exemplos vivos dentro do manifesto.
+  const manifestoExamples = [
+    { clause: "abrem portas", tese: captions["001"].tese, ref: "TD-001" },
+    { clause: "fazem pontes", tese: captions["007"].tese, ref: "TD-007" },
+    { clause: "conversam de igual para igual com o mundo", tese: captions["020"].tese, ref: "TD-020" },
   ];
 
   // Sequências narrativas calculadas dinamicamente a partir do catálogo atual.
@@ -141,23 +131,25 @@ export default function EssayPage() {
             de uma história que ainda está sendo escrita.
           </p>
 
-          <p>
-            Cada disco ocupa uma função dentro da narrativa.
-          </p>
+          <blockquote className="border-l-[3px] border-brand-purple bg-[#111111] pl-5 py-4 text-lg">
+            <p className="text-brand-cream italic">
+              Cada disco ocupa uma função. Alguns abrem portas. Outros fazem
+              pontes. Outros conversam de igual para igual com o mundo.
+            </p>
 
-          <blockquote className="border-l-[3px] border-brand-purple bg-[#111111] pl-5 py-4 text-brand-cream italic text-lg">
-            Alguns abrem portas. Outros fazem pontes. Alguns consolidam
-            blocos inteiros da escuta.
+            <div className="mt-5 space-y-4">
+              {manifestoExamples.map((ex) => (
+                <div key={ex.ref}>
+                  <p className="text-sm italic text-[#d8ccb4]">
+                    &ldquo;{ex.tese}&rdquo;
+                  </p>
+                  <p className="text-[11px] tracking-[0.2em] text-purple-400 mt-1">
+                    — {ex.ref} · {ex.clause}
+                  </p>
+                </div>
+              ))}
+            </div>
           </blockquote>
-        </section>
-
-        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
-
-        <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
-          <p>
-            O Terdam Dog Archive existe para mostrar que uma coleção pode ser
-            mais do que um inventário.
-          </p>
         </section>
 
         <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
@@ -177,15 +169,6 @@ export default function EssayPage() {
               <SequenceCard key={seq.title} {...seq} />
             ))}
           </div>
-        </section>
-
-        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
-
-        <section className="grid grid-cols-2 gap-4 mt-10">
-          <Card title="Discos" value={collectionStats.totalAlbums} />
-          <Card title="Faixas" value={collectionStats.totalTracks} />
-          <Card title="Países" value={collectionStats.countries.length} />
-          <Card title="Índice" value={`${collectionScore}/100`} />
         </section>
 
         <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
@@ -211,15 +194,6 @@ export default function EssayPage() {
 
       <BottomNav />
     </main>
-  );
-}
-
-function Card({ title, value }: { title: string; value: string | number }) {
-  return (
-    <div className="rounded-3xl border border-[#2b241c] bg-[#11100e] p-4">
-      <p className="text-sm text-[#9d9079]">{title}</p>
-      <p className="text-3xl font-black mt-2">{value}</p>
-    </div>
   );
 }
 
@@ -256,27 +230,35 @@ function Pillar({
   number,
   icon,
   title,
-  accent,
-  description,
+  border,
+  text,
+  prose,
+  count,
+  duration,
 }: {
   number: string;
   icon: string;
   title: string;
-  accent: { border: string; text: string };
-  description: string;
+  border: string;
+  text: string;
+  prose: string;
+  count: number;
+  duration: string;
 }) {
   return (
-    <div className={`rounded-3xl border-[1.5px] ${accent.border} bg-brand-black p-4`}>
+    <div className={`h-full rounded-2xl border-l-4 ${border} bg-[#0d0c0b] p-4`}>
       <div className="flex items-center justify-between">
         <p className="text-3xl">{icon}</p>
-        <p className={`font-display text-2xl ${accent.text}`}>{number}</p>
+        <p className={`font-display text-2xl ${text}`}>{number}</p>
       </div>
 
-      <p className={`font-display text-xl mt-3 ${accent.text}`}>{title}</p>
+      <p className={`font-display text-xl mt-3 ${text}`}>{title}</p>
 
-      <p className="mt-2 text-sm text-[#b8aa91] leading-relaxed">
-        {description}
+      <p className="text-[11px] tracking-[0.15em] text-[#9d9079] mt-1">
+        {count} discos · {duration}
       </p>
+
+      <p className="mt-2 text-sm text-[#b8aa91] leading-relaxed">{prose}</p>
     </div>
   );
 }
