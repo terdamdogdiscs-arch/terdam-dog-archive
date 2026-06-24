@@ -1,195 +1,218 @@
 import Link from "next/link";
+import BottomNav from "../components/BottomNav";
+import CoverImage from "../components/CoverImage";
 import { collectionSeed, collectionStats } from "../data/seed";
 import { captions } from "../data/captions";
-import BottomNav from "../components/BottomNav";
-
-// Bucket único por disco (partição exclusiva → contagens somam o total).
-const bucketOf = (album: (typeof collectionSeed)[number]) => {
-  const g = album.genre.toLowerCase();
-  if (g.includes("reggae")) return "Reggae";
-  if (g.includes("hip-hop")) return "Hip-Hop";
-  if (g.includes("jazz")) return "Jazz";
-  if (g.includes("samba") || g.includes("pagode")) return "Pagode/Samba";
-  if (album.country.toLowerCase().includes("brasil")) return "Brasil";
-  return null;
-};
+import { getPrimaryGenre } from "../lib/genreGroup";
 
 const formatDuration = (seconds: number) => {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.round((seconds % 3600) / 60);
-  return h > 0 ? `${h}h${String(m).padStart(2, "0")}min` : `${m}min`;
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.round((seconds % 3600) / 60);
+  return hours > 0
+    ? `${hours}h${String(minutes).padStart(2, "0")}min`
+    : `${minutes}min`;
 };
 
 const PILLAR_DEFS = [
-  { title: "Reggae", icon: "🌴", border: "border-green-700", text: "text-green-400", prose: "Da Jamaica ao mundo. Raízes, espiritualidade e consciência social como base de toda a jornada." },
-  { title: "Hip-Hop", icon: "🎤", border: "border-purple-700", text: "text-purple-400", prose: "Nova York e a palavra como arquitetura — da golden age em diante." },
-  { title: "Jazz", icon: "🎷", border: "border-yellow-700", text: "text-yellow-400", prose: "Improviso, estrutura e a fonte que atravessa reggae e hip-hop por dentro." },
-  { title: "Brasil", icon: "🇧🇷", border: "border-red-800", text: "text-red-400", prose: "Origem e retorno. O Brasil entrando e saindo da coleção por rotas internacionais." },
-  { title: "Pagode/Samba", icon: "🥁", border: "border-orange-600", text: "text-orange-400", prose: "Raiz, memória e invenção. Do samba-de-breque ao pagode, a linguagem viva do Brasil." },
+  {
+    title: "Reggae",
+    icon: "🌴",
+    border: "border-green-700",
+    text: "text-green-400",
+    prose:
+      "Da Jamaica ao mundo. Raízes, espiritualidade e consciência social como base da primeira grande travessia.",
+  },
+  {
+    title: "Hip-Hop",
+    icon: "🎤",
+    border: "border-purple-700",
+    text: "text-purple-300",
+    prose:
+      "Nova York e a palavra como arquitetura. A rua encontra técnica, consciência, humor e invenção.",
+  },
+  {
+    title: "Jazz",
+    icon: "🎷",
+    border: "border-yellow-700",
+    text: "text-yellow-400",
+    prose:
+      "Improviso, estrutura e fonte. O som que já existia dentro da batida aparece inteiro diante da coleção.",
+  },
+  {
+    title: "Brasil",
+    icon: "🇧🇷",
+    border: "border-red-800",
+    text: "text-red-400",
+    prose:
+      "Origem e retorno. Um país que entra na coleção, atravessa o mundo e volta falando com a própria voz.",
+  },
+  {
+    title: "Samba e Pagode",
+    icon: "🥁",
+    border: "border-orange-600",
+    text: "text-orange-400",
+    prose:
+      "O quinto território nasceu com o crescimento do arquivo: memória, cidade, ancestralidade e invenção coletiva.",
+  },
+];
+
+const ACTS = [
+  {
+    number: "01",
+    eyebrow: "O PONTO DE PARTIDA",
+    title: "Toda coleção começa revelando quem escuta.",
+    prose: [
+      "A Terdam Dog começa no Brasil, mas nunca permanece parada. Black Alien abre o arquivo com palavra, rua e imaginação sonora — e já carrega no próprio título uma referência direta ao reggae.",
+      "O primeiro disco não funciona apenas como estreia. Ele contém uma pergunta: quais caminhos aparecem quando a escuta deixa de respeitar fronteiras de gênero, país ou década?",
+    ],
+    catalogs: ["001", "002"],
+    quoteCatalog: "001",
+    cta: { label: "Começar pela origem", href: "/album/001" },
+  },
+  {
+    number: "02",
+    eyebrow: "AS PONTES",
+    title: "Um disco não termina quando o próximo começa.",
+    prose: [
+      "A Jamaica atravessa o Atlântico, chega à África e encontra Nova York. Shinehead ocupa o centro dessa passagem porque não escolhe entre dancehall e hip-hop: ele prova que os dois pertencem à mesma conversa.",
+      "Depois, o rap encontra o jazz que já vivia dentro de suas batidas. Guru torna a ponte explícita e Sonny Rollins leva a coleção de volta à fonte.",
+    ],
+    catalogs: ["007", "013", "014"],
+    quoteCatalog: "007",
+    cta: { label: "Percorrer a sequência principal", href: "/journey" },
+  },
+  {
+    number: "03",
+    eyebrow: "O RETORNO",
+    title: "Voltar para casa não significa voltar ao mesmo lugar.",
+    prose: [
+      "Sergio Mendes apresenta um Brasil traduzido para o mundo. Jorge Ben responde sem pedir tradução. A coleção retorna ao país de origem por uma rota internacional, agora carregando reggae, hip-hop e jazz dentro da escuta.",
+      "Esse retorno abre espaço para olhar mais fundo: Caymmi, Adoniran, Cartola, Moreira da Silva, Fundo de Quintal, Beth Carvalho e Clara Nunes deixam de ser apenas referências históricas. Tornam-se a estrutura que sustenta tudo.",
+    ],
+    catalogs: ["019", "020", "025"],
+    quoteCatalog: "020",
+    cta: { label: "Explorar as referências", href: "/journey#referencias" },
+  },
+  {
+    number: "04",
+    eyebrow: "A HISTÓRIA EM ABERTO",
+    title: "O arquivo cresce quando uma resposta produz outra pergunta.",
+    prose: [
+      "Jimmy Cliff fecha um círculo entre Jamaica e Bahia. Rita Marley abre outro: o das vozes que sustentaram a revolução do reggae por dentro, muitas vezes longe do centro do palco.",
+      "A coleção termina, por enquanto, no disco 036. Não existe conclusão definitiva. Existe uma direção — e a consciência de que cada nova entrada reorganiza todas as anteriores.",
+    ],
+    catalogs: ["035", "036"],
+    quoteCatalog: "036",
+    cta: { label: "Ver o que ainda falta", href: "/discover" },
+  },
 ];
 
 export default function EssayPage() {
-  const PILLARS = PILLAR_DEFS.map((def, i) => {
-    const items = collectionSeed.filter((a) => bucketOf(a) === def.title);
-    const seconds = items.reduce((sum, a) => sum + (a.totalDurationSeconds || 0), 0);
+  const pillars = PILLAR_DEFS.map((definition, index) => {
+    const items = collectionSeed.filter((album) => {
+      const primary = getPrimaryGenre(album);
+      if (definition.title === "Samba e Pagode") {
+        const genre = `${album.genre} ${album.subgenre}`.toLowerCase();
+        return genre.includes("samba") || genre.includes("pagode");
+      }
+
+      if (definition.title === "Brasil") {
+        return (
+          primary === "Brasil" &&
+          !`${album.genre} ${album.subgenre}`.toLowerCase().match(/samba|pagode/)
+        );
+      }
+
+      return primary === definition.title;
+    });
+
+    const seconds = items.reduce(
+      (total, album) => total + (album.totalDurationSeconds || 0),
+      0
+    );
+
     return {
-      number: String(i + 1).padStart(2, "0"),
-      ...def,
+      number: String(index + 1).padStart(2, "0"),
+      ...definition,
       count: items.length,
       duration: formatDuration(seconds),
     };
   });
 
-  // Teses reais usadas como exemplos vivos dentro do manifesto.
-  const manifestoExamples = [
-    { clause: "abrem portas", tese: captions["001"].tese, ref: "TD-001" },
-    { clause: "fazem pontes", tese: captions["007"].tese, ref: "TD-007" },
-    { clause: "conversam de igual para igual com o mundo", tese: captions["020"].tese, ref: "TD-020" },
-  ];
-
-  // Sequências narrativas calculadas dinamicamente a partir do catálogo atual.
-  const principal = collectionSeed.filter((a) => a.catalog <= "024");
-  const referencias = collectionSeed.filter((a) => a.role === "Referência");
-  const viradas = collectionSeed.filter((a) => a.role === "Virada");
-  const marley = collectionSeed.filter((a) => a.role === "Família Marley");
-
-  const hint = (list: typeof collectionSeed) =>
-    list.length === 0
-      ? "—"
-      : `${list[0].catalog}–${list[list.length - 1].catalog}`;
-
-  const SEQUENCES = [
-    {
-      title: "Sequência Principal",
-      hint: hint(principal),
-      count: principal.length,
-      accent: "border-purple-700 text-purple-400",
-      role: "A espinha dorsal: do Brasil ao reggae, ao hip-hop, ao jazz — e a volta para casa.",
-    },
-    {
-      title: "Referências",
-      hint: hint(referencias),
-      count: referencias.length,
-      accent: "border-yellow-700 text-yellow-400",
-      role: "Raízes atemporais que ancoram a coleção antes do hit e da rádio.",
-    },
-    {
-      title: "Viradas",
-      hint: viradas.map((a) => a.catalog).join(" · ") || "—",
-      count: viradas.length,
-      accent: "border-green-700 text-green-400",
-      role: "Os discos onde a narrativa muda de direção.",
-    },
-    {
-      title: "Família Marley",
-      hint: marley.length ? `${marley[0].catalog}+` : "—",
-      count: marley.length,
-      accent: "border-orange-600 text-orange-400",
-      role: "O novo capítulo: a família que sustentou o reggae por dentro.",
-    },
-  ];
-
   return (
-    <main className="reading-page min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
-      <Link href="/" className="text-purple-400">← Coleção</Link>
+    <main className="reading-page min-h-screen bg-brand-black p-5 pb-32 text-[#f4ead8] sm:p-6">
+      <Link href="/" className="text-purple-300">
+        ← Coleção
+      </Link>
 
       <article className="mt-8">
-        <p className="text-sm tracking-[0.35em] text-purple-400">
-          ENSAIO DA COLEÇÃO
-        </p>
-
-        <h1 className="text-5xl font-black mt-3 leading-none">
-          A coleção Terdam Dog não é sobre raridade.
-        </h1>
-
-        <p className="font-display text-3xl text-brand-yellow my-12 leading-tight">
-          Ela é sobre conexões.
-        </p>
-
-        <div className="h-px bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
-
-        <section className="mt-10 space-y-8 text-[#d8ccb4] leading-relaxed text-lg">
-          <p>
-            {collectionStats.totalAlbums} discos. Uma narrativa. A coleção
-            começa no Brasil, atravessa a música jamaicana, encontra Nova York
-            pelo hip-hop, abre passagem para o jazz e retorna ao Brasil.
+        <header>
+          <p className="text-sm tracking-[0.35em] text-purple-300">
+            ENSAIO DA COLEÇÃO
           </p>
 
-          <p>
-            Depois, ela mergulha nas raízes. {referencias.length} discos de
-            Referência — Caymmi, Adoniran, Cartola, o samba-de-breque, o pagode —
-            ancoram tudo o que veio antes em algo atemporal.
+          <h1 className="mt-3 text-5xl font-black leading-[0.95] sm:text-6xl">
+            A coleção Terdam Dog não é sobre raridade.
+          </h1>
+
+          <p className="my-12 font-display text-3xl leading-tight text-brand-yellow sm:text-4xl">
+            Ela é sobre conexões.
           </p>
 
-          <p>
-            E então a coleção dá a volta. Jimmy Cliff reconduz a escuta de volta
-            à Jamaica, fechando o círculo do reggae. E um novo capítulo se abre:
-            a Família Marley começa com Rita Marley —{" "}
-            {marley.length === 1
-              ? "o primeiro disco"
-              : `${marley.length} discos`}{" "}
-            de uma história que ainda está sendo escrita.
+          <div className="h-px bg-gradient-to-r from-brand-green to-brand-purple opacity-40" />
+
+          <p className="mt-10 max-w-2xl text-xl leading-relaxed text-[#d8ccb4]">
+            {collectionStats.totalAlbums} discos não formam apenas uma lista.
+            Formam uma maneira de atravessar países, décadas e linguagens sem
+            separar o que a música sempre manteve em conversa.
+          </p>
+        </header>
+
+        <div className="mt-16 space-y-20">
+          {ACTS.map((act) => (
+            <EssayAct key={act.number} {...act} />
+          ))}
+        </div>
+
+        <section className="-mx-5 mt-20 bg-[#11100e] px-5 py-12 sm:-mx-6 sm:px-6">
+          <p className="text-sm tracking-[0.3em] text-purple-300">
+            OS TERRITÓRIOS DA ESCUTA
           </p>
 
-          <blockquote className="border-l-[3px] border-brand-purple bg-[#111111] pl-5 py-4 text-lg">
-            <p className="text-brand-cream italic">
-              Cada disco ocupa uma função. Alguns abrem portas. Outros fazem
-              pontes. Outros conversam de igual para igual com o mundo.
-            </p>
+          <h2 className="mt-3 text-4xl font-black leading-none">
+            Quatro pilares abriram o arquivo. O crescimento revelou um quinto.
+          </h2>
 
-            <div className="mt-5 space-y-4">
-              {manifestoExamples.map((ex) => (
-                <div key={ex.ref}>
-                  <p className="text-sm italic text-[#d8ccb4]">
-                    &ldquo;{ex.tese}&rdquo;
-                  </p>
-                  <p className="text-[11px] tracking-[0.2em] text-purple-400 mt-1">
-                    — {ex.ref} · {ex.clause}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </blockquote>
-        </section>
-
-        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
-
-        <section className="mt-10">
-          <p className="text-sm tracking-[0.3em] text-purple-400">
-            SEQUÊNCIAS DA COLEÇÃO
+          <p className="mt-5 text-lg leading-relaxed text-[#b8aa91]">
+            Reggae, Hip-Hop, Jazz e Brasil continuam sendo a fundação. Mas a
+            sequência de referências brasileiras ganhou peso suficiente para
+            formar seu próprio território: Samba e Pagode, não como apêndice,
+            mas como linguagem viva.
           </p>
 
-          <p className="text-[#b8aa91] mt-3">
-            As camadas narrativas que organizam os {collectionStats.totalAlbums}{" "}
-            discos.
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            {SEQUENCES.map((seq) => (
-              <SequenceCard key={seq.title} {...seq} />
+          <div className="mt-8 space-y-4">
+            {pillars.map((pillar) => (
+              <Pillar key={pillar.title} {...pillar} />
             ))}
           </div>
         </section>
 
-        <div className="h-px mt-10 bg-gradient-to-r from-brand-green to-brand-purple opacity-30" />
-
-        <section className="-mx-5 mt-10 bg-[#111111] px-5 py-10">
-          <p className="text-sm tracking-[0.3em] text-purple-400">
-            CINCO PILARES
+        <footer className="py-20 text-center">
+          <p className="font-display text-3xl leading-tight text-brand-yellow sm:text-4xl">
+            Uma coleção não precisa apenas guardar música.
+          </p>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#d8ccb4]">
+            Ela pode revelar como uma pessoa escuta, conecta e organiza o
+            mundo. Ela pode ser uma forma de pensamento musical.
           </p>
 
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            {PILLARS.map((pillar, i) => (
-              <div key={pillar.title} className={i === PILLARS.length - 1 && PILLARS.length % 2 !== 0 ? "col-span-2" : ""}>
-                <Pillar {...pillar} />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <p className="font-display text-3xl text-brand-yellow text-center mt-16 leading-tight">
-          Ela pode ser uma forma de pensamento musical.
-        </p>
+          <Link
+            href="/journey"
+            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full border border-brand-yellow px-6 text-sm text-brand-yellow transition hover:bg-brand-yellow hover:text-black"
+          >
+            Começar a jornada →
+          </Link>
+        </footer>
       </article>
 
       <BottomNav />
@@ -197,32 +220,70 @@ export default function EssayPage() {
   );
 }
 
-function SequenceCard({
+function EssayAct({
+  number,
+  eyebrow,
   title,
-  hint,
-  count,
-  accent,
-  role,
-}: {
-  title: string;
-  hint: string;
-  count: number;
-  accent: string;
-  role: string;
-}) {
-  const [border, text] = accent.split(" ");
+  prose,
+  catalogs,
+  quoteCatalog,
+  cta,
+}: (typeof ACTS)[number]) {
+  const albums = catalogs
+    .map((catalog) => collectionSeed.find((album) => album.catalog === catalog))
+    .filter((album): album is (typeof collectionSeed)[number] => Boolean(album));
+
+  const quoteAlbum = collectionSeed.find(
+    (album) => album.catalog === quoteCatalog
+  );
+  const thesis = captions[quoteCatalog as keyof typeof captions]?.tese;
 
   return (
-    <div className={`rounded-3xl border-[1.5px] ${border} bg-brand-black p-4`}>
-      <div className="flex items-baseline justify-between">
-        <p className={`font-display text-xl ${text}`}>{title}</p>
-        <p className={`font-display text-3xl ${text}`}>{count}</p>
+    <section>
+      <div className="flex items-center gap-4">
+        <span className="font-display text-5xl text-[#3f372d]">{number}</span>
+        <div>
+          <p className="text-sm tracking-[0.25em] text-purple-300">{eyebrow}</p>
+          <h2 className="mt-1 text-3xl font-black leading-tight sm:text-4xl">
+            {title}
+          </h2>
+        </div>
       </div>
 
-      <p className="text-[10px] tracking-[0.2em] text-[#9d9079] mt-1">{hint}</p>
+      <div className={`mt-8 grid gap-4 ${albums.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+        {albums.map((album) => (
+          <Link key={album.catalog} href={`/album/${album.catalog}`} className="group">
+            <div className="aspect-square overflow-hidden rounded-2xl border border-[#2b241c] transition group-hover:border-purple-500">
+              <CoverImage album={album} />
+            </div>
+            <p className="mt-2 text-sm text-purple-300">TD-{album.catalog}</p>
+            <p className="text-sm font-black leading-tight">{album.artist}</p>
+            <p className="line-clamp-1 text-sm text-[#9d9079]">{album.album}</p>
+          </Link>
+        ))}
+      </div>
 
-      <p className="mt-3 text-sm text-[#b8aa91] leading-relaxed">{role}</p>
-    </div>
+      <div className="mt-8 space-y-5 text-lg leading-relaxed text-[#d8ccb4]">
+        {prose.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+
+      {quoteAlbum && thesis && (
+        <blockquote className="mt-8 border-l-[3px] border-brand-purple bg-[#11100e] px-5 py-6">
+          <p className="font-display text-2xl leading-tight text-brand-cream">
+            “{thesis}”
+          </p>
+          <p className="mt-3 text-sm tracking-[0.16em] text-purple-300">
+            TD-{quoteAlbum.catalog} · {quoteAlbum.artist}
+          </p>
+        </blockquote>
+      )}
+
+      <Link href={cta.href} className="mt-6 inline-block text-sm text-purple-300">
+        {cta.label} →
+      </Link>
+    </section>
   );
 }
 
@@ -246,19 +307,21 @@ function Pillar({
   duration: string;
 }) {
   return (
-    <div className={`h-full rounded-2xl border-l-4 ${border} bg-[#0d0c0b] p-4`}>
-      <div className="flex items-center justify-between">
-        <p className="text-3xl">{icon}</p>
-        <p className={`font-display text-2xl ${text}`}>{number}</p>
+    <div className={`grid grid-cols-[auto_1fr] gap-4 border-l-4 ${border} bg-[#0d0c0b] p-5`}>
+      <div>
+        <p className="text-2xl" aria-hidden="true">{icon}</p>
+        <p className={`mt-2 font-display text-2xl ${text}`}>{number}</p>
       </div>
 
-      <p className={`font-display text-xl mt-3 ${text}`}>{title}</p>
-
-      <p className="text-[11px] tracking-[0.15em] text-[#9d9079] mt-1">
-        {count} discos · {duration}
-      </p>
-
-      <p className="mt-2 text-sm text-[#b8aa91] leading-relaxed">{prose}</p>
+      <div>
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h3 className={`text-2xl font-black ${text}`}>{title}</h3>
+          <p className="text-sm text-[#9d9079]">
+            {count} discos · {duration}
+          </p>
+        </div>
+        <p className="mt-2 text-base leading-relaxed text-[#b8aa91]">{prose}</p>
+      </div>
     </div>
   );
 }

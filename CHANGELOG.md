@@ -4,6 +4,18 @@ Registro de todas as mudanças significativas no projeto, em ordem cronológica 
 
 ---
 
+## 2026-06-24 — Ensaio transformado em revista editorial
+
+**Commit:** este commit
+
+**O que mudou:** O Ensaio passou a contar a coleção em quatro atos — origem, pontes, retorno e história em aberto — usando capas e teses dos discos como parte da narrativa. Os cinco territórios da escuta ganharam uma explicação editorial e o encerramento agora conduz o leitor para a Jornada.
+
+**Por quê:** Fazer a página funcionar como uma experiência de leitura e descoberta, reduzindo a aparência de painel de dados e aproximando as ideias dos discos que lhes dão sentido.
+
+**Arquivos afetados:** `app/essay/page.tsx`
+
+---
+
 ## 2026-06-23 — Experiência responsiva e arquitetura de navegação
 
 **Commit:** este commit
