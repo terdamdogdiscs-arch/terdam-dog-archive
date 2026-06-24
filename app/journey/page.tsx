@@ -157,7 +157,7 @@ export default async function JourneyPage({
   });
 
   return (
-    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
+    <main className="reading-page min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">← Coleção</Link>
 
       <section className="mt-8 mb-10">

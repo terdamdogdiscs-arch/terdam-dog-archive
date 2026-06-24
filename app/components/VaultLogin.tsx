@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function VaultLogin({ redirectTo = "/vault" }: { redirectTo?: string }) {
   const router = useRouter();
@@ -67,9 +68,9 @@ export default function VaultLogin({ redirectTo = "/vault" }: { redirectTo?: str
           </button>
         </form>
 
-        <a href="/" className="mt-6 inline-block text-sm text-[#9d9079]">
+        <Link href="/" className="mt-6 inline-block text-sm text-[#9d9079]">
           ← Voltar à coleção
-        </a>
+        </Link>
       </div>
     </main>
   );

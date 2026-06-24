@@ -12,7 +12,7 @@ type NarrativeNote = {
 
 export default function NarrativePage() {
   return (
-    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
+    <main className="reading-page min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <section className="mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
           GRAFO NARRATIVO

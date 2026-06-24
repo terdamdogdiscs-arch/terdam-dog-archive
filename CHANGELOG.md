@@ -4,6 +4,18 @@ Registro de todas as mudanças significativas no projeto, em ordem cronológica 
 
 ---
 
+## 2026-06-23 — Experiência responsiva e arquitetura de navegação
+
+**Commit:** este commit
+
+**O que mudou:** O arquivo ganhou uma experiência própria para desktop, navegação mobile mais compacta e uma Home com revelação progressiva de jornadas e discos. As áreas foram reorganizadas em Coleção, História, Descoberta, Feed, Por Vir e Dados; métricas de gênero passaram a usar macrogrupos coerentes e os cards do acervo agora levam a destinos reais.
+
+**Por quê:** Reduzir a sobrecarga da primeira visita, eliminar rotas e interações ambíguas e fazer a identidade editorial funcionar com a mesma clareza no celular e em telas maiores.
+
+**Arquivos afetados:** `app/page.tsx`, `app/globals.css`, `app/components/BottomNav.tsx`, `app/insights/page.tsx`, `app/coming/page.tsx`, `app/lib/genreGroup.ts`, páginas editoriais e redirecionamentos de rotas antigas
+
+---
+
 ## 2026-06-23 — Sistema de changelog do projeto
 
 **Commit:** este commit (o hash é gerado somente depois que seu conteúdo é fechado)

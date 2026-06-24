@@ -27,7 +27,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--color-brand-black);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
@@ -73,6 +73,59 @@ h3,
 /* Soft fade/slide transition for the page content */
 main {
   animation: page-fade-in 0.4s ease-out;
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+  padding-bottom: max(6.5rem, calc(env(safe-area-inset-bottom) + 5.5rem)) !important;
+  scroll-padding-bottom: 7rem;
+}
+
+main.wide-page {
+  max-width: 1200px;
+}
+
+main.reading-page {
+  max-width: 760px;
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-brand-yellow);
+  outline-offset: 3px;
+}
+
+.text-brand-purple {
+  color: #c270d2;
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding-top: 6rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in-up {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes page-fade-in {

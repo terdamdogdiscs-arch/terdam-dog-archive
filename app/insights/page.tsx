@@ -5,6 +5,7 @@ import BottomNav from "../components/BottomNav";
 import { genreColor } from "../lib/genreColor";
 import { formatTotalDuration } from "../lib/discogs";
 import { getTotalValue } from "../lib/stats";
+import { countPrimaryGenres, getPrimaryGenre } from "../lib/genreGroup";
 import { albums } from "../data/albums";
 import {
   collectionSeed,
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const GENRE_GROUPS: { label: string; filter: (album: (typeof collectionSeed)[number]) => boolean }[] = [
-  { label: "Reggae", filter: (album) => album.genre.toLowerCase().includes("reggae") },
-  { label: "Hip-Hop", filter: (album) => album.genre.toLowerCase().includes("hip-hop") },
-  { label: "Jazz", filter: (album) => album.genre.toLowerCase().includes("jazz") },
-  { label: "Brasil", filter: (album) => album.country.toLowerCase().includes("brasil") },
+  { label: "Reggae", filter: (album) => getPrimaryGenre(album) === "Reggae" },
+  { label: "Hip-Hop", filter: (album) => getPrimaryGenre(album) === "Hip-Hop" },
+  { label: "Jazz", filter: (album) => getPrimaryGenre(album) === "Jazz" },
+  { label: "Brasil", filter: (album) => getPrimaryGenre(album) === "Brasil" },
 ];
 
 function countBy<T extends Record<string, unknown>>(items: T[], field: keyof T) {
@@ -45,7 +46,7 @@ export default async function InsightsPage() {
   const cookieStore = await cookies();
   const vaultUnlocked = cookieStore.get("vault_access")?.value === "granted";
 
-  const byGenre = countBy(collectionSeed, "genre");
+  const byGenre = countPrimaryGenres(collectionSeed);
   const byCountry = countBy(collectionSeed, "country");
   const byRole = countBy(collectionSeed, "role");
 
@@ -202,7 +203,12 @@ export default async function InsightsPage() {
         />
       </section>
 
-      <Section title="Distribuição por gênero" data={byGenre} accentFor={genreColor} />
+      <Section
+        title="Gêneros principais"
+        description="Macrogrupos exclusivos. Os subgêneros continuam preservados na ficha de cada disco."
+        data={byGenre}
+        accentFor={genreColor}
+      />
       <Section title="Distribuição por país" data={byCountry} />
       <Section title="Distribuição por década" data={byDecade} />
       <Section title="Papéis narrativos" data={byRole} />
@@ -376,10 +382,12 @@ function Card({
 
 function Section({
   title,
+  description,
   data,
   accentFor,
 }: {
   title: string;
+  description?: string;
   data: Record<string, number>;
   accentFor?: (key: string) => { bg: string; text: string };
 }) {
@@ -388,6 +396,9 @@ function Section({
   return (
     <section className="mt-8">
       <h2 className="text-3xl font-black mb-4">{title}</h2>
+      {description && (
+        <p className="-mt-2 mb-5 text-sm text-[#9d9079]">{description}</p>
+      )}
 
       <div className="space-y-4">
         {Object.entries(data).map(([key, value]) => {

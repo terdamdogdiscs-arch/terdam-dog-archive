@@ -67,19 +67,20 @@ export default async function ComingPage() {
     year: album.year,
     cover: album.cover,
     published: true,
+    catalog: album.catalog,
   }));
 
   // POR VIR: itens da coleção Discogs ainda não cobertos em albums.ts
   const upcomingItems = collection
     .filter((item) => !isCovered(item))
-    .map((item) => ({ ...item, published: false }));
+    .map((item) => ({ ...item, published: false, catalog: undefined }));
 
   const items = [...publishedItems, ...upcomingItems];
   const publishedCount = publishedItems.length;
   const upcomingCount = upcomingItems.length;
 
   return (
-    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
+    <main className="wide-page min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32 sm:p-6">
       <Link href="/" className="text-purple-400">
         ← Coleção
       </Link>
@@ -115,51 +116,30 @@ export default async function ComingPage() {
           O acervo do Discogs está indisponível no momento.
         </p>
       ) : (
-        <section className="grid grid-cols-2 gap-4">
+        <section className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {items.map((item, index) => (
-            <FadeIn key={item.id} delay={Math.min(index * 30, 320)}>
-              <div
-                className={`cursor-pointer overflow-hidden rounded-xl border border-[#2b241c] bg-[#11100e] ${
-                  item.published ? "" : "opacity-60"
-                }`}
-              >
-                <div className="aspect-square w-full overflow-hidden">
-                  {item.cover ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={item.cover}
-                      alt={item.title}
-                      className={`h-full w-full object-cover ${
-                        item.published ? "" : "grayscale"
-                      }`}
-                    />
-                  ) : (
-                    <div className="h-full w-full bg-[#18130e]" />
-                  )}
-                </div>
-
-                <div className="p-2">
-                  {item.published && (
-                    <span className="mb-1 inline-block rounded-full bg-brand-green px-2 py-0.5 text-[10px] font-black tracking-wide text-black">
-                      ✓ PUBLICADO
-                    </span>
-                  )}
-
-                  <p className="text-xs font-black leading-tight">
-                    {item.artist}
-                  </p>
-
-                  <p className="text-xs text-[#9d9079] leading-tight">
-                    {item.title}
-                  </p>
-
-                  {item.year > 0 && (
-                    <p className="mt-1 text-[10px] text-[#6f6555]">
-                      {item.year}
-                    </p>
-                  )}
-                </div>
-              </div>
+            <FadeIn key={`${item.published ? "published" : "upcoming"}-${item.id}`} delay={Math.min(index * 30, 320)}>
+              {item.published && item.catalog ? (
+                <Link
+                  href={`/album/${item.catalog}`}
+                  className="group block h-full"
+                  aria-label={`Abrir história de ${item.artist} — ${item.title}`}
+                >
+                  <AcervoCard item={item} action="Abrir história →" />
+                </Link>
+              ) : item.releaseId > 0 ? (
+                <a
+                  href={`https://www.discogs.com/release/${item.releaseId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block h-full"
+                  aria-label={`Ver ${item.artist} — ${item.title} no Discogs`}
+                >
+                  <AcervoCard item={item} action="Ver no Discogs ↗" />
+                </a>
+              ) : (
+                <AcervoCard item={item} action="Aguardando dados" />
+              )}
             </FadeIn>
           ))}
         </section>
@@ -178,5 +158,62 @@ export default async function ComingPage() {
 
       <BottomNav />
     </main>
+  );
+}
+
+type AcervoItem = {
+  artist: string;
+  title: string;
+  year: number;
+  cover: string;
+  published: boolean;
+};
+
+function AcervoCard({
+  item,
+  action,
+}: {
+  item: AcervoItem;
+  action: string;
+}) {
+  return (
+    <article
+      className={`h-full overflow-hidden rounded-2xl border border-[#2b241c] bg-[#11100e] transition group-hover:-translate-y-0.5 group-hover:border-purple-500 ${
+        item.published ? "" : "opacity-75"
+      }`}
+    >
+      <div className="aspect-square w-full overflow-hidden">
+        {item.cover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.cover}
+            alt=""
+            className={`h-full w-full object-cover ${
+              item.published ? "" : "grayscale"
+            }`}
+          />
+        ) : (
+          <div className="h-full w-full bg-[#18130e]" />
+        )}
+      </div>
+
+      <div className="p-3">
+        <span
+          className={`mb-2 inline-block rounded-full px-2 py-1 text-xs font-black tracking-wide ${
+            item.published
+              ? "bg-brand-green text-black"
+              : "border border-[#5b5142] text-[#b8aa91]"
+          }`}
+        >
+          {item.published ? "✓ PUBLICADO" : "POR VIR"}
+        </span>
+        <h2 className="text-base font-black leading-tight">{item.artist}</h2>
+        <p className="mt-1 text-sm leading-tight text-[#b8aa91]">{item.title}</p>
+        {item.year > 0 && (
+          <p className="mt-2 text-xs text-[#9d9079]">{item.year}</p>
+        )}
+        <p className="mt-3 text-sm text-purple-300">{action}</p>
+      </div>
+    </article>
   );
 }

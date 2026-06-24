@@ -99,7 +99,7 @@ export default async function AlbumPage({
     : [];
 
   return (
-    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
+    <main className="reading-page min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
         ← Coleção
       </Link>

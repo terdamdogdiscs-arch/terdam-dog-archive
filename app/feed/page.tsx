@@ -59,7 +59,7 @@ export default function FeedPage() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <main className="min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32">
+    <main className="reading-page min-h-screen bg-brand-black text-[#f4ead8] p-4 pb-32 sm:p-6">
       <Link href="/" className="text-purple-400">
         ← Coleção
       </Link>
