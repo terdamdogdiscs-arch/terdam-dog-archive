@@ -4,6 +4,18 @@ Registro de todas as mudanças significativas no projeto, em ordem cronológica 
 
 ---
 
+## 2026-06-25 — Dados transformados em narrativa visual
+
+**Commit:** incluído neste commit
+
+**O que mudou:** A página Dados foi reconstruída como uma experiência editorial responsiva, com abertura em formato de revista, indicadores essenciais, composição por gêneros, histograma cronológico, mapa de origens culturais, rede de conexões e faixa proporcional do tempo de escuta. Informações de prensagem deixaram de influenciar a leitura geográfica e histórica.
+
+**Por quê:** Fazer os dados explicarem a identidade e a trajetória musical da coleção, reduzindo a aparência de painel administrativo e elevando a qualidade visual e narrativa da experiência.
+
+**Arquivos afetados:** `app/insights/page.tsx`, `app/components/InsightsCharts.tsx`, `CHANGELOG.md`
+
+---
+
 ## 2026-06-24 — Catálogo e valores alinhados ao Discogs
 
 **Commit:** incluído neste commit
