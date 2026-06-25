@@ -13,18 +13,23 @@ export type PrimaryGenre = (typeof primaryGenreLabels)[number];
 export function getPrimaryGenre(
   album: Pick<Album, "genre" | "subgenre" | "country">
 ): PrimaryGenre {
-  const genre = `${album.genre} ${album.subgenre}`.toLowerCase();
+  // Classifica pelo campo `genre` (curado), não pelo subgênero — evita que
+  // o subgênero "puxe" o disco para a categoria errada (ex: Fugees tem
+  // "…/ Reggae" no subgênero, mas é Hip-Hop; Sergio Mendes tem "Brazilian
+  // Jazz" no subgênero, mas é MPB).
+  const genre = album.genre.toLowerCase();
 
   if (genre.includes("reggae") || genre.includes("ska") || genre.includes("rocksteady")) {
     return "Reggae";
   }
 
-  if (genre.includes("hip-hop") || genre.includes("hip hop") || genre.includes("rap")) {
-    return "Hip-Hop";
-  }
-
+  // Jazz antes de Hip-Hop para "Jazz Rap" cair em Jazz (e não no "rap").
   if (genre.includes("jazz") || genre.includes("bop")) {
     return "Jazz";
+  }
+
+  if (genre.includes("hip-hop") || genre.includes("hip hop")) {
+    return "Hip-Hop";
   }
 
   if (
