@@ -19,7 +19,7 @@ export type Album = {
   narrativeCountry?: string | null;
 };
 
-export const albums: Album[] = [
+const albumEditorialBase: Album[] = [
   { catalog: "001", artist: "Black Alien", album: "Babylon By Gus Vol. 1", year: 2004, country: "Brasil", genre: "Hip-Hop", subgenre: "Rap Nacional", role: "Origem", tracks: 12, cover: "/covers/001.jpg", label: "Trama", pressing: "1ª edição BR · 2004", estimatedValue: 180, note: "A origem da coleção começa no Brasil, mas já olhando para fora. Black Alien abre o arquivo com palavra, rua e imaginação sonora.", discogsId: 4567698, totalDurationSeconds: 2603, narrativeCountry: "Brasil" },
   { catalog: "002", artist: "Junior Byles", album: "Beat Down Babylon", year: 1972, country: "Jamaica", genre: "Reggae", subgenre: "Roots Reggae", role: "Conexão", tracks: 14, cover: "/covers/002.jpg", label: "Trojan Records", pressing: "Reedição Trojan", estimatedValue: 160, note: "Depois da palavra, vem a raiz. Junior Byles leva a coleção para a Jamaica espiritual, política e profunda.", discogsId: 1150919, totalDurationSeconds: 1621, narrativeCountry: "Jamaica" },
   { catalog: "003", artist: "Various Artists", album: "Rudeboy: The Story of Trojan Records", year: 2018, country: "Jamaica / Reino Unido", genre: "Reggae", subgenre: "Ska / Rocksteady", role: "Contexto", tracks: 24, cover: "/covers/003.jpg", label: "BMG / Trojan Records", pressing: "Box set BMG · 2018", estimatedValue: 220, note: "Aqui a coleção abre o mapa. Trojan aparece como documento de uma cultura em trânsito entre Jamaica, Reino Unido e rua.", discogsId: 12709841, totalDurationSeconds: 4103, narrativeCountry: null },
@@ -57,3 +57,69 @@ export const albums: Album[] = [
   { catalog: "035", artist: "Jimmy Cliff", album: "The Best of Jimmy Cliff Vol. 1", year: 1976, country: "Jamaica", genre: "Reggae", subgenre: "Roots Reggae / Ska", role: "Virada", tracks: 11, cover: "/covers/035.jpg", label: "Phonogram", pressing: "Phonogram / Island Records Brasil · 1976", estimatedValue: 180, note: "Décadas depois de gravar os clássicos reunidos neste disco, Jimmy Cliff pisaria no Pelourinho e encontraria grupos como Olodum e Ara Ketu — e desse encontro surgiria o samba-reggae, resultado do diálogo entre o reggae jamaicano e a percussão baiana.", discogsId: 17007774, totalDurationSeconds: 2355, narrativeCountry: "Jamaica" },
   { catalog: "036", artist: "Rita Marley", album: "Greatest Hits", year: 1993, country: "Jamaica", genre: "Reggae", subgenre: "Roots Reggae", role: "Família Marley", tracks: 14, cover: "/covers/036.jpg", label: "Polydor", pressing: "Original Polydor Brasil · 1993 (519 968-1)", estimatedValue: 160, note: "Rita Marley foi integrante fundadora do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers em sua trajetória mais celebrada. Cantora, compositora e guardiã da cultura rastafári, construiu também uma discografia solo que revelou uma voz e uma identidade artísticas próprias — e Greatest Hits reúne parte dessa caminhada.", discogsId: 8386025, narrativeCountry: null },
 ];
+
+type DiscogsCatalogEntry = Pick<
+  Album,
+  | "artist"
+  | "album"
+  | "year"
+  | "country"
+  | "genre"
+  | "subgenre"
+  | "tracks"
+  | "label"
+  | "pressing"
+  | "estimatedValue"
+>;
+
+/**
+ * Dados catalográficos conferidos pela edição exata (`discogsId`) no Discogs.
+ *
+ * O valor médio estimado usa o ponto central de uma faixa de mercado iniciada
+ * pelo menor anúncio ativo da edição: menor preço × 1,25, arredondado para R$ 10.
+ * Quando não há exemplar anunciado, o valor anterior é mantido até surgir uma
+ * referência pública confiável.
+ */
+const discogsCatalog: Record<string, DiscogsCatalogEntry> = {
+  "001": { artist: "Black Alien", album: "Babylon By Gus - Volume 1 - O Ano Do Macaco", year: 2012, country: "Brasil", genre: "Hip Hop", subgenre: "Ragga HipHop / Conscious / Gangsta", tracks: 12, label: "Polysom", pressing: "Polysom · Brasil · 2012 · 33145-1 · LP, álbum", estimatedValue: 260 },
+  "002": { artist: "Junior Byles", album: "Beat Down Babylon \"The Upsetter Years\"", year: 1987, country: "Reino Unido", genre: "Reggae", subgenre: "Roots Reggae / Dub", tracks: 14, label: "Trojan Records", pressing: "Trojan Records · Reino Unido · 1987 · TRLS 253 · LP, compilação, estéreo", estimatedValue: 180 },
+  "003": { artist: "Various", album: "Rudeboy (The Story Of Trojan Records)", year: 2018, country: "Europa", genre: "Reggae / Stage & Screen", subgenre: "Ska / Reggae / Soundtrack", tracks: 24, label: "Trojan Records / BMG / Pulse Films", pressing: "Trojan Records / BMG · Europa · 2018 · TJDLP573 · 2LP, compilação, 180 g", estimatedValue: 310 },
+  "004": { artist: "Toots & The Maytals", album: "Funky Kingston", year: 2013, country: "EUA", genre: "Reggae / Funk / Soul", subgenre: "Soul / Reggae", tracks: 10, label: "Get On Down", pressing: "Get On Down · EUA · 2013 · GET 54056 LP · LP, álbum, reedição", estimatedValue: 190 },
+  "005": { artist: "Errol Dunkley", album: "O.K. Fred Best Of", year: 2024, country: "EUA", genre: "Reggae", subgenre: "Reggae", tracks: 12, label: "Cleopatra", pressing: "Cleopatra · EUA · 2024 · CLO5813 · LP vermelho, compilação, edição limitada", estimatedValue: 210 },
+  "006": { artist: "Alpha Blondy", album: "Apartheid Is Nazism", year: 1988, country: "Brasil", genre: "Reggae", subgenre: "Reggae", tracks: 9, label: "EMI / Pathé", pressing: "EMI / Pathé · Brasil · 1988 · 064 240449 1 · LP, álbum", estimatedValue: 100 },
+  "007": { artist: "Shinehead", album: "Sidewalk University", year: 1992, country: "EUA", genre: "Hip Hop / Reggae", subgenre: "Ragga HipHop / Dancehall", tracks: 14, label: "Elektra", pressing: "Elektra · EUA · 1992 · 9 61139-1 · LP, álbum, reedição", estimatedValue: 220 },
+  "008": { artist: "Eric B. & Rakim", album: "Paid In Full", year: 1988, country: "Brasil", genre: "Hip Hop", subgenre: "Hip Hop", tracks: 10, label: "4th & Broadway", pressing: "4th & Broadway · Brasil · 1988 · 670.0104 · LP, álbum", estimatedValue: 210 },
+  "009": { artist: "Queen Latifah", album: "All Hail The Queen", year: 1990, country: "Brasil", genre: "Hip Hop", subgenre: "Conscious", tracks: 12, label: "Stiletto", pressing: "Stiletto · Brasil · 1990 · 230.4041 · LP, álbum", estimatedValue: 100 },
+  "010": { artist: "Fugees", album: "The Score", year: 2021, country: "EUA", genre: "Hip Hop", subgenre: "Pop Rap / Conscious", tracks: 13, label: "Columbia / Ruffhouse Records", pressing: "Columbia / Ruffhouse · EUA · 2021 · 88765400911 · 2LP, álbum, reedição", estimatedValue: 200 },
+  "011": { artist: "A Tribe Called Quest", album: "Hits, Rarities & Remixes", year: 2025, country: "Mundial", genre: "Hip Hop", subgenre: "Conscious / Boom Bap / Jazzy Hip-Hop", tracks: 18, label: "Jive / Legacy / Sony Music", pressing: "Jive / Legacy · Mundial · 2025 · 19658884891 · 2LP, compilação, reedição", estimatedValue: 170 },
+  "012": { artist: "De La Soul", album: "De La Soul Is Dead", year: 2023, country: "Mundial", genre: "Hip Hop", subgenre: "Jazzy Hip-Hop", tracks: 27, label: "Chrysalis Records / AOI Records", pressing: "Chrysalis / AOI · Mundial · 2023 · RMM-052-1 · 2LP, álbum, reedição", estimatedValue: 140 },
+  "013": { artist: "Guru", album: "Jazzmatazz (Volume 1)", year: 2023, country: "EUA", genre: "Electronic / Hip Hop", subgenre: "Acid Jazz / Jazzy Hip-Hop / Conscious", tracks: 12, label: "Virgin / Chrysalis / UMe", pressing: "Virgin / Chrysalis / UMe · EUA · 2023 · B0038189-01 · 2LP azul, edição limitada, reedição", estimatedValue: 360 },
+  "014": { artist: "Sonny Rollins / Jim Hall", album: "The Quartets", year: 1986, country: "EUA", genre: "Jazz", subgenre: "Hard Bop", tracks: 13, label: "Bluebird / RCA", pressing: "Bluebird / RCA · EUA · 1986 · 5634-1-RB · 2LP, compilação, remasterizado", estimatedValue: 90 },
+  "015": { artist: "Arthur Blythe", album: "In The Tradition", year: 1979, country: "EUA", genre: "Jazz", subgenre: "Post Bop", tracks: 6, label: "Columbia", pressing: "Columbia · EUA · 1979 · JC 36300 · LP, álbum, promocional", estimatedValue: 40 },
+  "016": { artist: "Charles Mingus", album: "Mingus At Monterey", year: 1970, country: "Brasil", genre: "Jazz", subgenre: "Jazz", tracks: 2, label: "Liberty", pressing: "Liberty · Brasil · 1970 · FLP-35086 · LP, álbum, mono", estimatedValue: 200 },
+  "017": { artist: "Oscar Peterson", album: "Girl Talk", year: 1968, country: "Brasil", genre: "Jazz", subgenre: "Post Bop / Swing / Instrumental", tracks: 5, label: "MPS Records", pressing: "MPS Records · Brasil · 1968 · 21 20669-0 · LP, álbum", estimatedValue: 90 },
+  "018": { artist: "Dizzy Gillespie / Freddie Hubbard / Clark Terry / Oscar Peterson", album: "The Alternate Blues", year: 1982, country: "Brasil", genre: "Jazz / Blues", subgenre: "Jazz / Blues", tracks: 9, label: "Pablo Records", pressing: "Pablo Records · Brasil · 1982 · 2312.136 · LP, álbum", estimatedValue: 130 },
+  "019": { artist: "Sérgio Mendes & Brasil '66", album: "Herb Alpert Apresenta Sergio Mendes & Brasil '66", year: 1968, country: "Brasil", genre: "Jazz", subgenre: "Latin Jazz / Bossa Nova", tracks: 11, label: "A&M Records", pressing: "A&M Records · Brasil · 1968 · A & M 2003 · LP, álbum, mono", estimatedValue: 90 },
+  "020": { artist: "Jorge Ben", album: "Tropical", year: 1977, country: "Brasil", genre: "Latin", subgenre: "Samba / Bossanova", tracks: 9, label: "Philips", pressing: "Philips · Brasil · 1977 · 6349 326 · LP, álbum", estimatedValue: 260 },
+  "021": { artist: "Jorge Ben", album: "Benjor", year: 1989, country: "Brasil", genre: "Latin / Funk / Soul", subgenre: "MPB / Samba / Soul / Funk", tracks: 8, label: "WEA", pressing: "WEA · Brasil · 1989 · 670.8067 · LP, álbum", estimatedValue: 100 },
+  "022": { artist: "Jorge Ben", album: "A Tábua De Esmeralda", year: 1974, country: "Brasil", genre: "Latin", subgenre: "MPB / Samba", tracks: 12, label: "Philips", pressing: "Philips · Brasil · 1974 · 6349 083 · LP, álbum", estimatedValue: 230 },
+  "023": { artist: "Jorge Ben", album: "Bem-Vinda Amizade", year: 1981, country: "Brasil", genre: "Jazz / Latin / Funk / Soul", subgenre: "MPB / Samba / Soul / Funk", tracks: 10, label: "Som Livre", pressing: "Som Livre · Brasil · 1981 · 403.6247 · LP, álbum", estimatedValue: 100 },
+  "024": { artist: "Jorge Ben", album: "10 Anos Depois", year: 1973, country: "Brasil", genre: "Latin / Folk, World, & Country", subgenre: "MPB / Bossanova", tracks: 8, label: "Philips", pressing: "Philips · Brasil · 1973 · 6349 082 · LP, álbum, capa dupla", estimatedValue: 60 },
+  "025": { artist: "Dorival Caymmi", album: "Caymmi E Seu Violão", year: 1959, country: "Brasil", genre: "Latin", subgenre: "MPB", tracks: 12, label: "Odeon", pressing: "Odeon · Brasil · 1959 · MOFB-3093 · LP, álbum, mono, capa sanduíche", estimatedValue: 80 },
+  "026": { artist: "Ary Barroso / Dorival Caymmi", album: "Ary Caymmi Dorival Barroso", year: 1974, country: "Brasil", genre: "Latin", subgenre: "MPB / Bossanova", tracks: 12, label: "Odeon / Evento", pressing: "Odeon / Evento · Brasil · 1974 · SE-11.003 · LP, álbum, reedição", estimatedValue: 70 },
+  "027": { artist: "Adoniran Barbosa", album: "Adoniran Barbosa", year: 1980, country: "Brasil", genre: "Latin", subgenre: "MPB / Samba", tracks: 14, label: "EMI", pressing: "EMI · Brasil · 1980 · 31C 064 422868D · LP, álbum", estimatedValue: 60 },
+  "028": { artist: "Various", album: "História Da Música Popular Brasileira - Cartola", year: 1982, country: "Brasil", genre: "Latin", subgenre: "Samba / MPB", tracks: 12, label: "Abril Cultural", pressing: "Abril Cultural · Brasil · 1982 · LP, compilação", estimatedValue: 60 },
+  "029": { artist: "Moreira Da Silva", album: "Moreira Da Silva E O Samba De Breque", year: 1977, country: "Brasil", genre: "Latin / Folk, World, & Country", subgenre: "Folk / Samba", tracks: 17, label: "CID", pressing: "CID · Brasil · 1977 · 4035 · LP, compilação", estimatedValue: 40 },
+  "030": { artist: "Fundo de Quintal", album: "Do Fundo Do Nosso Quintal", year: 1987, country: "Brasil", genre: "Latin", subgenre: "Samba", tracks: 14, label: "RGE", pressing: "RGE · Brasil · 1987 · 310.6016 · LP, álbum, estéreo", estimatedValue: 50 },
+  "031": { artist: "Os Demônios Da Garoa", album: "Trem Das 11", year: 0, country: "Brasil", genre: "Latin", subgenre: "Samba / MPB", tracks: 12, label: "Chantecler / GEL Chantecler", pressing: "Chantecler · Brasil · ano não informado · 2-07-405-271 · LP, álbum, reedição", estimatedValue: 70 },
+  "032": { artist: "Beth Carvalho", album: "No Pagode", year: 1979, country: "Brasil", genre: "Latin", subgenre: "Samba", tracks: 12, label: "RCA Victor", pressing: "RCA Victor · Brasil · 1979 · 103.0316 · LP, álbum", estimatedValue: 50 },
+  "033": { artist: "Clara Nunes", album: "O Talento De Clara Nunes", year: 1985, country: "Brasil", genre: "Latin", subgenre: "Samba / Forró / MPB", tracks: 26, label: "EMI", pressing: "EMI · Brasil · 1985 · 31C 152 422 169/70 · 2LP, compilação", estimatedValue: 60 },
+  "034": { artist: "Zeca Pagodinho", album: "O Melhor De Zeca Pagodinho", year: 1989, country: "Brasil", genre: "Latin", subgenre: "Samba", tracks: 12, label: "RGE", pressing: "RGE · Brasil · 1989 · 308.6191 · LP, compilação", estimatedValue: 40 },
+  "035": { artist: "Jimmy Cliff", album: "The Best Of Jimmy Cliff", year: 1976, country: "Brasil", genre: "Reggae / Pop", subgenre: "Reggae", tracks: 11, label: "Island Records", pressing: "Island Records · Brasil · 1976 · 410 046 · LP, compilação", estimatedValue: 100 },
+  "036": { artist: "Rita Marley", album: "Greatest Hits", year: 1993, country: "Brasil", genre: "Reggae", subgenre: "Roots Reggae", tracks: 14, label: "Polydor", pressing: "Polydor · Brasil · 1993 · 519 968-1 · LP, compilação", estimatedValue: 440 },
+};
+
+export const albums: Album[] = albumEditorialBase.map((album) => ({
+  ...album,
+  ...discogsCatalog[album.catalog],
+}));

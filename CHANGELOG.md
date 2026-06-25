@@ -4,6 +4,18 @@ Registro de todas as mudanças significativas no projeto, em ordem cronológica 
 
 ---
 
+## 2026-06-24 — Catálogo e valores alinhados ao Discogs
+
+**Commit:** incluído neste commit
+
+**O que mudou:** Os 36 discos foram conferidos pelas edições exatas vinculadas no Discogs. Títulos, artistas, anos, países, gêneros, estilos, gravadoras, formatos, números de catálogo e quantidades de faixas agora refletem esses registros; os valores foram recalculados por uma referência média do mercado ativo.
+
+**Por quê:** Eliminar divergências entre o arquivo e as prensagens realmente cadastradas, oferecendo uma estimativa financeira mais coerente e verificável.
+
+**Arquivos afetados:** `app/data/albums.ts`, `CHANGELOG.md`
+
+---
+
 ## 2026-06-24 — Ensaio transformado em revista editorial
 
 **Commit:** este commit
