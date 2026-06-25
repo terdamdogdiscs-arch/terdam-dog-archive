@@ -4,7 +4,7 @@ export const primaryGenreLabels = [
   "Reggae",
   "Hip-Hop",
   "Jazz",
-  "Brasil",
+  "MPB/Samba",
   "Outros",
 ] as const;
 
@@ -28,13 +28,12 @@ export function getPrimaryGenre(
   }
 
   if (
-    album.country.toLowerCase().includes("brasil") ||
     genre.includes("mpb") ||
     genre.includes("samba") ||
     genre.includes("pagode") ||
     genre.includes("bossa")
   ) {
-    return "Brasil";
+    return "MPB/Samba";
   }
 
   return "Outros";

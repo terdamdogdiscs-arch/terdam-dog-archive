@@ -118,7 +118,7 @@ export default function EssayPage() {
 
       if (definition.title === "Brasil") {
         return (
-          primary === "Brasil" &&
+          primary === "MPB/Samba" &&
           !`${album.genre} ${album.subgenre}`.toLowerCase().match(/samba|pagode/)
         );
       }

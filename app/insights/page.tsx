@@ -23,7 +23,7 @@ const GENRE_GROUPS: { label: string; filter: (album: (typeof collectionSeed)[num
   { label: "Reggae", filter: (album) => getPrimaryGenre(album) === "Reggae" },
   { label: "Hip-Hop", filter: (album) => getPrimaryGenre(album) === "Hip-Hop" },
   { label: "Jazz", filter: (album) => getPrimaryGenre(album) === "Jazz" },
-  { label: "Brasil", filter: (album) => getPrimaryGenre(album) === "Brasil" },
+  { label: "MPB/Samba", filter: (album) => getPrimaryGenre(album) === "MPB/Samba" },
 ];
 
 function countBy<T extends Record<string, unknown>>(items: T[], field: keyof T) {
