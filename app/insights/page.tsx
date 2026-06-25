@@ -72,7 +72,7 @@ export default async function InsightsPage() {
   const decadeData = Object.entries(decades)
     .map(([decade, count]) => ({
       year: Number(decade),
-      decade: `${String(decade).slice(2)}s`,
+      decade: `${decade}s`,
       count,
     }))
     .sort((a, b) => a.year - b.year);
@@ -146,6 +146,24 @@ export default async function InsightsPage() {
   const topDecade = [...Object.entries(decades)].sort(
     (a, b) => b[1] - a[1]
   )[0];
+
+  // Frase editorial da década líder, gerada dinamicamente a partir de topDecade.
+  const decadeGravityPhrases: Record<string, string> = {
+    "1950": "Tudo nasce nos anos 50 — antes de a coleção saber que seria uma.",
+    "1960": "Os anos 60 são a fundação silenciosa do arquivo.",
+    "1970": "Os anos 70 são o coração quente da coleção.",
+    "1980": "Os anos 80 são o centro de gravidade.",
+    "1990": "Os anos 90 puxam a coleção para o seu eixo.",
+    "2000": "Os anos 2000 são onde a coleção se adensa.",
+    "2010": "Os anos 2010 concentram a massa do arquivo.",
+    "2020": "Os anos 2020 já reivindicam o centro.",
+  };
+  const topDecadeKey = topDecade?.[0] ?? "";
+  const topDecadeShort =
+    Number(topDecadeKey) >= 2000 ? topDecadeKey : String(topDecadeKey).slice(2);
+  const decadePhrase =
+    decadeGravityPhrases[topDecadeKey] ??
+    `Os anos ${topDecadeShort} são o centro de gravidade.`;
   const topOrigin = originData[0];
   const mostValuable = [...collectionSeed].sort(
     (a, b) => b.financial.estimatedValue - a.financial.estimatedValue
@@ -270,7 +288,7 @@ export default async function InsightsPage() {
                   História em décadas
                 </p>
                 <p className="mt-2 text-2xl font-black">
-                  Os anos 80 são o centro de gravidade.
+                  {decadePhrase}
                 </p>
               </div>
               <span className="text-4xl font-black text-brand-yellow">
