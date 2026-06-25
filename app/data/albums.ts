@@ -119,7 +119,18 @@ const discogsCatalog: Record<string, DiscogsCatalogEntry> = {
   "036": { artist: "Rita Marley", album: "Greatest Hits", year: 1993, country: "Brasil", genre: "Reggae", subgenre: "Roots Reggae", tracks: 14, label: "Polydor", pressing: "Polydor · Brasil · 1993 · 519 968-1 · LP, compilação", estimatedValue: 440 },
 };
 
-export const albums: Album[] = albumEditorialBase.map((album) => ({
-  ...album,
-  ...discogsCatalog[album.catalog],
-}));
+// A base editorial (curada) é a fonte da verdade para narrativa: título, artista,
+// gênero, país de origem, ano de lançamento, papel, nota e narrativeCountry.
+// A camada Discogs enriquece apenas dados físicos da prensagem/mercado.
+export const albums: Album[] = albumEditorialBase.map((album) => {
+  const pressing = discogsCatalog[album.catalog];
+  if (!pressing) return album;
+
+  return {
+    ...album,
+    label: pressing.label ?? album.label,
+    pressing: pressing.pressing ?? album.pressing,
+    estimatedValue: pressing.estimatedValue ?? album.estimatedValue,
+    tracks: pressing.tracks ?? album.tracks,
+  };
+});
