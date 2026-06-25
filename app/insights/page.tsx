@@ -7,6 +7,8 @@ import { formatTotalDuration } from "../lib/discogs";
 import { getTotalValue } from "../lib/stats";
 import { countPrimaryGenres, getPrimaryGenre } from "../lib/genreGroup";
 import { albums } from "../data/albums";
+import { connections } from "../data/connections";
+import { DnaRadar, ConnectedBars, YearArea } from "../components/InsightsCharts";
 import {
   collectionSeed,
   collectionStats,
@@ -125,6 +127,63 @@ export default async function InsightsPage() {
   const movieCount = Math.round(totalDurationSeconds / (2 * 3600));
   const totalDays = totalDurationSeconds / (24 * 3600);
 
+  // 1) DNA sonoro agregado (média dos 4 eixos por toda a coleção)
+  const dnaTotals = collectionSeed.reduce(
+    (acc, album) => {
+      acc.reggae += album.dna.reggae;
+      acc.hiphop += album.dna.hiphop;
+      acc.jazz += album.dna.jazz;
+      acc.brasil += album.dna.brasil;
+      return acc;
+    },
+    { reggae: 0, hiphop: 0, jazz: 0, brasil: 0 }
+  );
+  const n = collectionSeed.length || 1;
+  const dnaData = [
+    { subject: "Reggae", value: Math.round(dnaTotals.reggae / n) },
+    { subject: "Hip-Hop", value: Math.round(dnaTotals.hiphop / n) },
+    { subject: "Jazz", value: Math.round(dnaTotals.jazz / n) },
+    { subject: "Brasil", value: Math.round(dnaTotals.brasil / n) },
+  ];
+
+  // 2) Conexões como rede — contagem por disco (source ou target)
+  const connCount: Record<string, number> = {};
+  for (const c of connections) {
+    if (c.source) connCount[c.source] = (connCount[c.source] || 0) + 1;
+    if (c.target) connCount[c.target] = (connCount[c.target] || 0) + 1;
+  }
+  const totalConnections = connections.length;
+  const topConnected = Object.entries(connCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 7)
+    .map(([catalog, count]) => {
+      const album = collectionSeed.find((a) => a.catalog === catalog);
+      return {
+        catalog,
+        count,
+        label: `TD-${catalog} · ${album?.artist ?? ""}`,
+        cover: album?.cover ?? "",
+        artist: album?.artist ?? "",
+        album: album?.album ?? "",
+      };
+    });
+  const mostConnected = topConnected[0];
+
+  // 3) Série temporal por ano (faixas de 5 anos, com lacunas preenchidas)
+  const yearBuckets: Record<number, number> = {};
+  collectionSeed.forEach((album) => {
+    if (!album.year) return;
+    const bucket = Math.floor(album.year / 5) * 5;
+    yearBuckets[bucket] = (yearBuckets[bucket] || 0) + 1;
+  });
+  const bucketKeys = Object.keys(yearBuckets).map(Number);
+  const minBucket = Math.min(...bucketKeys);
+  const maxBucket = Math.max(...bucketKeys);
+  const yearData: { period: string; count: number }[] = [];
+  for (let y = minBucket; y <= maxBucket; y += 5) {
+    yearData.push({ period: `${y}–${y + 4}`, count: yearBuckets[y] || 0 });
+  }
+
   return (
     <main className="min-h-screen bg-brand-black text-[#f4ead8] p-5 pb-32">
       <Link href="/" className="text-purple-400">
@@ -212,6 +271,66 @@ export default async function InsightsPage() {
       <Section title="Distribuição por país" data={byCountry} />
       <Section title="Distribuição por década" data={byDecade} />
       <Section title="Papéis narrativos" data={byRole} />
+
+      <section className="mt-10">
+        <h2 className="text-3xl font-black mb-2">DNA da Coleção</h2>
+        <p className="text-sm text-[#9d9079] mb-4">
+          A personalidade sonora dos {collectionStats.totalAlbums} discos,
+          condensada em quatro eixos.
+        </p>
+
+        <div className="premium-card rounded-[2rem] border border-[#2b241c] bg-[#111111] p-4">
+          <DnaRadar data={dnaData} />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-3xl font-black mb-2">Centro da Rede</h2>
+        <p className="text-sm text-[#9d9079] mb-4">
+          {totalConnections} conexões narrativas ligam a coleção.{" "}
+          {mostConnected &&
+            `O disco mais conectado é TD-${mostConnected.catalog}.`}
+        </p>
+
+        {mostConnected && (
+          <div className="premium-card mb-4 flex items-center gap-4 rounded-3xl border border-purple-800 bg-purple-950/20 p-4">
+            <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#2b241c] bg-brand-black">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={mostConnected.cover}
+                alt={mostConnected.album}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-purple-400">TD-{mostConnected.catalog}</p>
+              <p className="font-black leading-tight">{mostConnected.artist}</p>
+              <p className="text-sm text-[#b8aa91] truncate">
+                {mostConnected.album}
+              </p>
+              <p className="text-xs text-brand-yellow mt-1">
+                {mostConnected.count} conexões
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="premium-card rounded-[2rem] border border-[#2b241c] bg-[#111111] p-4">
+          <ConnectedBars data={topConnected} />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-3xl font-black mb-2">Quando a Coleção Foi Feita</h2>
+        <p className="text-sm text-[#9d9079] mb-4">
+          Distribuição dos discos por ano de lançamento, em faixas de 5 anos —
+          clusters e lacunas da coleção.
+        </p>
+
+        <div className="premium-card rounded-[2rem] border border-[#2b241c] bg-[#111111] p-4">
+          <YearArea data={yearData} />
+        </div>
+      </section>
 
       {totalDurationSeconds > 0 && (
         <section className="mt-8">
