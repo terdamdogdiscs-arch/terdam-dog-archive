@@ -126,19 +126,37 @@ export default async function InsightsPage() {
     }
   }
 
-  const networkData = Object.entries(connectionCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 7)
-    .map(([catalog, count]) => {
-      const album = collectionSeed.find((item) => item.catalog === catalog)!;
-      return {
-        catalog,
-        count,
-        artist: album.artist,
-        album: album.album,
-        cover: album.cover,
-      };
-    });
+  const toNetworkPoint = (catalog: string) => {
+    const album = collectionSeed.find((item) => item.catalog === catalog)!;
+    return {
+      catalog,
+      count: connectionCounts[catalog] || 0,
+      artist: album.artist,
+      album: album.album,
+      cover: album.cover,
+    };
+  };
+
+  // Centro = disco mais conectado. Satélites = seus vizinhos DIRETOS em
+  // connections.ts (não o ranking global da coleção).
+  const centerCatalog = Object.entries(connectionCounts).sort(
+    (a, b) => b[1] - a[1]
+  )[0]?.[0];
+
+  const neighborCatalogs = new Set<string>();
+  if (centerCatalog) {
+    for (const connection of connections) {
+      if (connection.source === centerCatalog && connection.target) {
+        neighborCatalogs.add(connection.target);
+      }
+      if (connection.target === centerCatalog) {
+        neighborCatalogs.add(connection.source);
+      }
+    }
+  }
+
+  const networkCenter = centerCatalog ? toNetworkPoint(centerCatalog) : null;
+  const networkSatellites = [...neighborCatalogs].map(toNetworkPoint);
 
   const oldestAlbum = [...collectionSeed].sort((a, b) => a.year - b.year)[0];
   const newestAlbum = [...collectionSeed].sort((a, b) => b.year - a.year)[0];
@@ -321,10 +339,10 @@ export default async function InsightsPage() {
             description={`${connections.length} relações editoriais revelam influências, retornos e pontes escondidas entre os discos.`}
           />
           <ChartCard className="mt-6">
-            {networkData[0] && (
+            {networkCenter && (
               <ConnectionOrbit
-                center={networkData[0]}
-                satellites={networkData.slice(1)}
+                center={networkCenter}
+                satellites={networkSatellites}
               />
             )}
           </ChartCard>
