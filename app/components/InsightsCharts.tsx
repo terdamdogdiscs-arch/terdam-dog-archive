@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const COLORS = {
   yellow: "#f5c400",
   purple: "#a347b6",
@@ -153,12 +157,16 @@ export function OriginBars({ data }: { data: OriginPoint[] }) {
 }
 
 export function ConnectionOrbit({
-  center,
-  satellites,
+  nodes,
+  adjacency,
+  initialCenter,
 }: {
-  center: NetworkPoint;
-  satellites: NetworkPoint[];
+  nodes: Record<string, NetworkPoint>;
+  adjacency: Record<string, string[]>;
+  initialCenter: string;
 }) {
+  const [centerCatalog, setCenterCatalog] = useState(initialCenter);
+
   const positions = [
     { x: 62, y: 66 },
     { x: 298, y: 62 },
@@ -167,6 +175,14 @@ export function ConnectionOrbit({
     { x: 92, y: 302 },
     { x: 28, y: 190 },
   ];
+
+  const center = nodes[centerCatalog];
+  if (!center) return null;
+
+  const satellites = (adjacency[centerCatalog] || [])
+    .map((catalog) => nodes[catalog])
+    .filter(Boolean)
+    .slice(0, 6);
 
   return (
     <div>
@@ -197,10 +213,18 @@ export function ConnectionOrbit({
             strokeDasharray="3 7"
           />
 
-          {satellites.slice(0, 6).map((item, index) => {
+          {satellites.map((item, index) => {
             const position = positions[index];
+            const size = Math.min(item.count, 8);
             return (
-              <g key={item.catalog}>
+              <g
+                key={item.catalog}
+                onClick={() => setCenterCatalog(item.catalog)}
+                role="button"
+                aria-label={`Centralizar a rede em ${item.artist}`}
+                style={{ cursor: "pointer" }}
+                className="transition hover:brightness-125"
+              >
                 <line
                   x1="180"
                   y1="180"
@@ -208,12 +232,12 @@ export function ConnectionOrbit({
                   y2={position.y}
                   stroke={index % 2 ? COLORS.purple : COLORS.yellow}
                   strokeOpacity="0.45"
-                  strokeWidth={Math.max(1.5, item.count / 2)}
+                  strokeWidth={Math.max(1.5, size / 2)}
                 />
                 <circle
                   cx={position.x}
                   cy={position.y}
-                  r={18 + item.count}
+                  r={18 + size}
                   fill="#15110e"
                   stroke={index % 2 ? COLORS.purple : COLORS.yellow}
                   strokeWidth="2"
@@ -251,6 +275,19 @@ export function ConnectionOrbit({
         </p>
         <p className="mt-2 text-2xl font-black text-[#f4ead8]">{center.artist}</p>
         <p className="text-sm text-[#9d9079]">{center.album}</p>
+
+        <p className="mt-3 text-xs text-[#9d9079]">
+          Toque em um disco ao redor para recentralizar a rede.
+          {centerCatalog !== initialCenter && (
+            <button
+              type="button"
+              onClick={() => setCenterCatalog(initialCenter)}
+              className="ml-2 text-purple-400 underline"
+            >
+              voltar ao centro
+            </button>
+          )}
+        </p>
       </div>
     </div>
   );

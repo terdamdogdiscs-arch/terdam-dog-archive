@@ -137,26 +137,30 @@ export default async function InsightsPage() {
     };
   };
 
-  // Centro = disco mais conectado. Satélites = seus vizinhos DIRETOS em
-  // connections.ts (não o ranking global da coleção).
-  const centerCatalog = Object.entries(connectionCounts).sort(
-    (a, b) => b[1] - a[1]
-  )[0]?.[0];
+  // Centro inicial = disco mais conectado.
+  const centerCatalog =
+    Object.entries(connectionCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
 
-  const neighborCatalogs = new Set<string>();
-  if (centerCatalog) {
-    for (const connection of connections) {
-      if (connection.source === centerCatalog && connection.target) {
-        neighborCatalogs.add(connection.target);
-      }
-      if (connection.target === centerCatalog) {
-        neighborCatalogs.add(connection.source);
-      }
+  // Grafo não-direcionado: cada disco aponta para seus vizinhos diretos.
+  // Permite recentralizar o orbit em qualquer disco no cliente.
+  const networkAdjacency: Record<string, string[]> = {};
+  const addEdge = (a: string, b: string) => {
+    (networkAdjacency[a] ??= []);
+    if (!networkAdjacency[a].includes(b)) networkAdjacency[a].push(b);
+  };
+  for (const connection of connections) {
+    if (connection.source && connection.target) {
+      addEdge(connection.source, connection.target);
+      addEdge(connection.target, connection.source);
     }
   }
 
-  const networkCenter = centerCatalog ? toNetworkPoint(centerCatalog) : null;
-  const networkSatellites = [...neighborCatalogs].map(toNetworkPoint);
+  const networkNodes: Record<string, ReturnType<typeof toNetworkPoint>> = {};
+  for (const catalog of Object.keys(connectionCounts)) {
+    if (collectionSeed.some((album) => album.catalog === catalog)) {
+      networkNodes[catalog] = toNetworkPoint(catalog);
+    }
+  }
 
   const oldestAlbum = [...collectionSeed].sort((a, b) => a.year - b.year)[0];
   const newestAlbum = [...collectionSeed].sort((a, b) => b.year - a.year)[0];
@@ -339,10 +343,11 @@ export default async function InsightsPage() {
             description={`${connections.length} relações editoriais revelam influências, retornos e pontes escondidas entre os discos.`}
           />
           <ChartCard className="mt-6">
-            {networkCenter && (
+            {networkNodes[centerCatalog] && (
               <ConnectionOrbit
-                center={networkCenter}
-                satellites={networkSatellites}
+                nodes={networkNodes}
+                adjacency={networkAdjacency}
+                initialCenter={centerCatalog}
               />
             )}
           </ChartCard>
