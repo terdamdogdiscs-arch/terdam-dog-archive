@@ -256,5 +256,12 @@ export const captions: Record<string, {
     tese: "Algumas vozes sustentam uma revolução sem precisar ocupar o centro do palco. 🎙️🇯🇲",
     hashtags: "#RitaMarley #GreatestHits #Reggae #Jamaica #IThrees #VinylCollection #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #036\n\nRita Marley — Greatest Hits (1993)\n\nA coleção apresentou artistas que criaram movimentos, transformaram gêneros e mudaram a história da música.\n\nRita Marley lembra que nenhuma dessas histórias é construída sozinha.\n\nIntegrante do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers, Rita foi muito mais do que um apoio de palco. Cantora, compositora e guardiã da cultura rastafári, construiu também uma trajetória solo que revelou sua própria identidade artística. Este álbum reúne parte dessa caminhada.\n\nAlgumas vozes sustentam uma revolução sem precisar ocupar o centro do palco.\n\n🎙️🇯🇲\n\n#RitaMarley #GreatestHits #Reggae #Jamaica #IThrees #VinylCollection #VinylCollector #TerdamDogDiscs"
+  },
+  "037": {
+    ponte: "Rita Marley mostrou que o reggae nunca foi construído por uma única voz.\n\nAgora a coleção volta ainda mais no tempo.",
+    contexto: "Antes do sucesso internacional, antes das grandes turnês e antes de Bob Marley se tornar um ícone mundial, existiam três jovens músicos construindo juntos uma nova linguagem para a música jamaicana: Bob Marley, Peter Tosh e Bunny Wailer.\n\nEste disco preserva exatamente esse instante.",
+    tese: "Toda lenda começa como um grupo de amigos. 🇯🇲📀",
+    hashtags: "#BobMarley #PeterTosh #BunnyWailer #TheWailers #EarlyMusic #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #037\n\nBob Marley & The Wailers featuring Peter Tosh — Early Music (1977)\n\nRita Marley mostrou que o reggae nunca foi construído por uma única voz.\n\nAgora a coleção volta ainda mais no tempo.\n\nAntes do sucesso internacional, antes das grandes turnês e antes de Bob Marley se tornar um ícone mundial, existiam três jovens músicos construindo juntos uma nova linguagem para a música jamaicana: Bob Marley, Peter Tosh e Bunny Wailer.\n\nEste disco preserva exatamente esse instante.\n\nToda lenda começa como um grupo de amigos.\n\n🇯🇲📀\n\n#BobMarley #PeterTosh #BunnyWailer #TheWailers #EarlyMusic #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
   }
 };

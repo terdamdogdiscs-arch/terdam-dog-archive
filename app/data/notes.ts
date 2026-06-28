@@ -236,5 +236,12 @@ export const notes = {
     note: "Rita Marley foi integrante fundadora do I-Threes, o trio vocal que acompanhou Bob Marley & The Wailers em sua trajetória mais celebrada. Cantora, compositora e guardiã da cultura rastafári, construiu também uma discografia solo que revelou uma voz e uma identidade artísticas próprias — e Greatest Hits reúne parte dessa caminhada.",
     story: "Família Marley",
     previous: "035",
+    next: "037",
+  },
+
+  "037": {
+    note: "Antes do sucesso internacional, antes das grandes turnês e antes de Bob Marley se tornar um ícone mundial, existiam três jovens músicos construindo juntos uma nova linguagem para a música jamaicana: Bob Marley, Peter Tosh e Bunny Wailer. Early Music preserva esse instante.",
+    story: "Família Marley",
+    previous: "036",
   },
 };

@@ -193,4 +193,11 @@ export const connections: Connection[] = [
     description: "A coleção já celebrou o reggae através de Junior Byles, Toots, Alpha Blondy e Jimmy Cliff. Rita Marley lembra que essas histórias sempre tiveram vozes femininas sustentando a revolução por dentro — muitas vezes sem ocupar o centro do palco.",
     type: "referencia-cruzada",
   },
+  {
+    source: "037",
+    target: "036",
+    reason: "Os Fundadores Originais",
+    description: "Rita Marley mostrou que o reggae nunca foi construído por uma única voz. Early Music volta ainda mais no tempo, aos três jovens que construíram juntos a base de tudo: Bob Marley, Peter Tosh e Bunny Wailer.",
+    type: "familia-marley",
+  },
 ]

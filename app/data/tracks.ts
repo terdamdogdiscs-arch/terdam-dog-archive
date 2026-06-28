@@ -464,4 +464,15 @@ export const tracks = [
   { catalog: "036", side: "B", number: 12, title: "Just One More Morning", duration: "—", bpm: null },
   { catalog: "036", side: "B", number: 13, title: "Jealousy", duration: "—", bpm: null },
   { catalog: "036", side: "B", number: 14, title: "Harambe", duration: "—", bpm: null },
+
+  { catalog: "037", side: "A", number: 1, title: "Wings Of A Dove", duration: "2:48", bpm: null },
+  { catalog: "037", side: "A", number: 2, title: "It Hurts To Be Alone", duration: "2:31", bpm: null },
+  { catalog: "037", side: "A", number: 3, title: "I'm Still Waiting", duration: "3:04", bpm: null },
+  { catalog: "037", side: "A", number: 4, title: "Who Feels It", duration: "2:19", bpm: null },
+  { catalog: "037", side: "A", number: 5, title: "Do You Remember", duration: "2:53", bpm: null },
+  { catalog: "037", side: "B", number: 6, title: "Dancing Shoes", duration: "2:40", bpm: null },
+  { catalog: "037", side: "B", number: 7, title: "I Don't Need Your Love", duration: "2:46", bpm: null },
+  { catalog: "037", side: "B", number: 8, title: "Lonesome Track", duration: "2:17", bpm: null },
+  { catalog: "037", side: "B", number: 9, title: "Do You Feel The Same Way", duration: "2:18", bpm: null },
+  { catalog: "037", side: "B", number: 10, title: "The Ten Commandments Of Love", duration: "4:30", bpm: null },
 ];
