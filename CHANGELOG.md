@@ -4,6 +4,18 @@ Registro de todas as mudanças significativas no projeto, em ordem cronológica 
 
 ---
 
+## 2026-06-28 — Legend encerra a sequência Família Marley
+
+**Commit:** incluído neste commit
+
+**O que mudou:** O disco #039, *Legend* de Bob Marley & The Wailers, entrou no arquivo com a edição original de 1984 confirmada no Discogs, capa oficial, quatorze faixas e durações completas. A narrativa conecta o disco a *Soul Rebel*, amplia a Família Marley para quatro títulos e atualiza a jornada Raízes do Reggae para 11 discos e 6h32 de escuta conhecida.
+
+**Por quê:** Mostrar como uma seleção editorial ajudou a construir a memória pública de Bob Marley e concluir o arco que parte da formação artística para chegar ao legado.
+
+**Arquivos afetados:** `app/data/albums.ts`, `app/data/tracks.ts`, `app/data/connections.ts`, `app/data/notes.ts`, `app/data/captions.ts`, `app/data/paths.ts`, `CHANGELOG.md`
+
+---
+
 ## 2026-06-25 — Dados transformados em narrativa visual
 
 **Commit:** incluído neste commit
