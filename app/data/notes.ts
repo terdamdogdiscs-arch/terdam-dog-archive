@@ -250,5 +250,13 @@ export const notes = {
     note: "Lee \"Scratch\" Perry já era um dos nomes mais inventivos da Jamaica quando começou a trabalhar com Bob Marley & The Wailers. Em Soul Rebel, essa parceria deu seus primeiros passos, estabelecendo uma estética que se tornaria referência para toda uma geração de músicos.",
     story: "Família Marley",
     previous: "037",
+    next: "039",
+  },
+
+  "039": {
+    note: "Legend não é apenas uma coletânea. É uma narrativa editorial que ajudou a definir como Bob Marley seria lembrado pelo mundo.",
+    story: "Família Marley",
+    previous: "038",
+    next: null,
   },
 };
