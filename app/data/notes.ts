@@ -257,6 +257,13 @@ export const notes = {
     note: "Legend não é apenas uma coletânea. É uma narrativa editorial que ajudou a definir como Bob Marley seria lembrado pelo mundo.",
     story: "Família Marley",
     previous: "038",
+    next: "040",
+  },
+
+  "040": {
+    note: "Diferente da sonoridade mais enraizada no reggae roots da geração anterior, One Bright Day abraça uma produção mais polida, mistura reggae, pop e grooves dançantes, mas preserva o compromisso com a valorização da cultura negra e das mensagens de transformação social.",
+    story: "Família Marley",
+    previous: "039",
     next: null,
   },
 };

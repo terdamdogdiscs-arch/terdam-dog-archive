@@ -67,7 +67,7 @@ export const listeningPaths: ListeningPath[] = [
     slug: "raizes-do-reggae",
     title: "Raízes do Reggae",
     description: "Da Jamaica ao mundo — roots, ska, rocksteady e a família que sustentou o legado.",
-    catalogs: ["002", "003", "004", "005", "006", "007", "035", "036", "037", "038", "039"],
+    catalogs: ["002", "003", "004", "005", "006", "007", "035", "036", "037", "038", "039", "040"],
     cover: "002",
   },
 ];

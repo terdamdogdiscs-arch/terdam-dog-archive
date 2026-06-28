@@ -277,5 +277,12 @@ export const captions: Record<string, {
     tese: "Nenhuma coleção é neutra. Toda seleção também conta uma história.",
     hashtags: "#BobMarley #Legend #Reggae #TheWailers #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #039\n\nBob Marley & The Wailers — Legend\n\nA coleção começou mostrando como Bob Marley foi construído.\n\nAgora ela mostra como Bob Marley foi lembrado.\n\nLegend não é apenas uma coletânea. É uma narrativa editorial. Ao reunir principalmente as canções da fase Island Records, apresentou ao mundo um artista associado à paz, à união e ao amor universal. Tudo isso faz parte da obra de Marley. Mas ela também inclui denúncias contra o colonialismo, reflexões sobre injustiça social e um profundo compromisso com a emancipação negra — aspectos que aparecem com menos força quando sua história é condensada em quatorze faixas.\n\nNenhuma coleção é neutra.\n\nToda seleção também conta uma história.\n\n🌍📀\n\n#BobMarley #Legend #Reggae #TheWailers #VinylCollector #TerdamDogDiscs"
+  },
+  "040": {
+    ponte: "A Família Marley mostrou os fundadores, o produtor e a memória construída em torno de Bob Marley. Agora ela acompanha a geração que precisou seguir em frente.",
+    contexto: "Diferente da sonoridade mais enraizada no reggae roots da geração anterior, One Bright Day abraça uma produção mais polida, mistura reggae, pop e grooves dançantes, mas preserva o compromisso com a valorização da cultura negra e das mensagens de transformação social.",
+    tese: "Honrar um legado não é repetir uma voz. É encontrar a coragem para construir a sua. ☀️🎶",
+    hashtags: "#ZiggyMarley #MelodyMakers #OneBrightDay #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #040\n\nZiggy Marley and the Melody Makers — One Bright Day (1989)\n\nA Família Marley mostrou os fundadores, o produtor e a memória construída em torno de Bob Marley. Agora ela acompanha a geração que precisou seguir em frente.\n\nDiferente da sonoridade mais enraizada no reggae roots da geração anterior, One Bright Day abraça uma produção mais polida, mistura reggae, pop e grooves dançantes, mas preserva o compromisso com a valorização da cultura negra e das mensagens de transformação social.\n\nHonrar um legado não é repetir uma voz.\n\nÉ encontrar a coragem para construir a sua.\n\n☀️🎶\n\n#ZiggyMarley #MelodyMakers #OneBrightDay #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
   }
 };

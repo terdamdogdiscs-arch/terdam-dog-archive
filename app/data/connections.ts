@@ -221,4 +221,11 @@ export const connections: Connection[] = [
     description: "Soul Rebel mostrou como Bob Marley foi construído. Legend mostra como ele foi lembrado — uma seleção deliberada que destacou o 'One Love' pacificador, condensando décadas de luta política em quatorze faixas vendáveis.",
     type: "familia-marley",
   },
+  {
+    source: "040",
+    target: "039",
+    reason: "Da Memória à Continuação",
+    description: "Legend mostrou como Bob Marley foi lembrado pelo mundo. One Bright Day mostra como ele foi continuado pelos próprios filhos — Ziggy, Stephen, Cedella e Sharon encontrando voz própria, com produção de Chris Frantz e Tina Weymouth do Talking Heads.",
+    type: "familia-marley",
+  },
 ]

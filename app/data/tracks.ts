@@ -507,4 +507,15 @@ export const tracks = [
   { catalog: "039", side: "B", number: 12, title: "Satisfy My Soul", duration: "3:45", bpm: null },
   { catalog: "039", side: "B", number: 13, title: "Exodus", duration: "5:24", bpm: null },
   { catalog: "039", side: "B", number: 14, title: "Jamming", duration: "3:17", bpm: null },
+
+  { catalog: "040", side: "A", number: 1, title: "Black My Story (Not History)", duration: "4:16", bpm: null },
+  { catalog: "040", side: "A", number: 2, title: "One Bright Day", duration: "4:13", bpm: null },
+  { catalog: "040", side: "A", number: 3, title: "Who Will Be There", duration: "4:11", bpm: null },
+  { catalog: "040", side: "A", number: 4, title: "When The Lights Gone Out", duration: "4:08", bpm: null },
+  { catalog: "040", side: "A", number: 5, title: "All Love", duration: "4:38", bpm: null },
+  { catalog: "040", side: "B", number: 6, title: "Look Who's Dancing", duration: "4:59", bpm: null },
+  { catalog: "040", side: "B", number: 7, title: "Justice", duration: "4:12", bpm: null },
+  { catalog: "040", side: "B", number: 8, title: "Love Is The Only Law", duration: "4:08", bpm: null },
+  { catalog: "040", side: "B", number: 9, title: "Pains In Life", duration: "3:47", bpm: null },
+  { catalog: "040", side: "B", number: 10, title: "Urb-An Music", duration: "2:53", bpm: null },
 ];
