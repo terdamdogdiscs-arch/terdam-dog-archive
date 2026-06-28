@@ -214,4 +214,11 @@ export const connections: Connection[] = [
     description: "Soul Rebel e Beat Down Babylon compartilham a mesma mão por trás dos controles: Lee \"Scratch\" Perry. O produtor que moldou Junior Byles é o mesmo que ajudou a revelar Bob Marley — uma assinatura sonora que atravessa a coleção.",
     type: "referencia-cruzada",
   },
+  {
+    source: "039",
+    target: "038",
+    reason: "Da Construção à Memória",
+    description: "Soul Rebel mostrou como Bob Marley foi construído. Legend mostra como ele foi lembrado — uma seleção deliberada que destacou o 'One Love' pacificador, condensando décadas de luta política em quatorze faixas vendáveis.",
+    type: "familia-marley",
+  },
 ]

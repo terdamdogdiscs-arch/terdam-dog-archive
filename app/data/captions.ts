@@ -270,5 +270,12 @@ export const captions: Record<string, {
     tese: "Toda grande voz encontra alguém que sabe como fazê-la ser ouvida. 🎚️🎶",
     hashtags: "#BobMarley #SoulRebel #LeeScratchPerry #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #038\n\nBob Marley — Soul Rebel\n\nDepois de conhecer as vozes que cercavam Bob Marley, a coleção encontra o produtor que ajudou a revelar sua identidade artística.\n\nLee \"Scratch\" Perry já era um dos nomes mais inventivos da Jamaica quando começou a trabalhar com Bob Marley & The Wailers. Em Soul Rebel, essa parceria deu seus primeiros passos, estabelecendo uma estética que se tornaria referência para toda uma geração de músicos.\n\nToda grande voz encontra alguém que sabe como fazê-la ser ouvida.\n\n🎚️🎶\n\n#BobMarley #SoulRebel #LeeScratchPerry #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
+  },
+  "039": {
+    ponte: "A coleção começou mostrando como Bob Marley foi construído.\n\nAgora ela mostra como Bob Marley foi lembrado.",
+    contexto: "Legend não é apenas uma coletânea. É uma narrativa editorial. Ao reunir principalmente as canções da fase Island Records, apresentou ao mundo um artista associado à paz, à união e ao amor universal. Tudo isso faz parte da obra de Marley. Mas ela também inclui denúncias contra o colonialismo, reflexões sobre injustiça social e um profundo compromisso com a emancipação negra — aspectos que aparecem com menos força quando sua história é condensada em quatorze faixas.",
+    tese: "Nenhuma coleção é neutra. Toda seleção também conta uma história.",
+    hashtags: "#BobMarley #Legend #Reggae #TheWailers #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #039\n\nBob Marley & The Wailers — Legend\n\nA coleção começou mostrando como Bob Marley foi construído.\n\nAgora ela mostra como Bob Marley foi lembrado.\n\nLegend não é apenas uma coletânea. É uma narrativa editorial. Ao reunir principalmente as canções da fase Island Records, apresentou ao mundo um artista associado à paz, à união e ao amor universal. Tudo isso faz parte da obra de Marley. Mas ela também inclui denúncias contra o colonialismo, reflexões sobre injustiça social e um profundo compromisso com a emancipação negra — aspectos que aparecem com menos força quando sua história é condensada em quatorze faixas.\n\nNenhuma coleção é neutra.\n\nToda seleção também conta uma história.\n\n🌍📀\n\n#BobMarley #Legend #Reggae #TheWailers #VinylCollector #TerdamDogDiscs"
   }
 };
