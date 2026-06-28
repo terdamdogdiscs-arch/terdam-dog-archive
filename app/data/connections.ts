@@ -200,4 +200,18 @@ export const connections: Connection[] = [
     description: "Rita Marley mostrou que o reggae nunca foi construído por uma única voz. Early Music volta ainda mais no tempo, aos três jovens que construíram juntos a base de tudo: Bob Marley, Peter Tosh e Bunny Wailer.",
     type: "familia-marley",
   },
+  {
+    source: "038",
+    target: "037",
+    reason: "Do Grupo ao Produtor",
+    description: "Early Music mostrou os três Wailers como iguais. Soul Rebel mostra o momento em que a parceria entre Bob Marley e Lee 'Scratch' Perry começou a moldar a identidade artística que o tornaria único.",
+    type: "familia-marley",
+  },
+  {
+    source: "038",
+    target: "002",
+    reason: "A Assinatura de Lee \"Scratch\" Perry",
+    description: "Soul Rebel e Beat Down Babylon compartilham a mesma mão por trás dos controles: Lee \"Scratch\" Perry. O produtor que moldou Junior Byles é o mesmo que ajudou a revelar Bob Marley — uma assinatura sonora que atravessa a coleção.",
+    type: "referencia-cruzada",
+  },
 ]

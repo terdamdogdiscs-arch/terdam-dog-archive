@@ -243,5 +243,12 @@ export const notes = {
     note: "Antes do sucesso internacional, antes das grandes turnês e antes de Bob Marley se tornar um ícone mundial, existiam três jovens músicos construindo juntos uma nova linguagem para a música jamaicana: Bob Marley, Peter Tosh e Bunny Wailer. Early Music preserva esse instante.",
     story: "Família Marley",
     previous: "036",
+    next: "038",
+  },
+
+  "038": {
+    note: "Lee \"Scratch\" Perry já era um dos nomes mais inventivos da Jamaica quando começou a trabalhar com Bob Marley & The Wailers. Em Soul Rebel, essa parceria deu seus primeiros passos, estabelecendo uma estética que se tornaria referência para toda uma geração de músicos.",
+    story: "Família Marley",
+    previous: "037",
   },
 };

@@ -263,5 +263,12 @@ export const captions: Record<string, {
     tese: "Toda lenda começa como um grupo de amigos. 🇯🇲📀",
     hashtags: "#BobMarley #PeterTosh #BunnyWailer #TheWailers #EarlyMusic #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #037\n\nBob Marley & The Wailers featuring Peter Tosh — Early Music (1977)\n\nRita Marley mostrou que o reggae nunca foi construído por uma única voz.\n\nAgora a coleção volta ainda mais no tempo.\n\nAntes do sucesso internacional, antes das grandes turnês e antes de Bob Marley se tornar um ícone mundial, existiam três jovens músicos construindo juntos uma nova linguagem para a música jamaicana: Bob Marley, Peter Tosh e Bunny Wailer.\n\nEste disco preserva exatamente esse instante.\n\nToda lenda começa como um grupo de amigos.\n\n🇯🇲📀\n\n#BobMarley #PeterTosh #BunnyWailer #TheWailers #EarlyMusic #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
+  },
+  "038": {
+    ponte: "Depois de conhecer as vozes que cercavam Bob Marley, a coleção encontra o produtor que ajudou a revelar sua identidade artística.",
+    contexto: "Lee \"Scratch\" Perry já era um dos nomes mais inventivos da Jamaica quando começou a trabalhar com Bob Marley & The Wailers. Em Soul Rebel, essa parceria deu seus primeiros passos, estabelecendo uma estética que se tornaria referência para toda uma geração de músicos.",
+    tese: "Toda grande voz encontra alguém que sabe como fazê-la ser ouvida. 🎚️🎶",
+    hashtags: "#BobMarley #SoulRebel #LeeScratchPerry #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #038\n\nBob Marley — Soul Rebel\n\nDepois de conhecer as vozes que cercavam Bob Marley, a coleção encontra o produtor que ajudou a revelar sua identidade artística.\n\nLee \"Scratch\" Perry já era um dos nomes mais inventivos da Jamaica quando começou a trabalhar com Bob Marley & The Wailers. Em Soul Rebel, essa parceria deu seus primeiros passos, estabelecendo uma estética que se tornaria referência para toda uma geração de músicos.\n\nToda grande voz encontra alguém que sabe como fazê-la ser ouvida.\n\n🎚️🎶\n\n#BobMarley #SoulRebel #LeeScratchPerry #Reggae #Jamaica #VinylCollection #VinylCollector #TerdamDogDiscs"
   }
 };
