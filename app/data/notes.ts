@@ -269,7 +269,7 @@ export const notes = {
 
   "041": {
     note: "Sly Dunbar e Robbie Shakespeare já tinham tocado em mais de 200 mil faixas quando decidiram, ao lado do produtor Bill Laswell, misturar reggae com funk, hip-hop e jazz de vanguarda numa única sessão. Shinehead canta aqui ao lado de Bootsy Collins e Henry Threadgill.",
-    story: "Referência",
+    story: "Referência Cruzada",
     previous: "007",
     next: null,
   },

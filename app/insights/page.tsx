@@ -193,6 +193,9 @@ export default async function InsightsPage() {
   const totalValue = getTotalValue(albums);
   const averageValue = Math.round(totalValue / albums.length);
 
+  const referenceCount = collectionSeed.filter((a) => a.role === "Referência").length;
+  const referenceCruzadaCount = collectionSeed.filter((a) => a.role === "Referência Cruzada").length;
+
   const heroCovers = ["002", "008", "013", "025"]
     .map((catalog) => collectionSeed.find((album) => album.catalog === catalog))
     .filter(Boolean) as typeof collectionSeed;
@@ -285,6 +288,21 @@ export default async function InsightsPage() {
           value={`${topDecade[0]}s`}
           detail={`${topDecade[1]} discos lançados`}
           accent="#45a65a"
+        />
+      </section>
+
+      <section className="mt-3 grid grid-cols-2 gap-3">
+        <MetricCard
+          eyebrow="Discos de Referência"
+          value={String(referenceCount)}
+          detail="linhagem brasileira · 025–034"
+          accent="#f5c400"
+        />
+        <MetricCard
+          eyebrow="Referências Cruzadas"
+          value={String(referenceCruzadaCount)}
+          detail="conexões pontuais de outros territórios"
+          accent="#d97706"
         />
       </section>
 

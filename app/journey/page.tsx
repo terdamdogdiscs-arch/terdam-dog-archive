@@ -14,6 +14,7 @@ type SeedAlbum = (typeof collectionSeed)[number];
 // são agrupados por bloco de gênero/região via faixa de catalog.
 const categoryOf = (album: SeedAlbum) => {
   if (album.role === "Referência") return "referencias";
+  if (album.role === "Referência Cruzada") return "referencias-cruzadas";
   if (album.role === "Virada") return "virada";
   if (album.role === "Família Marley") return "familia-marley";
 
@@ -34,6 +35,7 @@ const NAV_META = [
   { id: "jazz", title: "Bloco Jazz", icon: "🎷", border: "border-blue-800", text: "text-blue-400" },
   { id: "jorge-ben", title: "Bloco Jorge Ben", icon: "🎸", border: "border-orange-700", text: "text-orange-400" },
   { id: "referencias", title: "Referências", icon: "◆", border: "border-yellow-700", text: "text-yellow-400" },
+  { id: "referencias-cruzadas", title: "Referências Cruzadas", icon: "◇", border: "border-amber-700", text: "text-amber-400" },
   { id: "familia-marley", title: "Família Marley", icon: "🌿", border: "border-teal-700", text: "text-teal-400" },
 ];
 
@@ -135,12 +137,19 @@ export default async function JourneyPage({
       .map((a) => a.catalog)
       .sort();
 
+    const isSequential =
+      cats.length > 1 &&
+      cats.every(
+        (cat, i) => i === 0 || Number(cat) === Number(cats[i - 1]) + 1
+      );
     const range =
       cats.length === 0
         ? "—"
         : cats.length <= 3
         ? cats.join(" · ")
-        : `${cats[0]}–${cats[cats.length - 1]}`;
+        : isSequential
+        ? `${cats[0]}–${cats[cats.length - 1]}`
+        : `${cats.length} discos`;
 
     return { ...meta, count: cats.length, range };
   }).filter((item) => item.count > 0);
@@ -182,8 +191,11 @@ export default async function JourneyPage({
           if (!caption) return null;
 
           const isRef = album.role === "Referência";
+          const isRefCruzada = album.role === "Referência Cruzada";
           const nextAlbumInList = collectionSeed[index + 1];
-          const nextIsRef = nextAlbumInList?.role === "Referência";
+          const nextIsRef =
+            nextAlbumInList?.role === "Referência" ||
+            nextAlbumInList?.role === "Referência Cruzada";
           const anchorId = anchorForCatalog[album.catalog];
 
           return (
@@ -194,12 +206,14 @@ export default async function JourneyPage({
                 className={`flex gap-4 rounded-3xl border bg-[#11100e] p-5 transition ${
                   isRef
                     ? "border-yellow-700 hover:border-yellow-500"
+                    : isRefCruzada
+                    ? "border-amber-700 hover:border-amber-500"
                     : "border-[#2b241c] hover:border-purple-500"
                 }`}
               >
                 <div
                   className={`h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-brand-black ${
-                    isRef ? "border-yellow-700" : "border-[#2b241c]"
+                    isRef ? "border-yellow-700" : isRefCruzada ? "border-amber-700" : "border-[#2b241c]"
                   }`}
                 >
                   <CoverImage album={album} />
@@ -211,8 +225,13 @@ export default async function JourneyPage({
                       ◆ REFERÊNCIA
                     </p>
                   )}
+                  {isRefCruzada && (
+                    <p className="text-xs tracking-[0.25em] text-amber-500 mb-1">
+                      ◇ REFERÊNCIA CRUZADA
+                    </p>
+                  )}
 
-                  <p className={`text-sm ${isRef ? "text-yellow-400" : "text-purple-400"}`}>
+                  <p className={`text-sm ${isRef ? "text-yellow-400" : isRefCruzada ? "text-amber-400" : "text-purple-400"}`}>
                     TD-{album.catalog} · {album.artist} — {album.album}
                   </p>
 
@@ -229,8 +248,10 @@ export default async function JourneyPage({
 
               {index < collectionSeed.length - 1 && (
                 <div className="flex justify-center my-3">
-                  {nextIsRef || isRef ? (
+                  {(nextIsRef || isRef) && !isRefCruzada && !nextAlbumInList?.role?.includes("Cruzada") ? (
                     <span className="text-xl text-yellow-700">◆</span>
+                  ) : isRefCruzada || nextAlbumInList?.role === "Referência Cruzada" ? (
+                    <span className="text-xl text-amber-700">◇</span>
                   ) : (
                     <span className="text-2xl text-brand-purple">↓</span>
                   )}
