@@ -1,4 +1,5 @@
 import type { Album } from "../data/albums";
+import { connections } from "../data/connections";
 
 export type Mood = "melancólico" | "festivo" | "político" | "espiritual" | "sensual";
 export type Energy = "calmo" | "dançante" | "intenso";
@@ -15,9 +16,15 @@ export type ScoredResult = {
   score: number;
   maxScore: number;
   isPartial: boolean;
+  matchedMoods: Mood[];
+  matchedEnergies: Energy[];
+  matchedTerritories: Territory[];
+  connectedTo?: { catalog: string; reason: string };
 };
 
-// Keywords checked against tese + contexto + ponte + album.note (lowercased)
+// ── Mood keywords ─────────────────────────────────────────────────────────────
+// Checked against tese + contexto + ponte + album.note (all lowercased)
+
 const MOOD_KEYWORDS: Record<Mood, string[]> = {
   "melancólico": [
     "silêncio", "memória", "reconhecimento", "distante", "perda",
@@ -43,11 +50,12 @@ const MOOD_KEYWORDS: Record<Mood, string[]> = {
   ],
 };
 
-function deriveEnergies(genre: string, subgenre: string): Energy[] {
+// ── Energy derivation ─────────────────────────────────────────────────────────
+
+export function deriveEnergies(genre: string, subgenre: string): Energy[] {
   const g = `${genre} ${subgenre}`.toLowerCase();
   const energies = new Set<Energy>();
 
-  // CALMO: introspective, gentle, intimate
   if (
     /bossa nova|canção brasileira|piano jazz|samba de breque/.test(g) ||
     (/\bjazz\b/.test(g) && !/big band|jazz rap|hip.hop/.test(g)) ||
@@ -57,14 +65,10 @@ function deriveEnergies(genre: string, subgenre: string): Energy[] {
     energies.add("calmo");
   }
 
-  // DANÇANTE: rhythmic, groovy, party
-  if (
-    /pagode|samba funk|samba rock|dancehall|\bfunk\b|lovers rock|pop.reggae|reggae.*pop|world music/.test(g)
-  ) {
+  if (/pagode|samba funk|samba rock|dancehall|\bfunk\b|lovers rock|pop.reggae|reggae.*pop|world music/.test(g)) {
     energies.add("dançante");
   }
 
-  // INTENSO: raw, energetic, political force
   if (
     /hip.hop|golden age|alternative hip.hop|jazz rap|big band|ska|rocksteady|roots reggae|african reggae/.test(g) ||
     (/\breggae\b/.test(g) && !/pop.reggae|reggae.*pop|lovers rock/.test(g))
@@ -75,7 +79,9 @@ function deriveEnergies(genre: string, subgenre: string): Energy[] {
   return energies.size > 0 ? [...energies] : ["calmo"];
 }
 
-function deriveTerritories(country: string, narrativeCountry?: string | null): Territory[] {
+// ── Territory derivation ──────────────────────────────────────────────────────
+
+export function deriveTerritories(country: string, narrativeCountry?: string | null): Territory[] {
   const c = `${country} ${narrativeCountry ?? ""}`.toLowerCase();
   const territories = new Set<Territory>();
 
@@ -89,6 +95,19 @@ function deriveTerritories(country: string, narrativeCountry?: string | null): T
   return [...territories];
 }
 
+// ── Connection index (catalog → first outgoing connection) ────────────────────
+function buildConnectionIndex(): Map<string, { catalog: string; reason: string }> {
+  const index = new Map<string, { catalog: string; reason: string }>();
+  for (const conn of connections) {
+    if (conn.source && conn.target && conn.reason && !index.has(conn.source)) {
+      index.set(conn.source, { catalog: conn.target, reason: conn.reason });
+    }
+  }
+  return index;
+}
+
+// ── Main scoring function ─────────────────────────────────────────────────────
+
 export function scoreAlbums(
   albums: Album[],
   captionMap: Record<string, { tese: string; contexto: string; ponte: string }>,
@@ -98,6 +117,8 @@ export function scoreAlbums(
     filters.moods.length + filters.energies.length + filters.territories.length;
   if (totalCriteria === 0) return [];
 
+  const connIndex = buildConnectionIndex();
+
   const results = albums
     .map((album) => {
       const caption = captionMap[album.catalog];
@@ -106,20 +127,25 @@ export function scoreAlbums(
 
       const matchedMoods = filters.moods.filter((mood) =>
         MOOD_KEYWORDS[mood].some((kw) => text.includes(kw))
-      ).length;
-
+      );
       const albumEnergies = deriveEnergies(album.genre, album.subgenre);
-      const matchedEnergies = filters.energies.filter((e) =>
-        albumEnergies.includes(e)
-      ).length;
-
+      const matchedEnergies = filters.energies.filter((e) => albumEnergies.includes(e));
       const albumTerritories = deriveTerritories(album.country, album.narrativeCountry);
-      const matchedTerritories = filters.territories.filter((t) =>
-        albumTerritories.includes(t)
-      ).length;
+      const matchedTerritories = filters.territories.filter((t) => albumTerritories.includes(t));
 
-      const score = matchedMoods + matchedEnergies + matchedTerritories;
-      return { catalog: album.catalog, score, maxScore: totalCriteria, isPartial: false };
+      const score = matchedMoods.length + matchedEnergies.length + matchedTerritories.length;
+      const connectedTo = connIndex.get(album.catalog);
+
+      return {
+        catalog: album.catalog,
+        score,
+        maxScore: totalCriteria,
+        isPartial: false,
+        matchedMoods,
+        matchedEnergies,
+        matchedTerritories,
+        connectedTo,
+      };
     })
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score);
@@ -127,13 +153,9 @@ export function scoreAlbums(
   if (results.length === 0) return [];
 
   const topScore = results[0].score;
-  // Full match = reaches top score AND satisfies all criteria (score === totalCriteria)
   const hasFullMatch = topScore === totalCriteria;
 
   return results
     .slice(0, 6)
     .map((r) => ({ ...r, isPartial: hasFullMatch ? r.score < totalCriteria : true }));
 }
-
-// Expose energy/territory derivation for display
-export { deriveEnergies, deriveTerritories };
