@@ -518,4 +518,11 @@ export const tracks = [
   { catalog: "040", side: "B", number: 8, title: "Love Is The Only Law", duration: "4:08", bpm: null },
   { catalog: "040", side: "B", number: 9, title: "Pains In Life", duration: "3:47", bpm: null },
   { catalog: "040", side: "B", number: 10, title: "Urb-An Music", duration: "2:53", bpm: null },
+
+  { catalog: "041", side: "A", number: 1, title: "Fire", duration: "5:24", bpm: null },
+  { catalog: "041", side: "A", number: 2, title: "Boops (Here to Go)", duration: "5:15", bpm: null },
+  { catalog: "041", side: "A", number: 3, title: "Let's Rock", duration: "7:23", bpm: null },
+  { catalog: "041", side: "B", number: 4, title: "Yes We Can Can", duration: "6:16", bpm: null },
+  { catalog: "041", side: "B", number: 5, title: "Rhythm Killer", duration: "7:17", bpm: null },
+  { catalog: "041", side: "B", number: 6, title: "Bank Job", duration: "6:50", bpm: null },
 ];

@@ -228,4 +228,11 @@ export const connections: Connection[] = [
     description: "Legend mostrou como Bob Marley foi lembrado pelo mundo. One Bright Day mostra como ele foi continuado pelos próprios filhos — Ziggy, Stephen, Cedella e Sharon encontrando voz própria, com produção de Chris Frantz e Tina Weymouth do Talking Heads.",
     type: "familia-marley",
   },
+  {
+    source: "041",
+    target: "007",
+    reason: "Quem Segura o Ritmo",
+    description: "Shinehead já provou na coleção que fronteiras musicais são apenas sugestões. Em Rhythm Killers, ele canta ao lado da seção rítmica que tornou essa mistura possível — Sly Dunbar e Robbie Shakespeare, com produção de Bill Laswell.",
+    type: "referencia-cruzada",
+  },
 ]
