@@ -132,9 +132,6 @@ export default function Home() {
               <h1 className="mt-1 text-3xl font-black leading-none sm:text-5xl">
                 {albums[0].catalog} → {albums[albums.length - 1].catalog}
               </h1>
-              <p className="mt-3 max-w-xl text-sm text-[#b8aa91] sm:text-base">
-                {journeyPhrase}
-              </p>
             </div>
           </div>
 

@@ -214,11 +214,6 @@ export default async function InsightsPage() {
           <h1 className="mt-4 max-w-3xl text-5xl font-black leading-[0.92] sm:text-6xl lg:text-7xl">
             Os dados também contam uma história.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#b8aa91]">
-            Trinta e seis discos atravessam {Object.keys(decades).length} décadas, quatro grandes
-            territórios sonoros e uma rede de influências que começa no Brasil,
-            passa pela Jamaica, encontra Nova York e retorna transformada.
-          </p>
 
           <div className="mt-7 flex flex-wrap gap-2">
             {[
