@@ -2,6 +2,7 @@ import Link from "next/link";
 import { albums, type Album } from "../data/albums";
 import { connections } from "../data/connections";
 import BottomNav from "../components/BottomNav";
+import DiscoveryAssistant from "../components/DiscoveryAssistant";
 
 type DiscoveryPath = {
   id: string;
@@ -217,6 +218,8 @@ export default function DiscoverPage() {
       <Link href="/" className="text-purple-400">
         ← Coleção
       </Link>
+
+      <DiscoveryAssistant />
 
       <section className="mt-8 mb-8">
         <p className="text-sm tracking-[0.35em] text-purple-400">
