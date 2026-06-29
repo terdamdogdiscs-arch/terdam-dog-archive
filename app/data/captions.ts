@@ -291,5 +291,12 @@ export const captions: Record<string, {
     tese: "Algumas pontes não são construídas por quem canta. São construídas por quem segura o ritmo embaixo de tudo.",
     hashtags: "#SlyAndRobbie #RhythmKillers #BillLaswell #Reggae #Funk #VinylCollection #VinylCollector #TerdamDogDiscs",
     instagram: "💿 Disco #041\n\nSly & Robbie — Rhythm Killers (1987)\n\nA coleção já mostrou Shinehead como ponte entre Jamaica e Nova York.\n\nAgora ela encontra a seção rítmica que tornou essa ponte possível.\n\nSly Dunbar e Robbie Shakespeare já tinham tocado em mais de 200 mil faixas quando decidiram, ao lado do produtor Bill Laswell, misturar reggae com funk, hip-hop e jazz de vanguarda numa única sessão. Shinehead canta aqui ao lado de Bootsy Collins e Henry Threadgill — o mesmo artista que, na coleção, já havia provado que fronteiras musicais são só sugestões.\n\nAlgumas pontes não são construídas por quem canta.\n\nSão construídas por quem segura o ritmo embaixo de tudo.\n\n#SlyAndRobbie #RhythmKillers #BillLaswell #Reggae #Funk #VinylCollection #VinylCollector #TerdamDogDiscs"
+  },
+  "042": {
+    ponte: "Sly & Robbie mostraram o ritmo por trás de tudo.\n\nAgora a coleção encontra quem tentou levar esse ritmo para um público ainda maior.",
+    contexto: "Yellowman ajudou a transformar o dancehall em um fenômeno internacional. Em King Yellowman, seu único álbum para a CBS, a produção aproxima sua música do R&B e da disco, refletindo a tentativa de ampliar seu alcance sem romper com a linguagem que o tornou uma das vozes mais importantes da Jamaica.",
+    tese: "Quando a música atravessa fronteiras, ela também negocia sua própria identidade.",
+    hashtags: "#Yellowman #KingYellowman #Dancehall #Reggae #Jamaica #VinylCollector #TerdamDogDiscs",
+    instagram: "💿 Disco #042\n\nYellowman — King Yellowman (1984)\n\nSly & Robbie mostraram o ritmo por trás de tudo.\n\nAgora a coleção encontra quem tentou levar esse ritmo para um público ainda maior.\n\nYellowman ajudou a transformar o dancehall em um fenômeno internacional. Em King Yellowman, seu único álbum para a CBS, a produção aproxima sua música do R&B e da disco, refletindo a tentativa de ampliar seu alcance sem romper com a linguagem que o tornou uma das vozes mais importantes da Jamaica.\n\nQuando a música atravessa fronteiras, ela também negocia sua própria identidade.\n\n🎤🌍\n\n#Yellowman #KingYellowman #Dancehall #Reggae #Jamaica #VinylCollector #TerdamDogDiscs"
   }
 };

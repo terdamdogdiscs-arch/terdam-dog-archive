@@ -525,4 +525,15 @@ export const tracks = [
   { catalog: "041", side: "B", number: 4, title: "Yes We Can Can", duration: "6:16", bpm: null },
   { catalog: "041", side: "B", number: 5, title: "Rhythm Killer", duration: "7:17", bpm: null },
   { catalog: "041", side: "B", number: 6, title: "Bank Job", duration: "6:50", bpm: null },
+
+  { catalog: "042", side: "A", number: 1, title: "Jamaica Nice / Take Me Home Country Roads", duration: "5:07", bpm: null },
+  { catalog: "042", side: "A", number: 2, title: "Strong Me Strong", duration: "3:47", bpm: null },
+  { catalog: "042", side: "A", number: 3, title: "Mi Believe / Summer Holiday", duration: "4:08", bpm: null },
+  { catalog: "042", side: "A", number: 4, title: "Wha Dat", duration: "3:24", bpm: null },
+  { catalog: "042", side: "A", number: 5, title: "Moving On / Keep On Moving", duration: "4:46", bpm: null },
+  { catalog: "042", side: "B", number: 6, title: "Disco Reggae", duration: "3:28", bpm: null },
+  { catalog: "042", side: "B", number: 7, title: "Still Be A Lady / Girls Can't Do What The Guys Do", duration: "4:36", bpm: null },
+  { catalog: "042", side: "B", number: 8, title: "Reggae Calypso", duration: "3:40", bpm: null },
+  { catalog: "042", side: "B", number: 9, title: "Ooh We / Sea Cruise", duration: "4:17", bpm: null },
+  { catalog: "042", side: "B", number: 10, title: "If You Should Lose Me / You'll Lose A Good Thing", duration: "4:19", bpm: null },
 ];

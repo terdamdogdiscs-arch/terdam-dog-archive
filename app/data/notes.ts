@@ -271,6 +271,11 @@ export const notes = {
     note: "Sly Dunbar e Robbie Shakespeare já tinham tocado em mais de 200 mil faixas quando decidiram, ao lado do produtor Bill Laswell, misturar reggae com funk, hip-hop e jazz de vanguarda numa única sessão. Shinehead canta aqui ao lado de Bootsy Collins e Henry Threadgill.",
     story: "Referência Cruzada",
     previous: "007",
-    next: null,
+  },
+
+  "042": {
+    note: "Yellowman ajudou a transformar o dancehall em um fenômeno internacional. Em King Yellowman, seu único álbum para a CBS, a produção aproxima sua música do R&B e da disco, refletindo a tentativa de ampliar seu alcance sem romper com a linguagem que o tornou uma das vozes mais importantes da Jamaica.",
+    story: "Referência Cruzada",
+    previous: "041",
   },
 };

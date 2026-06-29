@@ -235,4 +235,11 @@ export const connections: Connection[] = [
     description: "Shinehead já provou na coleção que fronteiras musicais são apenas sugestões. Em Rhythm Killers, ele canta ao lado da seção rítmica que tornou essa mistura possível — Sly Dunbar e Robbie Shakespeare, com produção de Bill Laswell.",
     type: "referencia-cruzada",
   },
+  {
+    source: "042",
+    target: "041",
+    reason: "Do Ritmo ao Gênero",
+    description: "Sly & Robbie mostraram o ritmo por trás de tudo. Yellowman mostra quem usou ritmos jamaicanos para criar um gênero inteiro — e a negociação de identidade que aconteceu quando esse gênero tentou atravessar fronteiras internacionais.",
+    type: "referencia-cruzada",
+  },
 ]
