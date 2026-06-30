@@ -7,6 +7,7 @@ import { captions } from "../data/captions";
 import {
   scoreAlbums,
   type DiscoveryFilters,
+  type DiscoverySearchResult,
   type Energy,
   type Mood,
   type ScoredResult,
@@ -183,6 +184,9 @@ function ResultCard({ result }: { result: ScoredResult }) {
             <p className="text-xs text-[#9d9079]">TD-{album.catalog} · {album.year}</p>
             <p className="font-black leading-tight text-[#f4ead8]">{album.artist}</p>
             <p className="truncate text-sm text-[#b8aa91]">{album.album}</p>
+            <p className="mt-1 text-[11px] font-bold tracking-[0.12em] text-purple-400">
+              {result.role}
+            </p>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-1.5 pt-0.5">
             <MatchDots result={result} />
@@ -201,10 +205,19 @@ function ResultCard({ result }: { result: ScoredResult }) {
           </p>
         )}
 
+        <div className="mt-3 border-l border-brand-yellow/40 pl-3">
+          <p className="text-[10px] font-bold tracking-[0.18em] text-brand-yellow">
+            POR QUE APARECEU?
+          </p>
+          <p className="mt-1 whitespace-pre-line text-xs leading-relaxed text-[#b8aa91]">
+            {result.whyAppeared.text}
+          </p>
+        </div>
+
         {/* Connection hint from connections.ts */}
-        {result.connectedTo && (
+        {result.primaryConnection?.relatedCatalog && (
           <p className="mt-2 text-[11px] tracking-[0.12em] text-brand-yellow/70">
-            ↳ {result.connectedTo.reason} · TD-{result.connectedTo.catalog}
+            ↳ {result.primaryConnection.reason} · TD-{result.primaryConnection.relatedCatalog}
           </p>
         )}
       </div>
@@ -218,26 +231,41 @@ export default function DiscoveryAssistant() {
   const [moods, setMoods]           = useState<Mood[]>([]);
   const [energies, setEnergies]     = useState<Energy[]>([]);
   const [territories, setTerritories] = useState<Territory[]>([]);
-  const [results, setResults]       = useState<ScoredResult[] | null>(null);
-  const [searched, setSearched]     = useState(false);
+  const [searchResult, setSearchResult] = useState<DiscoverySearchResult | null>(null);
 
   const totalSelected = moods.length + energies.length + territories.length;
+  const searched = searchResult !== null;
+  const results = searchResult?.results ?? null;
 
   function handleSearch() {
     const filters: DiscoveryFilters = { moods, energies, territories };
-    setResults(scoreAlbums(albums, captionMap, filters));
-    setSearched(true);
+    setSearchResult(scoreAlbums(albums, captionMap, filters));
+  }
+
+  function handleMoodChange(mood: Mood) {
+    setMoods((current) => toggle(current, mood));
+    setSearchResult(null);
+  }
+
+  function handleEnergyChange(energy: Energy) {
+    setEnergies((current) => toggle(current, energy));
+    setSearchResult(null);
+  }
+
+  function handleTerritoryChange(territory: Territory) {
+    setTerritories((current) => toggle(current, territory));
+    setSearchResult(null);
   }
 
   function handleReset() {
     setMoods([]);
     setEnergies([]);
     setTerritories([]);
-    setResults(null);
-    setSearched(false);
+    setSearchResult(null);
   }
 
-  const exactCount = results?.filter((r) => !r.isPartial).length ?? 0;
+  const exactCount = searchResult?.totalExact ?? 0;
+  const totalFound = searchResult?.totalFound ?? 0;
   const hasExact   = exactCount > 0;
 
   return (
@@ -266,7 +294,7 @@ export default function DiscoveryAssistant() {
                 label={MOOD_LABELS[mood]}
                 active={moods.includes(mood)}
                 variant="yellow"
-                onClick={() => setMoods((m) => toggle(m, mood))}
+                onClick={() => handleMoodChange(mood)}
               />
             ))}
           </FilterGroup>
@@ -278,7 +306,7 @@ export default function DiscoveryAssistant() {
                 label={ENERGY_LABELS[e]}
                 active={energies.includes(e)}
                 variant="green"
-                onClick={() => setEnergies((prev) => toggle(prev, e))}
+                onClick={() => handleEnergyChange(e)}
               />
             ))}
           </FilterGroup>
@@ -290,7 +318,7 @@ export default function DiscoveryAssistant() {
                 label={TERRITORY_LABELS[t]}
                 active={territories.includes(t)}
                 variant="red"
-                onClick={() => setTerritories((prev) => toggle(prev, t))}
+                onClick={() => handleTerritoryChange(t)}
               />
             ))}
           </FilterGroup>
@@ -344,8 +372,8 @@ export default function DiscoveryAssistant() {
                     </p>
                     <p className="mt-0.5 text-sm text-[#9d9079]">
                       {hasExact
-                        ? `${exactCount} ${exactCount === 1 ? "disco" : "discos"} satisfaz${exactCount === 1 ? "" : "em"} todos os critérios`
-                        : "Nenhum disco atende a todos — mostrando os mais próximos"}
+                        ? `${totalFound} ${totalFound === 1 ? "disco encontrado" : "discos encontrados"} no total · ${exactCount} satisfaz${exactCount === 1 ? "" : "em"} todos os critérios`
+                        : `${totalFound} ${totalFound === 1 ? "disco encontrado" : "discos encontrados"} no total — mostrando os mais próximos`}
                     </p>
                   </div>
                   {/* Dot legend */}
