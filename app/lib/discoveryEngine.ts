@@ -40,10 +40,6 @@ export type ScoredResult = {
   matchedRoles: NarrativeRole[];
   connections: RelatedConnection[];
   primaryConnection?: RelatedConnection;
-  whyAppeared: {
-    source: "connection" | "caption" | "role";
-    text: string;
-  };
 };
 
 export type DiscoverySearchResult = {
@@ -330,28 +326,6 @@ function getContextScore(caption: CaptionData | undefined, matchedMoods: Mood[])
   return matchedMoods.length * 10 + populatedFields;
 }
 
-function getWhyAppeared(
-  album: Album,
-  caption: CaptionData | undefined,
-  primaryConnection: RelatedConnection | undefined
-): ScoredResult["whyAppeared"] {
-  if (primaryConnection) {
-    return {
-      source: "connection",
-      text: primaryConnection.description?.trim() || primaryConnection.reason,
-    };
-  }
-
-  const captionText =
-    caption?.ponte.trim() || caption?.contexto.trim() || caption?.tese.trim();
-
-  if (captionText) {
-    return { source: "caption", text: captionText };
-  }
-
-  return { source: "role", text: album.role };
-}
-
 // ── Main scoring function ─────────────────────────────────────────────────────
 
 export function scoreAlbums(
@@ -436,7 +410,6 @@ export function scoreAlbums(
         matchedRoles,
         connections: albumConnections,
         primaryConnection,
-        whyAppeared: getWhyAppeared(album, caption, primaryConnection),
       };
     })
     .filter((result) => result.score > 0)

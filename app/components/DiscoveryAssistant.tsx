@@ -197,6 +197,11 @@ function ResultCard({ result }: { result: ScoredResult }) {
   const album = albums.find((a) => a.catalog === result.catalog);
   if (!album) return null;
   const caption = captions[album.catalog];
+  const matchedLabels = [
+    ...result.matchedTerritories.map((territory) => TERRITORY_LABELS[territory]),
+    ...result.matchedMoods.map((mood) => MOOD_LABELS[mood]),
+    ...result.matchedEnergies.map((energy) => ENERGY_LABELS[energy]),
+  ];
 
   return (
     <Link
@@ -253,14 +258,12 @@ function ResultCard({ result }: { result: ScoredResult }) {
           </p>
         )}
 
-        <div className="mt-3 border-l border-brand-yellow/40 pl-3">
-          <p className="text-[10px] font-bold tracking-[0.18em] text-brand-yellow">
-            POR QUE APARECEU?
+        {matchedLabels.length > 0 && (
+          <p className="mt-3 text-xs leading-relaxed text-[#b8aa91]">
+            <span className="font-bold text-brand-yellow">Encontrado por:</span>{" "}
+            {matchedLabels.join(" · ")}
           </p>
-          <p className="mt-1 whitespace-pre-line text-xs leading-relaxed text-[#b8aa91]">
-            {result.whyAppeared.text}
-          </p>
-        </div>
+        )}
 
         {/* Connection hint from connections.ts */}
         {result.primaryConnection?.relatedCatalog && (
