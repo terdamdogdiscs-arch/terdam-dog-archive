@@ -1,9 +1,10 @@
 import type { Album } from "../data/albums";
 import { connections, type Connection } from "../data/connections";
+import { notes } from "../data/notes";
 
 export type Mood = "melancólico" | "festivo" | "político" | "espiritual" | "sensual";
 export type Energy = "calmo" | "dançante" | "intenso";
-export type Territory = "brasil" | "jamaica" | "nova-york" | "diaspora-africana";
+export type Territory = "brasil" | "jamaica" | "nova-york" | "atlantico-negro";
 export type NarrativeRole = Album["role"];
 
 export type DiscoveryFilters = {
@@ -55,6 +56,12 @@ type CaptionData = {
   tese: string;
   contexto: string;
   ponte: string;
+  hashtags?: string;
+};
+
+type NoteData = {
+  note?: string;
+  story?: string;
 };
 
 // ── Mood keywords ─────────────────────────────────────────────────────────────
@@ -127,20 +134,113 @@ export function deriveEnergies(genre: string, subgenre: string): Energy[] {
     energies.add("intenso");
   }
 
-  return energies.size > 0 ? [...energies] : ["calmo"];
+  return [...energies];
 }
 
 // ── Territory derivation ──────────────────────────────────────────────────────
 
-export function deriveTerritories(country: string, narrativeCountry?: string | null): Territory[] {
-  const c = `${country} ${narrativeCountry ?? ""}`.toLowerCase();
+const NEW_YORK_TERMS = [
+  "nova york",
+  "new york",
+  "newyorkhiphop",
+  "nyc",
+  "bronx",
+  "brooklyn",
+  "queens",
+  "harlem",
+  "manhattan",
+];
+
+const BLACK_ATLANTIC_TERMS = [
+  "áfrica",
+  "africa",
+  "africana",
+  "africano",
+  "afro",
+  "afro-brasileira",
+  "afro-brasileiro",
+  "afrocentrada",
+  "ancestralidade",
+  "bahia",
+  "candomblé",
+  "caribe",
+  "costa do marfim",
+  "jamaica",
+  "kingston",
+  "matriz africana",
+  "olodum",
+  "orixás",
+  "pelourinho",
+  "rastafári",
+  "rastafari",
+  "reggae",
+  "rocksteady",
+  "samba-reggae",
+  "ska",
+  "dancehall",
+];
+
+function hasEditorialEvidence(sources: string[], terms: string[]): boolean {
+  return sources.some((source) => {
+    const normalizedSource = normalizeText(source);
+    return terms.some((term) => containsWholeTerm(normalizedSource, term));
+  });
+}
+
+export function deriveTerritories({
+  album,
+  caption,
+  note,
+  albumConnections,
+}: {
+  album: Album;
+  caption?: CaptionData;
+  note?: NoteData;
+  albumConnections: RelatedConnection[];
+}): Territory[] {
+  const albumLocation = normalizeText(
+    `${album.country} ${album.narrativeCountry ?? ""}`
+  );
   const territories = new Set<Territory>();
 
-  if (/brasil|bahia/.test(c)) territories.add("brasil");
-  if (/jamaica/.test(c)) territories.add("jamaica");
-  if (/eua|nova york|canadá|canada/.test(c)) territories.add("nova-york");
-  if (/áfrica|africa|marfim|nigeria|nigéria|ghana|cabo verde|angola/.test(c)) {
-    territories.add("diaspora-africana");
+  if (/brasil|bahia/.test(albumLocation)) territories.add("brasil");
+  if (/jamaica/.test(albumLocation)) territories.add("jamaica");
+
+  const captionEvidence = [
+    caption?.ponte ?? "",
+    caption?.contexto ?? "",
+    caption?.tese ?? "",
+    caption?.hashtags ?? "",
+  ].join(" ");
+  const noteEvidence = [note?.note ?? "", note?.story ?? ""].join(" ");
+  const connectionEvidence = albumConnections
+    .map((connection) =>
+      [connection.reason, connection.description ?? "", connection.type ?? ""].join(" ")
+    )
+    .join(" ");
+  const albumEvidence = [
+    album.country,
+    album.narrativeCountry ?? "",
+    album.note,
+    album.genre,
+    album.subgenre,
+    album.artist,
+    album.album,
+  ].join(" ");
+
+  const evidenceByPriority = [
+    captionEvidence,
+    noteEvidence,
+    connectionEvidence,
+    albumEvidence,
+  ];
+
+  if (hasEditorialEvidence(evidenceByPriority, NEW_YORK_TERMS)) {
+    territories.add("nova-york");
+  }
+
+  if (hasEditorialEvidence(evidenceByPriority, BLACK_ATLANTIC_TERMS)) {
+    territories.add("atlantico-negro");
   }
 
   return [...territories];
@@ -276,8 +376,12 @@ export function scoreAlbums(
   const rankedResults = albums
     .map((album): ScoredResult => {
       const caption = captionMap[album.catalog];
+      const editorialNote = notes[
+        album.catalog as keyof typeof notes
+      ] as NoteData | undefined;
+      const albumConnections = connectionIndex.get(album.catalog) ?? [];
       const text = normalizeText(
-        `${caption?.tese ?? ""} ${caption?.contexto ?? ""} ${caption?.ponte ?? ""} ${album.note}`
+        `${caption?.tese ?? ""} ${caption?.contexto ?? ""} ${caption?.ponte ?? ""} ${editorialNote?.note ?? ""} ${editorialNote?.story ?? ""} ${album.note}`
       );
 
       const matchedMoods = filters.moods.filter((mood) =>
@@ -287,13 +391,17 @@ export function scoreAlbums(
       const matchedEnergies = filters.energies.filter((energy) =>
         albumEnergies.includes(energy)
       );
-      const albumTerritories = deriveTerritories(album.country, album.narrativeCountry);
+      const albumTerritories = deriveTerritories({
+        album,
+        caption,
+        note: editorialNote,
+        albumConnections,
+      });
       const matchedTerritories = filters.territories.filter((territory) =>
         albumTerritories.includes(territory)
       );
       const matchedRoles = selectedRoles.filter((role) => role === album.role);
 
-      const albumConnections = connectionIndex.get(album.catalog) ?? [];
       const primaryConnection = choosePrimaryConnection(albumConnections);
       const describedConnections = albumConnections.filter(
         (connection) => connection.description

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { albums } from "../data/albums";
 import { captions } from "../data/captions";
 import {
@@ -31,10 +31,10 @@ const ENERGY_LABELS: Record<Energy, string> = {
 };
 
 const TERRITORY_LABELS: Record<Territory, string> = {
-  "brasil":           "Brasil",
-  "jamaica":          "Jamaica",
-  "nova-york":        "Nova York",
-  "diaspora-africana": "Diáspora Africana",
+  "brasil":          "Brasil",
+  "jamaica":         "Jamaica",
+  "nova-york":       "Nova York",
+  "atlantico-negro": "Atlântico Negro",
 };
 
 const ALL_MOODS      = Object.keys(MOOD_LABELS) as Mood[];
@@ -42,17 +42,64 @@ const ALL_ENERGIES   = Object.keys(ENERGY_LABELS) as Energy[];
 const ALL_TERRITORIES = Object.keys(TERRITORY_LABELS) as Territory[];
 
 // ── Caption shim ──────────────────────────────────────────────────────────────
-type CaptionSlim = { tese: string; contexto: string; ponte: string };
+type CaptionSlim = { tese: string; contexto: string; ponte: string; hashtags: string };
 const captionMap: Record<string, CaptionSlim> = Object.fromEntries(
   Object.entries(captions).map(([k, v]) => [
     k,
-    { tese: v.tese, contexto: v.contexto, ponte: v.ponte },
+    { tese: v.tese, contexto: v.contexto, ponte: v.ponte, hashtags: v.hashtags },
   ])
 );
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function toggle<T>(arr: T[], item: T): T[] {
   return arr.includes(item) ? arr.filter((x) => x !== item) : [...arr, item];
+}
+
+function readParamValues<T extends string>(
+  params: URLSearchParams,
+  key: string,
+  allowedValues: readonly T[]
+): T[] {
+  const allowed = new Set<string>(allowedValues);
+  return [...new Set(params.getAll(key).filter((value) => allowed.has(value)))] as T[];
+}
+
+function readFiltersFromUrl(): DiscoveryFilters {
+  if (typeof window === "undefined") {
+    return { moods: [], energies: [], territories: [] };
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  return {
+    moods: readParamValues(params, "mood", ALL_MOODS),
+    energies: readParamValues(params, "energy", ALL_ENERGIES),
+    territories: readParamValues(params, "territory", ALL_TERRITORIES),
+  };
+}
+
+function hasSelectedFilters(filters: DiscoveryFilters): boolean {
+  return (
+    filters.moods.length > 0 ||
+    filters.energies.length > 0 ||
+    filters.territories.length > 0
+  );
+}
+
+function writeFiltersToUrl(filters: DiscoveryFilters) {
+  if (typeof window === "undefined") return;
+
+  const params = new URLSearchParams(window.location.search);
+  params.delete("mood");
+  params.delete("energy");
+  params.delete("territory");
+
+  filters.moods.forEach((mood) => params.append("mood", mood));
+  filters.energies.forEach((energy) => params.append("energy", energy));
+  filters.territories.forEach((territory) => params.append("territory", territory));
+
+  const query = params.toString();
+  const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+  window.history.replaceState(null, "", nextUrl);
 }
 
 // ── Chip variants by category ─────────────────────────────────────────────────
@@ -97,11 +144,12 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full border px-4 py-1.5 text-sm transition ${
+      aria-pressed={active}
+      className={`inline-flex min-h-11 items-center justify-center rounded-full border px-4 py-1.5 text-sm transition ${
         active ? v.active : v.inactive
       }`}
     >
-      {active && <span className="mr-1 opacity-70">✓</span>}
+      {active && <span aria-hidden="true" className="mr-1 opacity-70">✓</span>}
       {label}
     </button>
   );
@@ -118,12 +166,12 @@ function FilterGroup({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <p className={`mb-2.5 text-xs font-bold tracking-[0.28em] ${CHIP_VARIANTS[variant].kicker}`}>
+    <fieldset className="min-w-0 border-0 p-0">
+      <legend className={`mb-2.5 block text-xs font-bold tracking-[0.28em] ${CHIP_VARIANTS[variant].kicker}`}>
         {label}
-      </p>
+      </legend>
       <div className="flex flex-wrap gap-2">{children}</div>
-    </div>
+    </fieldset>
   );
 }
 
@@ -233,27 +281,52 @@ export default function DiscoveryAssistant() {
   const [territories, setTerritories] = useState<Territory[]>([]);
   const [searchResult, setSearchResult] = useState<DiscoverySearchResult | null>(null);
 
+  useEffect(() => {
+    function restoreFromUrl() {
+      const restoredFilters = readFiltersFromUrl();
+      setMoods(restoredFilters.moods);
+      setEnergies(restoredFilters.energies);
+      setTerritories(restoredFilters.territories);
+      setSearchResult(
+        hasSelectedFilters(restoredFilters)
+          ? scoreAlbums(albums, captionMap, restoredFilters)
+          : null
+      );
+    }
+
+    restoreFromUrl();
+    window.addEventListener("popstate", restoreFromUrl);
+    return () => window.removeEventListener("popstate", restoreFromUrl);
+  }, []);
+
   const totalSelected = moods.length + energies.length + territories.length;
   const searched = searchResult !== null;
   const results = searchResult?.results ?? null;
 
   function handleSearch() {
     const filters: DiscoveryFilters = { moods, energies, territories };
+    writeFiltersToUrl(filters);
     setSearchResult(scoreAlbums(albums, captionMap, filters));
   }
 
   function handleMoodChange(mood: Mood) {
-    setMoods((current) => toggle(current, mood));
+    const nextMoods = toggle(moods, mood);
+    setMoods(nextMoods);
+    writeFiltersToUrl({ moods: nextMoods, energies, territories });
     setSearchResult(null);
   }
 
   function handleEnergyChange(energy: Energy) {
-    setEnergies((current) => toggle(current, energy));
+    const nextEnergies = toggle(energies, energy);
+    setEnergies(nextEnergies);
+    writeFiltersToUrl({ moods, energies: nextEnergies, territories });
     setSearchResult(null);
   }
 
   function handleTerritoryChange(territory: Territory) {
-    setTerritories((current) => toggle(current, territory));
+    const nextTerritories = toggle(territories, territory);
+    setTerritories(nextTerritories);
+    writeFiltersToUrl({ moods, energies, territories: nextTerritories });
     setSearchResult(null);
   }
 
@@ -262,6 +335,7 @@ export default function DiscoveryAssistant() {
     setEnergies([]);
     setTerritories([]);
     setSearchResult(null);
+    writeFiltersToUrl({ moods: [], energies: [], territories: [] });
   }
 
   const exactCount = searchResult?.totalExact ?? 0;
