@@ -88,7 +88,7 @@ export function deriveTerritories(country: string, narrativeCountry?: string | n
   if (/brasil|bahia/.test(c)) territories.add("brasil");
   if (/jamaica/.test(c)) territories.add("jamaica");
   if (/eua|nova york|canadá|canada/.test(c)) territories.add("nova-york");
-  if (/áfrica|africa|marfim|nigeria|nigéria|ghana|cabo verde|angola|bahia/.test(c)) {
+  if (/áfrica|africa|marfim|nigeria|nigéria|ghana|cabo verde|angola/.test(c)) {
     territories.add("diaspora-africana");
   }
 
